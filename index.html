@@ -21,6 +21,7 @@
         <div class="dropdown-item active" onclick="switchTo('calc')">Kalkulator</div>
         <div class="dropdown-item" onclick="switchTo('ohm')">Ohms lov</div>
         <div class="dropdown-item" onclick="switchTo('kabel')">Kabel og vern</div>
+        <div class="dropdown-item" onclick="switchTo('krets')">RC / RL / RLC krets</div>
         <div class="dropdown-item disabled">Mer kommer...</div>
       </div>
     </div>
@@ -214,10 +215,126 @@
     </div>
   </div>
 
+  <!-- RC / RL / RLC krets -->
+  <div class="card hidden" id="viewKrets">
+    <div class="calc-title">RC / RL / RLC krets</div>
+    <div class="kabel-form">
+
+      <div class="kabel-row">
+        <label>Kretstype</label>
+        <div class="toggle-group" id="kcType">
+          <button class="toggle-btn active" data-val="RC" onclick="updateKretsInputs()">RC</button>
+          <button class="toggle-btn" data-val="RL" onclick="updateKretsInputs()">RL</button>
+          <button class="toggle-btn" data-val="RLC" onclick="updateKretsInputs()">RLC</button>
+        </div>
+      </div>
+
+      <div class="kabel-row">
+        <label>Spenning</label>
+        <div class="kabel-input-unit">
+          <input type="number" id="kcU" placeholder="0" inputmode="decimal">
+          <span>V</span>
+        </div>
+      </div>
+
+      <div class="kabel-row">
+        <label>Frekvens</label>
+        <div class="kabel-input-unit">
+          <input type="number" id="kcF" value="50" inputmode="decimal">
+          <span>Hz</span>
+        </div>
+      </div>
+
+      <div class="kabel-row">
+        <label>Motstand R</label>
+        <div class="kabel-input-unit">
+          <input type="number" id="kcR" placeholder="0" inputmode="decimal">
+          <span>Ω</span>
+        </div>
+      </div>
+
+      <div class="kabel-row" id="kcRowL">
+        <label>Induktans L</label>
+        <div class="kabel-input-unit">
+          <input type="number" id="kcL" placeholder="0" inputmode="decimal">
+          <span>mH</span>
+        </div>
+      </div>
+
+      <div class="kabel-row hidden" id="kcRowC">
+        <label>Kapasitans C</label>
+        <div class="kabel-input-unit">
+          <input type="number" id="kcC" placeholder="0" inputmode="decimal">
+          <span>μF</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="kr-warning hidden" id="kcError"></div>
+
+    <div class="kabel-result hidden" id="kcResult">
+      <div class="kabel-result-grid">
+        <div class="kr-item">
+          <div class="kr-label">AKTIV EFFEKT</div>
+          <div class="kr-value" id="kcResP">—</div>
+          <div class="kr-unit">W</div>
+        </div>
+        <div class="kr-item">
+          <div class="kr-label">REAKTIV EFFEKT</div>
+          <div class="kr-value" id="kcResQ">—</div>
+          <div class="kr-unit">VAR</div>
+        </div>
+        <div class="kr-item">
+          <div class="kr-label">SYNEFFEKT</div>
+          <div class="kr-value" id="kcResS">—</div>
+          <div class="kr-unit">VA</div>
+        </div>
+        <div class="kr-item">
+          <div class="kr-label">EFFEKTFAKTOR</div>
+          <div class="kr-value" id="kcResCosP">—</div>
+          <div class="kr-unit">cos φ</div>
+        </div>
+        <div class="kr-item">
+          <div class="kr-label">IMPEDANS</div>
+          <div class="kr-value" id="kcResZ">—</div>
+          <div class="kr-unit">Ω</div>
+        </div>
+        <div class="kr-item">
+          <div class="kr-label">STRØM</div>
+          <div class="kr-value" id="kcResI">—</div>
+          <div class="kr-unit">A</div>
+        </div>
+        <div class="kr-item" style="grid-column: span 2;">
+          <div class="kr-label">FASEVINKEL</div>
+          <div class="kr-value" id="kcResPhi">—</div>
+          <div class="kr-unit">°</div>
+        </div>
+      </div>
+      <div class="kr-item hidden" id="kcResFreq" style="text-align:center; margin-top:12px;">
+        <div class="kr-label">RESONANSFREKVENS</div>
+        <div class="kr-value" id="kcResF0">—</div>
+        <div class="kr-unit">Hz</div>
+      </div>
+      <div class="hint" id="kcChar"></div>
+    </div>
+
+    <div class="kabel-utregning-box hidden" id="kcUtregningBox">
+      <div class="kabel-utregning-title">Utregning</div>
+      <div class="kabel-utregning" id="kcUtregning"></div>
+    </div>
+
+    <div class="action-row">
+      <button class="btn-secondary" onclick="kretsClear()">Nullstill</button>
+      <button class="btn-primary ready" onclick="kretsCalc()">Beregn</button>
+    </div>
+  </div>
+
   <script src="js/menu.js"></script>
   <script src="js/calc-standard.js"></script>
   <script src="js/calc-ohm.js"></script>
   <script src="js/calc-kabel.js"></script>
+  <script src="js/calc-krets.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./service-worker.js');
