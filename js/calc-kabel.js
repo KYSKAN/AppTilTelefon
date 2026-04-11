@@ -140,7 +140,7 @@ function kabelCalc() {
     ? (phases === 1 ? 230 : Math.sqrt(3) * 230)
     : (phases === 1 ? 230 : Math.sqrt(3) * 400);
 
-  const I = loadUnit === 'A' ? loadVal : loadVal / (U_I * cosP);
+  const I = loadUnit === 'A' ? loadVal / cosP : loadVal / (U_I * cosP);
 
   // Spenningsfallreferanse (NEK 400-5-52)
   const U_ref = system === 'IT' ? 230 : (phases === 1 ? 230 : 400);
@@ -230,7 +230,9 @@ function kabelCalc() {
   const ok = v => v ? '✓' : '✗';
 
   const currentLines = loadUnit === 'A'
-    ? [`── Lasstrøm ──`, `I = ${I.toFixed(2)} A  (direkte oppgitt)`]
+    ? cosP < 1
+      ? [`── Lasstrøm (cos φ = ${cosP}) ──`, `I_aktiv = ${loadVal.toFixed(2)} A`, `I = ${loadVal.toFixed(2)} / ${cosP} = ${I.toFixed(2)} A`]
+      : [`── Lasstrøm ──`, `I = ${I.toFixed(2)} A  (direkte oppgitt)`]
     : [`── Lasstrøm (cos φ = ${cosP}) ──`, `I = ${loadVal.toFixed(0)} W / (${U_I_label} V × ${cosP})`, `  = ${I.toFixed(2)} A`];
 
   const lines = [
