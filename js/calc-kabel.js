@@ -140,7 +140,7 @@ function kabelCalc() {
     ? (phases === 1 ? 230 : Math.sqrt(3) * 230)
     : (phases === 1 ? 230 : Math.sqrt(3) * 400);
 
-  const I = loadUnit === 'A' ? loadVal / cosP : loadVal / (U_I * cosP);
+  const I = loadUnit === 'A' ? loadVal : loadVal / (U_I * cosP);
 
   // Spenningsfallreferanse (NEK 400-5-52)
   const U_ref = system === 'IT' ? 230 : (phases === 1 ? 230 : 400);
@@ -230,9 +230,7 @@ function kabelCalc() {
   const ok = v => v ? '✓' : '✗';
 
   const currentLines = loadUnit === 'A'
-    ? cosP < 1
-      ? [`── Lasstrøm (cos φ = ${cosP}) ──`, `I_aktiv = ${loadVal.toFixed(2)} A`, `I = ${loadVal.toFixed(2)} / ${cosP} = ${I.toFixed(2)} A`]
-      : [`── Lasstrøm ──`, `I = ${I.toFixed(2)} A  (direkte oppgitt)`]
+    ? [`── Lasstrøm ──`, `I = ${I.toFixed(2)} A  (direkte oppgitt)`]
     : [`── Lasstrøm (cos φ = ${cosP}) ──`, `I = ${loadVal.toFixed(0)} W / (${U_I_label} V × ${cosP})`, `  = ${I.toFixed(2)} A`];
 
   const lines = [
@@ -266,6 +264,25 @@ function kabelCalc() {
   document.getElementById('kbUtregning').textContent = lines.join('\n');
   document.getElementById('kbUtregningBox').classList.remove('hidden');
 }
+
+// Skjul cos φ-rad når lastenheten er A (total strøm oppgitt direkte)
+function updateCosPVisibility() {
+  const loadUnit = getToggle('kbLoadUnit');
+  const row = document.getElementById('kbCosPRow');
+  if (loadUnit === 'A') {
+    row.classList.add('hidden');
+    document.getElementById('kbCosP').value = '1';
+  } else {
+    row.classList.remove('hidden');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('#kbLoadUnit .toggle-btn').forEach(btn => {
+    btn.addEventListener('click', updateCosPVisibility);
+  });
+  updateCosPVisibility();
+});
 
 // Jord: referansetemperatur 20°C (NEK 400-5-52), luft: 30°C
 function updateTempForInstall() {
