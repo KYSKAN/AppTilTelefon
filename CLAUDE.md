@@ -30,7 +30,7 @@ AppTilTelefon/
 | krets   | calc-krets.js   | viewKrets   | RC/RL/RLC: P, Q, S, cos φ, Z, I, φ    |
 
 ## Viktige regler
-- **Service worker:** Bump `CACHE` (v16 → v17 osv.) i `service-worker.js` ved HVER deploy — ellers ser ikke telefonen endringene
+- **Service worker:** Bump `CACHE` (v17 → v18 osv.) i `service-worker.js` ved HVER deploy — ellers ser ikke telefonen endringene
 - **Deploy:** `git add . && git commit -m "..." && git push` — Netlify deployer automatisk
 - **Platform:** Android-only, Chrome PWA. Ingen iOS/Safari-støtte nødvendig.
 - **Stil:** Mørkt tema — bakgrunn `#1a1a2e`, kort `#16213e`, aksentblå `#63b3ed`
@@ -51,7 +51,9 @@ AppTilTelefon/
 - IT 230V vs TN 400V styrer `U_I` (lasstrøm) og `U_ref` (spenningsfallreferanse)
 - NEK 400-5-52: maks 4% spenningsfall (bolig), 5% (industri)
 - NEK 400-43: vernkrav `Ib ≤ In ≤ Iz`
-- Aluminium: faktor 0,78 på kobbertabeller (kjent forenkling — egne Al-tabeller mangler)
+- Aluminium: egne `izAlPVC` / `izAlPEX`-tabeller fra IEC 60364-5-52 (B.52.2/B.52.3), min. 16 mm²
+- Jordforlegning (D1/D2): `tCorrGroundPVC` / `tCorrGroundPEX` med ref. 20°C (tab. B.52.15)
+- Luftforlegning (A1–C, E): `tCorrPVC` / `tCorrPEX` med ref. 30°C (tab. B.52.14)
 
 ## calc-krets.js — nøkkelpunkter
 - Støtter RC, RL, RLC — C-felt skjules for RL, L-felt for RC

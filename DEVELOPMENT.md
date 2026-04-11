@@ -30,7 +30,7 @@ PWA er oppe og kjører på telefon. Koblet til GitHub — automatisk deploy via 
 AppTilTelefon/
 ├── index.html
 ├── manifest.json
-├── service-worker.js      (nåværende versjon: v16)
+├── service-worker.js      (nåværende versjon: v17)
 ├── CLAUDE.md
 ├── DEVELOPMENT.md
 ├── css/
@@ -51,8 +51,8 @@ AppTilTelefon/
 ### Kabel og vern — faglig
 - [ ] **Cos φ** — kalkulatoren antar cos φ = 1,0. Legg til felt for å endre dette.
 - [ ] **Samlefaktor** — korreksjon for flere kabler i samme rør/grøft (NEK 400)
-- [ ] **Aluminium-tabeller** — i dag brukes faktor 0,78 på kobbertabeller. NEK 400 har egne Al-tabeller.
-- [ ] **Jordtemperatur-korreksjon** — D1/D2 bruker lufttabell. Egne korreksjonsfaktorer for jord med ref. 20°C bør implementeres.
+- [x] **Aluminium-tabeller** — egne `izAlPVC`/`izAlPEX` fra IEC 60364-5-52 (B.52.2/B.52.3)
+- [x] **Jordtemperatur-korreksjon** — `tCorrGroundPVC`/`tCorrGroundPEX` med ref. 20°C (tab. B.52.15)
 
 ### Kabel og vern — brukervennlighet
 - [ ] **Last i A eller kW** — legg til valg mellom å oppgi last som effekt (kW) eller strøm (A) direkte

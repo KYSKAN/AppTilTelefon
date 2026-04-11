@@ -3,7 +3,7 @@
 // Beregner: lasstrøm, kabeltverrsnitt, spenningsfall, vernstørrelse
 
 // ── Strømkapasitetstabeller (A), kobber, flerleder ──
-// Kilde: IEC 60364-5-52 tabell B.52.4 / B.52.5, referansetemperatur 30°C (luft) / 20°C (jord)
+// Kilde: IEC 60364-5-52 tabell B.52.2 / B.52.4, referansetemperatur 30°C (luft) / 20°C (jord)
 // Metoder:
 //   A1 — Enkeltleder i rør i termisk isolert vegg
 //   A2 — Flerleder i rør i termisk isolert vegg
@@ -12,7 +12,6 @@
 //   C  — Direkte på vegg eller tak (klamret)
 //   D1 — Nedgravd i rør i jord (ref. 20°C)
 //   D2 — Direkte nedgravd i jord (ref. 20°C)
-//   E  — På perforert kabelbro / fritt i luft
 //   E  — På perforert kabelbro / fritt i luft
 const izCuPVC = {
   1.5:  { A1:11,  A2:13,  B1:13,  B2:15,  C:17.5, D1:22,  D2:26,  E:19.5 },
@@ -44,20 +43,53 @@ const izCuPEX = {
   120:  { A1:188, A2:216, B1:228, B2:253, C:299,  D1:284, D2:331, E:346 },
 };
 
+// ── Strømkapasitetstabeller (A), aluminium, flerleder ──
+// Kilde: IEC 60364-5-52 tabell B.52.2 / B.52.4 (Al), min. tverrsnitt 16 mm²
+const izAlPVC = {
+  16:  { A1:35,  A2:41,  B1:44,  B2:49,  C:59,   D1:64,  D2:74,  E:66  },
+  25:  { A1:46,  A2:53,  B1:57,  B2:63,  C:77,   D1:82,  D2:95,  E:87  },
+  35:  { A1:57,  A2:65,  B1:70,  B2:78,  C:93,   D1:98,  D2:114, E:107 },
+  50:  { A1:68,  A2:78,  B1:84,  B2:94,  C:112,  D1:116, D2:135, E:131 },
+  70:  { A1:86,  A2:98,  B1:107, B2:117, C:143,  D1:143, D2:166, E:166 },
+  95:  { A1:102, A2:118, B1:128, B2:140, C:173,  D1:169, D2:197, E:201 },
+  120: { A1:119, A2:135, B1:149, B2:162, C:201,  D1:193, D2:225, E:232 },
+};
+
+// Kilde: IEC 60364-5-52 tabell B.52.3 / B.52.5 (Al XLPE)
+const izAlPEX = {
+  16:  { A1:44,  A2:51,  B1:53,  B2:60,  C:71,   D1:75,  D2:88,  E:79  },
+  25:  { A1:57,  A2:67,  B1:70,  B2:80,  C:90,   D1:96,  D2:110, E:101 },
+  35:  { A1:70,  A2:82,  B1:86,  B2:98,  C:110,  D1:115, D2:132, E:122 },
+  50:  { A1:84,  A2:96,  B1:102, B2:116, C:132,  D1:133, D2:154, E:149 },
+  70:  { A1:107, A2:122, B1:129, B2:145, C:167,  D1:165, D2:192, E:192 },
+  95:  { A1:128, A2:147, B1:155, B2:175, C:201,  D1:197, D2:227, E:232 },
+  120: { A1:149, A2:171, B1:179, B2:202, C:232,  D1:225, D2:261, E:269 },
+};
+
 const crossSections = [1.5, 2.5, 4, 6, 10, 16, 25, 35, 50, 70, 95, 120];
 const breakerSizes  = [6, 10, 13, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125];
 
-// ── Temperaturkorreksjonsfaktorer (referanse 30°C, NEK 400 tab. 52B) ──
+// ── Temperaturkorreksjonsfaktorer — luft, referanse 30°C (NEK 400 tab. B.52.14) ──
 const tCorrPVC = { 10:1.22, 15:1.17, 20:1.12, 25:1.06, 30:1.00, 35:0.94, 40:0.87, 45:0.79, 50:0.71 };
 const tCorrPEX = { 10:1.15, 15:1.12, 20:1.08, 25:1.04, 30:1.00, 35:0.96, 40:0.91, 45:0.87, 50:0.82 };
+
+// ── Temperaturkorreksjonsfaktorer — jord, referanse 20°C (NEK 400 tab. B.52.15) ──
+const tCorrGroundPVC = { 10:1.10, 15:1.05, 20:1.00, 25:0.95, 30:0.89, 35:0.84, 40:0.77, 45:0.71, 50:0.63 };
+const tCorrGroundPEX = { 10:1.07, 15:1.04, 20:1.00, 25:0.96, 30:0.93, 35:0.89, 40:0.85, 45:0.80, 50:0.76 };
 
 // ── Resistivitet ved driftstemperatur (Ω·mm²/m) ──
 const rhoMap = { Cu_PVC: 0.0225, Cu_PEX: 0.0246, Al_PVC: 0.036, Al_PEX: 0.040 };
 
 // ── Hjelpefunksjoner ──
-function getTempFactor(temp, insul) {
-  const tbl = insul === 'PEX' ? tCorrPEX : tCorrPVC;
-  const t   = Math.max(10, Math.min(50, Math.round(temp / 5) * 5));
+function getTempFactor(temp, insul, install) {
+  const isGround = install === 'D1' || install === 'D2';
+  let tbl;
+  if (isGround) {
+    tbl = insul === 'PEX' ? tCorrGroundPEX : tCorrGroundPVC;
+  } else {
+    tbl = insul === 'PEX' ? tCorrPEX : tCorrPVC;
+  }
+  const t = Math.max(10, Math.min(50, Math.round(temp / 5) * 5));
   return tbl[t] ?? 1.0;
 }
 
@@ -110,11 +142,12 @@ function kabelCalc() {
   // Spenningsfallreferanse (NEK 400-5-52)
   const U_ref = system === 'IT' ? 230 : (phases === 1 ? 230 : 400);
 
-  const tFactor  = getTempFactor(temp, insul);
-  const alFactor = conductor === 'Al' ? 0.78 : 1.0;
+  const tFactor  = getTempFactor(temp, insul, install);
   const minCS    = conductor === 'Al' ? 16 : 1.5;
   const rho      = rhoMap[`${conductor}_${insul}`] ?? rhoMap.Cu_PVC;
-  const izTable  = insul === 'PEX' ? izCuPEX : izCuPVC;
+  const izTable  = conductor === 'Al'
+    ? (insul === 'PEX' ? izAlPEX : izAlPVC)
+    : (insul === 'PEX' ? izCuPEX : izCuPVC);
 
   // NEK 400-5-52: maks spenningsfall bolig 4 %, industri 5 %
   const maxDrop = use === 'bolig' ? 4.0 : 5.0;
@@ -128,7 +161,7 @@ function kabelCalc() {
 
   for (const cs of crossSections) {
     if (cs < minCS) continue;
-    const iz   = (izTable[cs]?.[install] ?? 0) * alFactor * tFactor;
+    const iz   = (izTable[cs]?.[install] ?? 0) * tFactor;
     const drop = calcDrop(cs);
     if (iz >= I && drop <= maxDrop) {
       chosenCS = cs; chosenIz = iz; chosenDrop = drop; break;
@@ -143,7 +176,7 @@ function kabelCalc() {
   if (chosenCS === null) {
     const cs = crossSections[crossSections.length - 1];
     chosenCS   = cs;
-    chosenIz   = (izTable[cs]?.[install] ?? 0) * alFactor * tFactor;
+    chosenIz   = (izTable[cs]?.[install] ?? 0) * tFactor;
     chosenDrop = calcDrop(cs);
   }
 
@@ -184,7 +217,9 @@ function kabelCalc() {
     E:'på perforert kabelbro',
   }[install] ?? install;
   const izBase  = izTable[chosenCS]?.[install] ?? 0;
-  const alLabel = conductor === 'Al' ? ` × ${alFactor}` : '';
+  const isGround = install === 'D1' || install === 'D2';
+  const tempRef  = isGround ? '20°C (jord)' : '30°C (luft)';
+  const tempTab  = isGround ? 'B.52.15' : 'B.52.14';
   const dFactor = phases === 1 ? '2' : '√3';
   const U_I_label = system === 'IT'
     ? (phases === 1 ? '230' : `√3 × 230 = ${(Math.sqrt(3)*230).toFixed(1)}`)
@@ -197,13 +232,13 @@ function kabelCalc() {
     `  = ${I.toFixed(2)} A`,
     ``,
     `── Temperaturkorrigering (${temp}°C, ${insul}) ──`,
-    `k_temp = ${tFactor}  (ref. 30°C, NEK 400 tab. 52B)`,
+    `k_temp = ${tFactor}  (ref. ${tempRef}, NEK 400 tab. ${tempTab})`,
     `Iz_krav = ${I.toFixed(2)} / ${tFactor} = ${(I/tFactor).toFixed(2)} A`,
     ``,
     `── Valgt kabel ──`,
     `${chosenCS} mm² ${conductor} ${insul}, ${iName}`,
-    `Iz_tabell = ${izBase} A`,
-    `Iz = ${izBase}${alLabel} × ${tFactor} = ${chosenIz.toFixed(1)} A`,
+    `Iz_tabell = ${izBase} A  (IEC 60364-5-52)`,
+    `Iz = ${izBase} × ${tFactor} = ${chosenIz.toFixed(1)} A`,
     `Iz (${chosenIz.toFixed(1)} A) ≥ I (${I.toFixed(2)} A)  ${ok(chosenIz >= I)}`,
     ``,
     `── Spenningsfall (NEK 400-5-52, maks ${maxDrop} %) ──`,
