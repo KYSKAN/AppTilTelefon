@@ -109,6 +109,7 @@ function kabelCalc() {
   const phases    = parseInt(getToggle('kbPhase'));
   const loadVal   = parseFloat(document.getElementById('kbLoad').value);
   const loadUnit  = getToggle('kbLoadUnit');  // 'W' | 'A'
+  const cosP      = parseFloat(document.getElementById('kbCosP').value) || 1.0;
   const install   = document.getElementById('kbInstall').value;
   const system    = getToggle('kbSystem');    // 'IT' | 'TN'
   const use       = getToggle('kbUse');       // 'bolig' | 'industri'
@@ -119,6 +120,7 @@ function kabelCalc() {
   const errors = [];
   if (isNaN(length) || length <= 0) errors.push('Kabellengde må være større enn 0.');
   if (isNaN(loadVal) || loadVal <= 0) errors.push(`Last må være større enn 0 ${loadUnit}.`);
+  if (cosP <= 0 || cosP > 1) errors.push('Cos φ må være mellom 0,1 og 1,0.');
   if (temp < 10 || temp > 50) errors.push('Omgivelsestemperatur må være mellom 10 og 50 °C.');
 
   const warnEl = document.getElementById('krWarning');
@@ -138,7 +140,7 @@ function kabelCalc() {
     ? (phases === 1 ? 230 : Math.sqrt(3) * 230)
     : (phases === 1 ? 230 : Math.sqrt(3) * 400);
 
-  const I = loadUnit === 'A' ? loadVal : loadVal / U_I;
+  const I = loadUnit === 'A' ? loadVal : loadVal / (U_I * cosP);
 
   // Spenningsfallreferanse (NEK 400-5-52)
   const U_ref = system === 'IT' ? 230 : (phases === 1 ? 230 : 400);
@@ -229,7 +231,7 @@ function kabelCalc() {
 
   const currentLines = loadUnit === 'A'
     ? [`── Lasstrøm ──`, `I = ${I.toFixed(2)} A  (direkte oppgitt)`]
-    : [`── Lasstrøm (cos φ = 1) ──`, `I = ${loadVal.toFixed(0)} W / ${U_I_label} V`, `  = ${I.toFixed(2)} A`];
+    : [`── Lasstrøm (cos φ = ${cosP}) ──`, `I = ${loadVal.toFixed(0)} W / (${U_I_label} V × ${cosP})`, `  = ${I.toFixed(2)} A`];
 
   const lines = [
     ...currentLines,
@@ -286,4 +288,5 @@ function kabelClear() {
   setToggle('kbConductor', 'Cu');
   setToggle('kbInsul',     'PVC');
   setToggle('kbLoadUnit', 'W');
+  document.getElementById('kbCosP').value = '1';
 }

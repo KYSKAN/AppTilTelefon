@@ -30,7 +30,7 @@ PWA er oppe og kjører på telefon. Koblet til GitHub — automatisk deploy via 
 AppTilTelefon/
 ├── index.html
 ├── manifest.json
-├── service-worker.js      (nåværende versjon: v18)
+├── service-worker.js      (nåværende versjon: v20)
 ├── CLAUDE.md
 ├── DEVELOPMENT.md
 ├── css/
@@ -49,7 +49,7 @@ AppTilTelefon/
 ## Backlog
 
 ### Kabel og vern — faglig
-- [ ] **Cos φ** — kalkulatoren antar cos φ = 1,0. Legg til felt for å endre dette.
+- [x] **Cos φ** — eget felt, default 1,0. Brukes i lasstrøm-beregning ved W-modus.
 - [ ] **Samlefaktor** — korreksjon for flere kabler i samme rør/grøft (NEK 400)
 - [x] **Aluminium-tabeller** — egne `izAlPVC`/`izAlPEX` fra IEC 60364-5-52 (B.52.2/B.52.3)
 - [x] **Jordtemperatur-korreksjon** — `tCorrGroundPVC`/`tCorrGroundPEX` med ref. 20°C (tab. B.52.15)
