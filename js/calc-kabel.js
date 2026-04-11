@@ -3,35 +3,46 @@
 // Beregner: lasstrøm, kabeltverrsnitt, spenningsfall, vernstørrelse
 
 // ── Strømkapasitetstabeller (A), kobber, flerleder ──
-// Forlegningsmetoder: A2, B2, C, E, D1  (IEC 60364-5-52 tabell B.52.4 / B.52.5)
+// Kilde: IEC 60364-5-52 tabell B.52.4 / B.52.5, referansetemperatur 30°C (luft) / 20°C (jord)
+// Metoder:
+//   A1 — Enkeltleder i rør i termisk isolert vegg
+//   A2 — Flerleder i rør i termisk isolert vegg
+//   B1 — Enkeltleder i rør på vegg / i vegg
+//   B2 — Flerleder i rør på vegg / i vegg
+//   C  — Direkte på vegg eller tak (klamret)
+//   D1 — Nedgravd i rør i jord (ref. 20°C)
+//   D2 — Direkte nedgravd i jord (ref. 20°C)
+//   E  — På perforert kabelbro / fritt i luft
+//   F  — Enkeltledere fritt i luft, flatt arrangement (kun enkeltledere)
+//   G  — Enkeltledere fritt i luft, trekantarrangement (kun enkeltledere)
 const izCuPVC = {
-  1.5:  { A2:13,  B2:15,  C:17.5, E:19.5, D1:22  },
-  2.5:  { A2:17,  B2:20,  C:24,   E:27,   D1:29  },
-  4:    { A2:23,  B2:27,  C:32,   E:36,   D1:38  },
-  6:    { A2:29,  B2:34,  C:41,   E:46,   D1:47  },
-  10:   { A2:39,  B2:46,  C:57,   E:63,   D1:63  },
-  16:   { A2:52,  B2:62,  C:76,   E:85,   D1:81  },
-  25:   { A2:68,  B2:80,  C:99,   E:112,  D1:104 },
-  35:   { A2:83,  B2:99,  C:119,  E:138,  D1:125 },
-  50:   { A2:99,  B2:118, C:144,  E:168,  D1:148 },
-  70:   { A2:125, B2:149, C:184,  E:213,  D1:183 },
-  95:   { A2:150, B2:179, C:223,  E:258,  D1:216 },
-  120:  { A2:172, B2:206, C:259,  E:299,  D1:246 },
+  1.5:  { A1:11,  A2:13,  B1:13,  B2:15,  C:17.5, D1:22,  D2:26,  E:19.5, F:null, G:null },
+  2.5:  { A1:15,  A2:17,  B1:18,  B2:20,  C:24,   D1:29,  D2:34,  E:27,   F:null, G:null },
+  4:    { A1:20,  A2:23,  B1:24,  B2:27,  C:32,   D1:38,  D2:44,  E:36,   F:null, G:null },
+  6:    { A1:25,  A2:29,  B1:31,  B2:34,  C:41,   D1:47,  D2:56,  E:46,   F:null, G:null },
+  10:   { A1:34,  A2:39,  B1:42,  B2:46,  C:57,   D1:63,  D2:73,  E:63,   F:null, G:null },
+  16:   { A1:45,  A2:52,  B1:56,  B2:62,  C:76,   D1:81,  D2:95,  E:85,   F:110,  G:99   },
+  25:   { A1:60,  A2:68,  B1:73,  B2:80,  C:99,   D1:104, D2:121, E:112,  F:148,  G:133  },
+  35:   { A1:73,  A2:83,  B1:89,  B2:99,  C:119,  D1:125, D2:146, E:138,  F:183,  G:164  },
+  50:   { A1:87,  A2:99,  B1:108, B2:118, C:144,  D1:148, D2:173, E:168,  F:220,  G:198  },
+  70:   { A1:111, A2:125, B1:136, B2:149, C:184,  D1:183, D2:213, E:213,  F:279,  G:251  },
+  95:   { A1:133, A2:150, B1:164, B2:179, C:223,  D1:216, D2:252, E:258,  F:338,  G:304  },
+  120:  { A1:153, A2:172, B1:188, B2:206, C:259,  D1:246, D2:287, E:299,  F:392,  G:352  },
 };
 
 const izCuPEX = {
-  1.5:  { A2:15,  B2:18,  C:21,   E:23,   D1:25  },
-  2.5:  { A2:21,  B2:25,  C:28,   E:32,   D1:33  },
-  4:    { A2:28,  B2:33,  C:38,   E:43,   D1:44  },
-  6:    { A2:36,  B2:42,  C:49,   E:55,   D1:56  },
-  10:   { A2:50,  B2:57,  C:68,   E:76,   D1:74  },
-  16:   { A2:66,  B2:76,  C:91,   E:101,  D1:96  },
-  25:   { A2:84,  B2:99,  C:116,  E:130,  D1:121 },
-  35:   { A2:101, B2:120, C:139,  E:158,  D1:144 },
-  50:   { A2:121, B2:144, C:168,  E:192,  D1:169 },
-  70:   { A2:154, B2:182, C:213,  E:246,  D1:209 },
-  95:   { A2:188, B2:220, C:258,  E:298,  D1:248 },
-  120:  { A2:216, B2:253, C:299,  E:346,  D1:284 },
+  1.5:  { A1:13,  A2:15,  B1:15,  B2:18,  C:21,   D1:25,  D2:30,  E:23,   F:null, G:null },
+  2.5:  { A1:18,  A2:21,  B1:21,  B2:25,  C:28,   D1:33,  D2:40,  E:32,   F:null, G:null },
+  4:    { A1:24,  A2:28,  B1:28,  B2:33,  C:38,   D1:44,  D2:52,  E:43,   F:null, G:null },
+  6:    { A1:31,  A2:36,  B1:36,  B2:42,  C:49,   D1:56,  D2:66,  E:55,   F:null, G:null },
+  10:   { A1:42,  A2:50,  B1:50,  B2:57,  C:68,   D1:74,  D2:86,  E:76,   F:null, G:null },
+  16:   { A1:56,  A2:66,  B1:68,  B2:76,  C:91,   D1:96,  D2:112, E:101,  F:131,  G:118  },
+  25:   { A1:73,  A2:84,  B1:89,  B2:99,  C:116,  D1:121, D2:142, E:130,  F:174,  G:157  },
+  35:   { A1:89,  A2:101, B1:108, B2:120, C:139,  D1:144, D2:169, E:158,  F:214,  G:193  },
+  50:   { A1:108, A2:121, B1:130, B2:144, C:168,  D1:169, D2:198, E:192,  F:259,  G:234  },
+  70:   { A1:136, A2:154, B1:165, B2:182, C:213,  D1:209, D2:245, E:246,  F:331,  G:298  },
+  95:   { A1:164, A2:188, B1:198, B2:220, C:258,  D1:248, D2:290, E:298,  F:401,  G:361  },
+  120:  { A1:188, A2:216, B1:228, B2:253, C:299,  D1:284, D2:331, E:346,  F:468,  G:421  },
 };
 
 const crossSections = [1.5, 2.5, 4, 6, 10, 16, 25, 35, 50, 70, 95, 120];
@@ -144,6 +155,8 @@ function kabelCalc() {
 
   // Advarsler
   const warnings = [];
+  if (install === 'F' || install === 'G')
+    warnings.push(`Metode ${install} gjelder kun enkeltledere. Bruk kun for anlegg med separate faseledere.`);
   if (chosenDrop > maxDrop)
     warnings.push(`Spenningsfall ${chosenDrop.toFixed(1)} % > maks ${maxDrop} % (NEK 400-5-52). Vurder kortere kabel eller større tverrsnitt.`);
   if (chosenIz < I)
@@ -166,7 +179,14 @@ function kabelCalc() {
   document.getElementById('kbResult').classList.remove('hidden');
 
   // Utregning
-  const iName   = { A2:'i rør i isolert vegg', B2:'i rør på vegg', C:'på vegg/tak', E:'fritt i luft', D1:'nedgravd i rør' }[install] ?? install;
+  const iName   = {
+    A1:'enkeltleder i rør i isolert vegg', A2:'flerleder i rør i isolert vegg',
+    B1:'enkeltleder i rør på vegg',        B2:'flerleder i rør på vegg',
+    C:'direkte på vegg/tak',
+    D1:'nedgravd i rør i jord',            D2:'direkte nedgravd i jord',
+    E:'på perforert kabelbro',
+    F:'enkeltledere fritt i luft, flatt',  G:'enkeltledere fritt i luft, trekant',
+  }[install] ?? install;
   const izBase  = izTable[chosenCS]?.[install] ?? 0;
   const alLabel = conductor === 'Al' ? ` × ${alFactor}` : '';
   const dFactor = phases === 1 ? '2' : '√3';
