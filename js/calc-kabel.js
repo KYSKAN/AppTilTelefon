@@ -285,14 +285,5 @@ function kabelClear() {
   setToggle('kbUse',       'bolig');
   setToggle('kbConductor', 'Cu');
   setToggle('kbInsul',     'PVC');
-  setToggle('kbLoadUnit',  'W');
-  document.getElementById('kbLoadUnitLabel').textContent = 'W';
+  setToggle('kbLoadUnit', 'W');
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('#kbLoadUnit .toggle-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.getElementById('kbLoadUnitLabel').textContent = btn.dataset.val;
-    });
-  });
-});
