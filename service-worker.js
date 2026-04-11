@@ -1,4 +1,4 @@
-const CACHE = 'kalkulator-v24';
+const CACHE = 'kalkulator-v25';
 
 const FILES = [
   './',
@@ -7,6 +7,7 @@ const FILES = [
   './css/style.css',
   './js/menu.js',
   './js/calc-ohm.js',
+  './js/kabel-data.js',
   './js/calc-kabel.js',
   './js/calc-krets.js',
   './icons/icon.svg',

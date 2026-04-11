@@ -30,7 +30,7 @@ PWA er oppe og kjører på telefon. Koblet til GitHub — automatisk deploy via 
 AppTilTelefon/
 ├── index.html
 ├── manifest.json
-├── service-worker.js      (nåværende versjon: v20)
+├── service-worker.js      (nåværende versjon: v25)
 ├── CLAUDE.md
 ├── DEVELOPMENT.md
 ├── css/
@@ -38,6 +38,7 @@ AppTilTelefon/
 ├── js/
 │   ├── menu.js
 │   ├── calc-ohm.js
+│   ├── kabel-data.js
 │   ├── calc-kabel.js
 │   └── calc-krets.js
 └── icons/
@@ -56,6 +57,7 @@ AppTilTelefon/
 
 ### Kabel og vern — brukervennlighet
 - [x] **Last i W eller A** — toggle mellom effekt (W) og strøm (A) direkte
+- [x] **Cos φ skjules ved A-enhet** — ved A-valg tolkes innputt som total strøm; cos φ-felt skjules og nullstilles til 1
 
 ### Planlagte kalkulatorer
 - [ ] **Kortslutningsstrøm** — Icc-beregning for vernkoordinering

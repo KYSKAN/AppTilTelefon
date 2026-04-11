@@ -16,7 +16,8 @@ AppTilTelefon/
 ├── js/
 │   ├── menu.js            Dropdown-navigasjon, switchTo(), toggle-init (delt)
 │   ├── calc-ohm.js        Ohms lov: V/A/Ω/W — fyll inn 2, beregn 2
-│   ├── calc-kabel.js      Kabel og vern: NEK 400, IT/TN, tabeller, utregning
+│   ├── kabel-data.js      Tabeller og konstanter for kabel og vern (IEC 60364-5-52)
+│   ├── calc-kabel.js      Kabel og vern: NEK 400, IT/TN, logikk og utregning
 │   └── calc-krets.js      RC/RL/RLC: impedans, effekter, fasevinkel
 └── icons/
     └── icon.svg           App-ikon (kalkulator-illustrasjon, mørk bakgrunn)
@@ -43,10 +44,16 @@ AppTilTelefon/
 4. I `index.html`: legg til `<div class="dropdown-item">` og `<script src="js/calc-ny.js">`
 5. I `service-worker.js`: legg til `'./js/calc-ny.js'` i `FILES` og bump `CACHE`
 
-## calc-kabel.js — nøkkelpunkter
+## kabel-data.js — tabeller og konstanter
 - `izCuPVC` / `izCuPEX`: strømkapasitetstabeller kobber (IEC 60364-5-52), metoder A1–E
-- `tCorrPVC` / `tCorrPEX`: temperaturkorreksjon, referanse 30°C (luft) / 20°C (jord)
+- `izAlPVC` / `izAlPEX`: strømkapasitetstabeller aluminium, min. 16 mm²
+- `tCorrPVC` / `tCorrPEX`: temperaturkorreksjon luft, ref. 30°C (tab. B.52.14)
+- `tCorrGroundPVC` / `tCorrGroundPEX`: temperaturkorreksjon jord, ref. 20°C (tab. B.52.15)
 - `rhoMap`: resistivitet (Ω·mm²/m) ved driftstemperatur
+- `crossSections`, `breakerSizes`: tilgjengelige tverrsnitt og vernstørrelser
+
+## calc-kabel.js — nøkkelpunkter
+- Bruker tabeller fra `kabel-data.js` (lastes før i index.html)
 - `updateTempForInstall()`: setter automatisk 20°C ved D1/D2, 30°C ellers
 - IT 230V vs TN 400V styrer `U_I` (lasstrøm) og `U_ref` (spenningsfallreferanse)
 - NEK 400-5-52: maks 4% spenningsfall (bolig), 5% (industri)
