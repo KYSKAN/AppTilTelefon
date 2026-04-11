@@ -107,7 +107,8 @@ function setToggle(groupId, val) {
 function kabelCalc() {
   const length    = parseFloat(document.getElementById('kbLength').value);
   const phases    = parseInt(getToggle('kbPhase'));
-  const loadKw    = parseFloat(document.getElementById('kbLoad').value);
+  const loadVal   = parseFloat(document.getElementById('kbLoad').value);
+  const loadUnit  = getToggle('kbLoadUnit');  // 'W' | 'A'
   const install   = document.getElementById('kbInstall').value;
   const system    = getToggle('kbSystem');    // 'IT' | 'TN'
   const use       = getToggle('kbUse');       // 'bolig' | 'industri'
@@ -117,7 +118,7 @@ function kabelCalc() {
 
   const errors = [];
   if (isNaN(length) || length <= 0) errors.push('Kabellengde må være større enn 0.');
-  if (isNaN(loadKw) || loadKw <= 0) errors.push('Last må være større enn 0 kW.');
+  if (isNaN(loadVal) || loadVal <= 0) errors.push(`Last må være større enn 0 ${loadUnit}.`);
   if (temp < 10 || temp > 50) errors.push('Omgivelsestemperatur må være mellom 10 og 50 °C.');
 
   const warnEl = document.getElementById('krWarning');
@@ -137,7 +138,7 @@ function kabelCalc() {
     ? (phases === 1 ? 230 : Math.sqrt(3) * 230)
     : (phases === 1 ? 230 : Math.sqrt(3) * 400);
 
-  const I = (loadKw * 1000) / U_I;
+  const I = loadUnit === 'A' ? loadVal : loadVal / U_I;
 
   // Spenningsfallreferanse (NEK 400-5-52)
   const U_ref = system === 'IT' ? 230 : (phases === 1 ? 230 : 400);
@@ -226,10 +227,12 @@ function kabelCalc() {
     : (phases === 1 ? '230' : `√3 × 400 = ${(Math.sqrt(3)*400).toFixed(1)}`);
   const ok = v => v ? '✓' : '✗';
 
+  const currentLines = loadUnit === 'A'
+    ? [`── Lasstrøm ──`, `I = ${I.toFixed(2)} A  (direkte oppgitt)`]
+    : [`── Lasstrøm (cos φ = 1) ──`, `I = ${loadVal.toFixed(0)} W / ${U_I_label} V`, `  = ${I.toFixed(2)} A`];
+
   const lines = [
-    `── Lasstrøm (cos φ = 1) ──`,
-    `I = ${(loadKw*1000).toFixed(0)} W / ${U_I_label} V`,
-    `  = ${I.toFixed(2)} A`,
+    ...currentLines,
     ``,
     `── Temperaturkorrigering (${temp}°C, ${insul}) ──`,
     `k_temp = ${tFactor}  (ref. ${tempRef}, NEK 400 tab. ${tempTab})`,
@@ -282,4 +285,14 @@ function kabelClear() {
   setToggle('kbUse',       'bolig');
   setToggle('kbConductor', 'Cu');
   setToggle('kbInsul',     'PVC');
+  setToggle('kbLoadUnit',  'W');
+  document.getElementById('kbLoadUnitLabel').textContent = 'W';
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('#kbLoadUnit .toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById('kbLoadUnitLabel').textContent = btn.dataset.val;
+    });
+  });
+});

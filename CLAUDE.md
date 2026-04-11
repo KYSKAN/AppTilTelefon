@@ -30,7 +30,7 @@ AppTilTelefon/
 | krets   | calc-krets.js   | viewKrets   | RC/RL/RLC: P, Q, S, cos φ, Z, I, φ    |
 
 ## Viktige regler
-- **Service worker:** Bump `CACHE` (v17 → v18 osv.) i `service-worker.js` ved HVER deploy — ellers ser ikke telefonen endringene
+- **Service worker:** Bump `CACHE` (v18 → v19 osv.) i `service-worker.js` ved HVER deploy — ellers ser ikke telefonen endringene
 - **Deploy:** `git add . && git commit -m "..." && git push` — GitHub Pages deployer automatisk
 - **Platform:** Android-only, Chrome PWA. Ingen iOS/Safari-støtte nødvendig.
 - **Stil:** Mørkt tema — bakgrunn `#1a1a2e`, kort `#16213e`, aksentblå `#63b3ed`

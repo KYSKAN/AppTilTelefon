@@ -30,7 +30,7 @@ PWA er oppe og kjører på telefon. Koblet til GitHub — automatisk deploy via 
 AppTilTelefon/
 ├── index.html
 ├── manifest.json
-├── service-worker.js      (nåværende versjon: v17)
+├── service-worker.js      (nåværende versjon: v18)
 ├── CLAUDE.md
 ├── DEVELOPMENT.md
 ├── css/
@@ -55,7 +55,7 @@ AppTilTelefon/
 - [x] **Jordtemperatur-korreksjon** — `tCorrGroundPVC`/`tCorrGroundPEX` med ref. 20°C (tab. B.52.15)
 
 ### Kabel og vern — brukervennlighet
-- [ ] **Last i A eller kW** — legg til valg mellom å oppgi last som effekt (kW) eller strøm (A) direkte
+- [x] **Last i W eller A** — toggle mellom effekt (W) og strøm (A) direkte
 
 ### Planlagte kalkulatorer
 - [ ] **Kortslutningsstrøm** — Icc-beregning for vernkoordinering
