@@ -14,19 +14,19 @@
   <div class="topbar">
     <div class="menu-wrapper">
       <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">
-        <span id="menuLabel">Ohms lov</span>
+        <span id="menuLabel">Kabel og vern</span>
         <span class="arrow">▼</span>
       </button>
       <div class="dropdown" id="dropdown">
-        <div class="dropdown-item active" onclick="switchTo('ohm')">Ohms lov</div>
-        <div class="dropdown-item" onclick="switchTo('kabel')">Kabel og vern</div>
+        <div class="dropdown-item" onclick="switchTo('ohm')">Ohms lov</div>
+        <div class="dropdown-item active" onclick="switchTo('kabel')">Kabel og vern</div>
         <div class="dropdown-item" onclick="switchTo('krets')">RC / RL / RLC krets</div>
       </div>
     </div>
   </div>
 
   <!-- Ohms lov -->
-  <div class="card" id="viewOhm">
+  <div class="card hidden" id="viewOhm">
     <div class="calc-title">Ohms lov</div>
     <div class="ohm-grid">
       <div class="ohm-field" id="fieldV">
@@ -62,7 +62,7 @@
   </div>
 
   <!-- Kabel og vern -->
-  <div class="card hidden" id="viewKabel">
+  <div class="card" id="viewKabel">
     <div class="calc-title">Kabel og vern</div>
     <div class="kabel-form">
 
