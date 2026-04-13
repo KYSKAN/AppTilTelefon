@@ -70,6 +70,20 @@ function spCalc() {
     if (isNaN(Q) && !isNaN(P)) Q = Math.sqrt(Math.max(0, S * S - P * P));
   }
 
+  // Beregn U fra P, cosP og I
+  if (isNaN(U) && !isNaN(P) && !isNaN(cosP) && !isNaN(I) && I > 0) {
+    U = P / (k * I * cosP);
+    if (isNaN(S)) S = k * U * I;
+    if (isNaN(Q)) Q = Math.sqrt(Math.max(0, S * S - P * P));
+  }
+
+  // Beregn cosP fra P, U og I (når S kan utledes)
+  if (isNaN(cosP) && !isNaN(P) && !isNaN(U) && !isNaN(I)) {
+    S = isNaN(S) ? k * U * I : S;
+    if (S > 0) cosP = P / S;
+    if (isNaN(Q)) Q = Math.sqrt(Math.max(0, S * S - P * P));
+  }
+
   // Avledede verdier
   const phi    = !isNaN(cosP) ? Math.acos(Math.min(1, cosP)) * 180 / Math.PI : NaN;
   const U_peak = !isNaN(U)    ? U * Math.sqrt(2) : NaN;
