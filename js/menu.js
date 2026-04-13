@@ -3,9 +3,9 @@ const menuBtn   = document.getElementById('menuBtn');
 const dropdown  = document.getElementById('dropdown');
 const menuLabel = document.getElementById('menuLabel');
 
-const views   = { ohm: 'viewOhm', kabel: 'viewKabel', krets: 'viewKrets' };
-const labels  = { ohm: 'Ohms lov', kabel: 'Kabel og vern', krets: 'RC/RL/RLC krets' };
-const menuIdx = { kabel: 0, ohm: 1, krets: 2 };
+const views   = { ohm: 'viewOhm', kabel: 'viewKabel', spenning: 'viewSpenning', krets: 'viewKrets' };
+const labels  = { ohm: 'Ohms lov', kabel: 'Kabel og vern', spenning: 'Vekselspenning', krets: 'RC/RL/RLC krets' };
+const menuIdx = { kabel: 0, ohm: 1, spenning: 2, krets: 3 };
 
 function toggleMenu() {
   menuBtn.classList.toggle('open');

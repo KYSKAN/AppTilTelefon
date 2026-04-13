@@ -24,6 +24,7 @@
       <div class="dropdown" id="dropdown">
         <div class="dropdown-item active" onclick="switchTo('kabel')">Kabel og vern</div>
         <div class="dropdown-item" onclick="switchTo('ohm')">Ohms lov</div>
+        <div class="dropdown-item" onclick="switchTo('spenning')">Vekselspenning</div>
         <div class="dropdown-item" onclick="switchTo('krets')">RC / RL / RLC krets</div>
       </div>
     </div>
@@ -320,10 +321,96 @@
     </div>
   </div>
 
+  <!-- Vekselspenning -->
+  <div class="card hidden" id="viewSpenning">
+    <div class="calc-title">Vekselspenning</div>
+
+    <div class="kabel-row">
+      <label>Faser</label>
+      <div class="toggle-group" id="spPhase">
+        <button class="toggle-btn active" data-val="1">1-fase</button>
+        <button class="toggle-btn" data-val="3">3-fase</button>
+      </div>
+    </div>
+
+    <div class="ohm-grid">
+      <div class="ohm-field" id="fieldSpU">
+        <label>SPENNING</label>
+        <div class="ohm-symbol">V</div>
+        <input type="number" id="spU" placeholder="—" inputmode="decimal">
+      </div>
+      <div class="ohm-field" id="fieldSpI">
+        <label>STRØM</label>
+        <div class="ohm-symbol">A</div>
+        <input type="number" id="spI" placeholder="—" inputmode="decimal">
+      </div>
+      <div class="ohm-field" id="fieldSpP">
+        <label>AKTIV EFFEKT</label>
+        <div class="ohm-symbol">W</div>
+        <input type="number" id="spP" placeholder="—" inputmode="decimal">
+      </div>
+      <div class="ohm-field" id="fieldSpCosP">
+        <label>EFFEKTFAKTOR</label>
+        <div class="ohm-symbol">cos φ</div>
+        <input type="number" id="spCosP" value="1" min="0.01" max="1" step="0.01" inputmode="decimal">
+      </div>
+    </div>
+
+    <div class="kr-warning hidden" id="spError"></div>
+
+    <div class="action-row">
+      <button class="btn-secondary" onclick="spClear()">Nullstill</button>
+      <button class="btn-primary" id="spCalcBtnEl" onclick="spCalc()">Beregn</button>
+    </div>
+
+    <div class="hint">Fyll inn minst to verdier og trykk Beregn</div>
+
+    <div class="kabel-result hidden" id="spResult">
+      <div class="kabel-result-grid">
+        <div class="kr-item">
+          <div class="kr-label">SPENNING</div>
+          <div class="kr-value" id="spResU">—</div>
+          <div class="kr-unit">V</div>
+        </div>
+        <div class="kr-item">
+          <div class="kr-label">STRØM</div>
+          <div class="kr-value" id="spResI">—</div>
+          <div class="kr-unit">A</div>
+        </div>
+        <div class="kr-item">
+          <div class="kr-label">AKTIV EFFEKT</div>
+          <div class="kr-value" id="spResP">—</div>
+          <div class="kr-unit">W</div>
+        </div>
+        <div class="kr-item">
+          <div class="kr-label">REAKTIV EFFEKT</div>
+          <div class="kr-value" id="spResQ">—</div>
+          <div class="kr-unit">VAR</div>
+        </div>
+        <div class="kr-item">
+          <div class="kr-label">SYNEFFEKT</div>
+          <div class="kr-value" id="spResS">—</div>
+          <div class="kr-unit">VA</div>
+        </div>
+        <div class="kr-item">
+          <div class="kr-label">EFFEKTFAKTOR</div>
+          <div class="kr-value" id="spResCosP">—</div>
+          <div class="kr-unit">cos φ</div>
+        </div>
+        <div class="kr-item hidden" id="spResFaseRow" style="grid-column: span 2;">
+          <div class="kr-label">FASESPENNING</div>
+          <div class="kr-value" id="spResFase">—</div>
+          <div class="kr-unit">V</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="js/menu.js"></script>
   <script src="js/calc-ohm.js"></script>
   <script src="js/kabel-data.js"></script>
   <script src="js/calc-kabel.js"></script>
+  <script src="js/calc-spenning.js"></script>
   <script src="js/calc-krets.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
