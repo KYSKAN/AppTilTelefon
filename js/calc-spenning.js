@@ -18,7 +18,7 @@ function spCalc() {
 
   const errEl = document.getElementById('spError');
 
-  // cos φ og φ er samme størrelse — teller som én verdi
+  // cos φ og φ er samme størrelse — teller som én
   const uniqueCount = [hasU, hasI, hasP, hasCosP || hasPhi].filter(Boolean).length;
   if (uniqueCount < 2) {
     errEl.textContent = 'Fyll inn minst to verdier.';
@@ -28,14 +28,19 @@ function spCalc() {
   }
   errEl.classList.add('hidden');
 
-  const k = phases === 3 ? Math.sqrt(3) : 1;  // S = k × U × I
+  const k = phases === 3 ? Math.sqrt(3) : 1;
 
   let U    = hasU    ? U_in    : NaN;
   let I    = hasI    ? I_in    : NaN;
   let P    = hasP    ? P_in    : NaN;
-  let cosP = hasCosP ? cosP_in : (hasPhi ? Math.cos(phi_in * Math.PI / 180) : NaN);
-  let S    = NaN;
-  let Q    = NaN;
+
+  // φ prioriteres over cos φ hvis begge er oppgitt
+  let cosP = hasPhi  ? Math.cos(phi_in * Math.PI / 180)
+           : hasCosP ? cosP_in
+           : NaN;
+
+  let S = NaN;
+  let Q = NaN;
 
   // Beregn S fra U og I
   if (!isNaN(U) && !isNaN(I)) S = k * U * I;
@@ -66,13 +71,11 @@ function spCalc() {
   }
 
   // Avledede verdier
-  const phi     = !isNaN(cosP) ? Math.acos(cosP) * 180 / Math.PI : NaN;
-  const U_peak  = !isNaN(U)    ? U * Math.sqrt(2) : NaN;
-  const U_fase  = (phases === 3 && !isNaN(U)) ? U / Math.sqrt(3) : NaN;
-  // Strøm per fase: ved trekant I_fase = I_linje / √3, ved stjerne = I_linje
-  // Viser begge siden vi ikke vet koblingen
-  const I_fase_stj = !isNaN(I) ? I : NaN;
-  const I_fase_trekant = !isNaN(I) ? I / Math.sqrt(3) : NaN;
+  const phi    = !isNaN(cosP) ? Math.acos(Math.min(1, cosP)) * 180 / Math.PI : NaN;
+  const U_peak = !isNaN(U)    ? U * Math.sqrt(2) : NaN;
+  const U_fase = (phases === 3 && !isNaN(U)) ? U / Math.sqrt(3) : NaN;
+  const I_stj  = !isNaN(I)   ? I : NaN;
+  const I_trekant = !isNaN(I) ? I / Math.sqrt(3) : NaN;
 
   // Vis resultat
   const fmt = (n, dec) => isNaN(n) ? '—' : parseFloat(n.toFixed(dec)).toString();
@@ -86,35 +89,35 @@ function spCalc() {
   document.getElementById('spResPhi').textContent  = fmt(phi, 1);
   document.getElementById('spResPeak').textContent = fmt(U_peak, 1);
 
-  const faseRow = document.getElementById('spResFaseRow');
+  const faseRow  = document.getElementById('spResFaseRow');
   const iFaseRow = document.getElementById('spResIFaseRow');
 
   if (phases === 3) {
-    document.getElementById('spResFase').textContent = fmt(U_fase, 1);
+    document.getElementById('spResFase').textContent   = fmt(U_fase, 1);
     faseRow.classList.remove('hidden');
-    document.getElementById('spResIFase').textContent =
-      `Stjerne: ${fmt(I_fase_stj, 2)} A\nTrekant: ${fmt(I_fase_trekant, 2)} A`;
+    document.getElementById('spResIFase').textContent  =
+      `Stjerne: ${fmt(I_stj, 2)} A\nTrekant: ${fmt(I_trekant, 2)} A`;
     iFaseRow.classList.remove('hidden');
   } else {
     faseRow.classList.add('hidden');
     iFaseRow.classList.add('hidden');
   }
 
-  // Merk beregnede felt
-  const inputMap = { spU: hasU, spI: hasI, spP: hasP, spCosP: hasCosP, spPhi: hasPhi };
-  Object.entries(inputMap).forEach(([id, wasGiven]) => {
-    document.getElementById(id).parentElement.classList.toggle('calculated', !wasGiven);
-  });
+  // Merk beregnede felt — φ og cos φ behandles separat
+  document.getElementById('spU').parentElement.classList.toggle('calculated', !hasU);
+  document.getElementById('spI').parentElement.classList.toggle('calculated', !hasI);
+  document.getElementById('spP').parentElement.classList.toggle('calculated', !hasP);
+  document.getElementById('spCosP').parentElement.classList.toggle('calculated', !hasCosP);
+  document.getElementById('spPhi').parentElement.classList.toggle('calculated', !hasPhi);
 
   document.getElementById('spResult').classList.remove('hidden');
 }
 
 function spClear() {
-  ['spU', 'spI', 'spP', 'spPhi'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('spCosP').value = '1';
-  ['spU', 'spI', 'spP', 'spCosP', 'spPhi'].forEach(id =>
-    document.getElementById(id).parentElement.classList.remove('calculated')
-  );
+  ['spU', 'spI', 'spP', 'spCosP', 'spPhi'].forEach(id => {
+    document.getElementById(id).value = '';
+    document.getElementById(id).parentElement.classList.remove('calculated');
+  });
   document.getElementById('spResult').classList.add('hidden');
   document.getElementById('spError').classList.add('hidden');
   setToggle('spPhase', '1');
