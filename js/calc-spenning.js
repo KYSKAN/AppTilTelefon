@@ -3,29 +3,27 @@
 // Støtter 1-fase og 3-fase
 
 function spCalc() {
-  const phases  = parseInt(getToggle('spPhase'));
-  const U_in    = parseFloat(document.getElementById('spU').value);
-  const I_in    = parseFloat(document.getElementById('spI').value);
-  const P_in    = parseFloat(document.getElementById('spP').value);
-  const cosP_in = parseFloat(document.getElementById('spCosP').value);
+  const phases   = parseInt(getToggle('spPhase'));
+  const U_in     = parseFloat(document.getElementById('spU').value);
+  const I_in     = parseFloat(document.getElementById('spI').value);
+  const P_in     = parseFloat(document.getElementById('spP').value);
+  const cosP_in  = parseFloat(document.getElementById('spCosP').value);
+  const phi_in   = parseFloat(document.getElementById('spPhi').value);
 
   const hasU    = !isNaN(U_in)    && U_in    > 0;
   const hasI    = !isNaN(I_in)    && I_in    > 0;
   const hasP    = !isNaN(P_in)    && P_in    > 0;
   const hasCosP = !isNaN(cosP_in) && cosP_in > 0 && cosP_in <= 1;
+  const hasPhi  = !isNaN(phi_in)  && phi_in  >= 0 && phi_in < 90;
 
   const errEl = document.getElementById('spError');
 
-  if ([hasU, hasI, hasP, hasCosP].filter(Boolean).length < 2) {
+  // cos φ og φ er samme størrelse — teller som én verdi
+  const uniqueCount = [hasU, hasI, hasP, hasCosP || hasPhi].filter(Boolean).length;
+  if (uniqueCount < 2) {
     errEl.textContent = 'Fyll inn minst to verdier.';
     errEl.classList.remove('hidden');
     document.getElementById('spResult').classList.add('hidden');
-    return;
-  }
-
-  if (hasCosP && (cosP_in <= 0 || cosP_in > 1)) {
-    errEl.textContent = 'Cos φ må være mellom 0,01 og 1,0.';
-    errEl.classList.remove('hidden');
     return;
   }
   errEl.classList.add('hidden');
@@ -35,7 +33,7 @@ function spCalc() {
   let U    = hasU    ? U_in    : NaN;
   let I    = hasI    ? I_in    : NaN;
   let P    = hasP    ? P_in    : NaN;
-  let cosP = hasCosP ? cosP_in : NaN;
+  let cosP = hasCosP ? cosP_in : (hasPhi ? Math.cos(phi_in * Math.PI / 180) : NaN);
   let S    = NaN;
   let Q    = NaN;
 
@@ -43,7 +41,7 @@ function spCalc() {
   if (!isNaN(U) && !isNaN(I)) S = k * U * I;
 
   // Beregn S fra P og cosP
-  if (isNaN(S) && !isNaN(P) && !isNaN(cosP)) S = P / cosP;
+  if (isNaN(S) && !isNaN(P) && !isNaN(cosP) && cosP > 0) S = P / cosP;
 
   // Beregn cosP fra P og S
   if (isNaN(cosP) && !isNaN(P) && !isNaN(S) && S > 0) cosP = P / S;
@@ -67,8 +65,14 @@ function spCalc() {
     if (isNaN(Q) && !isNaN(P)) Q = Math.sqrt(Math.max(0, S * S - P * P));
   }
 
-  // Fasespenning for 3-fase
-  const U_fase = (phases === 3 && !isNaN(U)) ? U / Math.sqrt(3) : null;
+  // Avledede verdier
+  const phi     = !isNaN(cosP) ? Math.acos(cosP) * 180 / Math.PI : NaN;
+  const U_peak  = !isNaN(U)    ? U * Math.sqrt(2) : NaN;
+  const U_fase  = (phases === 3 && !isNaN(U)) ? U / Math.sqrt(3) : NaN;
+  // Strøm per fase: ved trekant I_fase = I_linje / √3, ved stjerne = I_linje
+  // Viser begge siden vi ikke vet koblingen
+  const I_fase_stj = !isNaN(I) ? I : NaN;
+  const I_fase_trekant = !isNaN(I) ? I / Math.sqrt(3) : NaN;
 
   // Vis resultat
   const fmt = (n, dec) => isNaN(n) ? '—' : parseFloat(n.toFixed(dec)).toString();
@@ -79,18 +83,26 @@ function spCalc() {
   document.getElementById('spResQ').textContent    = fmt(Q, 1);
   document.getElementById('spResS').textContent    = fmt(S, 1);
   document.getElementById('spResCosP').textContent = fmt(cosP, 3);
+  document.getElementById('spResPhi').textContent  = fmt(phi, 1);
+  document.getElementById('spResPeak').textContent = fmt(U_peak, 1);
 
   const faseRow = document.getElementById('spResFaseRow');
-  if (U_fase !== null) {
+  const iFaseRow = document.getElementById('spResIFaseRow');
+
+  if (phases === 3) {
     document.getElementById('spResFase').textContent = fmt(U_fase, 1);
     faseRow.classList.remove('hidden');
+    document.getElementById('spResIFase').textContent =
+      `Stjerne: ${fmt(I_fase_stj, 2)} A\nTrekant: ${fmt(I_fase_trekant, 2)} A`;
+    iFaseRow.classList.remove('hidden');
   } else {
     faseRow.classList.add('hidden');
+    iFaseRow.classList.add('hidden');
   }
 
-  // Merk beregnede felt med grønn farge
-  const ids = { spU: hasU, spI: hasI, spP: hasP, spCosP: hasCosP };
-  Object.entries(ids).forEach(([id, wasGiven]) => {
+  // Merk beregnede felt
+  const inputMap = { spU: hasU, spI: hasI, spP: hasP, spCosP: hasCosP, spPhi: hasPhi };
+  Object.entries(inputMap).forEach(([id, wasGiven]) => {
     document.getElementById(id).parentElement.classList.toggle('calculated', !wasGiven);
   });
 
@@ -98,9 +110,9 @@ function spCalc() {
 }
 
 function spClear() {
-  ['spU', 'spI', 'spP'].forEach(id => document.getElementById(id).value = '');
+  ['spU', 'spI', 'spP', 'spPhi'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('spCosP').value = '1';
-  ['spU', 'spI', 'spP', 'spCosP'].forEach(id =>
+  ['spU', 'spI', 'spP', 'spCosP', 'spPhi'].forEach(id =>
     document.getElementById(id).parentElement.classList.remove('calculated')
   );
   document.getElementById('spResult').classList.add('hidden');

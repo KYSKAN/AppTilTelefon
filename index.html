@@ -358,6 +358,11 @@
         <div class="ohm-symbol">cos φ</div>
         <input type="number" id="spCosP" value="1" min="0.01" max="1" step="0.01" inputmode="decimal">
       </div>
+      <div class="ohm-field" id="fieldSpPhi">
+        <label>FASEVINKEL</label>
+        <div class="ohm-symbol">φ °</div>
+        <input type="number" id="spPhi" placeholder="—" min="0" max="90" step="0.1" inputmode="decimal">
+      </div>
     </div>
 
     <div class="kr-warning hidden" id="spError"></div>
@@ -401,10 +406,24 @@
           <div class="kr-value" id="spResCosP">—</div>
           <div class="kr-unit">cos φ</div>
         </div>
-        <div class="kr-item hidden" id="spResFaseRow" style="grid-column: span 2;">
+        <div class="kr-item">
+          <div class="kr-label">FASEVINKEL</div>
+          <div class="kr-value" id="spResPhi">—</div>
+          <div class="kr-unit">°</div>
+        </div>
+        <div class="kr-item">
+          <div class="kr-label">TOPPVERDI</div>
+          <div class="kr-value" id="spResPeak">—</div>
+          <div class="kr-unit">V</div>
+        </div>
+        <div class="kr-item hidden" id="spResFaseRow">
           <div class="kr-label">FASESPENNING</div>
           <div class="kr-value" id="spResFase">—</div>
           <div class="kr-unit">V</div>
+        </div>
+        <div class="kr-item hidden" id="spResIFaseRow" style="grid-column: span 2;">
+          <div class="kr-label">STRØM PER FASE</div>
+          <div class="kr-value" id="spResIFase" style="font-size:16px; white-space:pre-line;">—</div>
         </div>
       </div>
     </div>
