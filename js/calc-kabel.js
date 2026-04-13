@@ -83,10 +83,12 @@ function kabelCalc() {
     : (Math.sqrt(3) * rho * length * I) / (cs * U_ref) * 100;
 
   // Finn minste tverrsnitt som tilfredsstiller både Iz og spenningsfall
+  // Bolig: tverrsnitt avvises hvis maxBreakerBolig[cs] < I (vernet vil overskride grensen)
   let chosenCS = null, chosenIz = null, chosenDrop = null;
 
   for (const cs of crossSections) {
     if (cs < minCS) continue;
+    if (use === 'bolig' && maxBreakerBolig[cs] !== undefined && maxBreakerBolig[cs] < I) continue;
     const iz   = (izTable[cs]?.[install] ?? 0) * tFactor;
     const drop = calcDrop(cs);
     if (iz >= I && drop <= maxDrop) {
