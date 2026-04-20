@@ -429,7 +429,7 @@
     </div>
   </div>
 
-  <div id="appVersion">v45</div>
+  <div id="appVersion"></div>
 
   <script src="js/menu.js"></script>
   <script src="js/calc-ohm.js"></script>
@@ -440,9 +440,15 @@
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./service-worker.js');
-      // Reload automatisk når ny service worker tar over — sikrer ferske JS-filer
       navigator.serviceWorker.addEventListener('controllerchange', () => {
         window.location.reload();
+      });
+    }
+    // Hent versjon fra aktiv service worker cache-navn
+    if ('caches' in window) {
+      caches.keys().then(keys => {
+        const cache = keys.find(k => k.startsWith('kalkulator-'));
+        if (cache) document.getElementById('appVersion').textContent = cache.replace('kalkulator-', '');
       });
     }
   </script>
