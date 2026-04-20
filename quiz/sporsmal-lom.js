@@ -17,6 +17,19 @@
 //    explain:  forklaringstekst som vises etter svar
 // ════════════════════════════════════════════════════════════════
 
+const QUIZ_META = {
+  id: 'lom',
+  title: 'LØM',
+  subtitle: 'Fagskole',
+  description: '36 spørsmål som dekker hele LØM-pensumet på fagskole.',
+  cats: {
+    ledelse:  { label: 'Ledelse & Organisasjon', color: '#f59e0b' },
+    marked:   { label: 'Markedsføringsledelse',  color: '#ec4899' },
+    regnskap: { label: 'Regnskapsanalyse',        color: '#00a8e8' },
+    okonomi:  { label: 'Økonomistyring',          color: '#10b981' }
+  }
+};
+
 const QUESTIONS = [
 
   // ── LEDELSE & ORGANISASJON  (12 spørsmål) ──────────────────────

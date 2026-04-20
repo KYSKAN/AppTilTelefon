@@ -8,47 +8,23 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bg: #0d0f1a;
-      --surface: #161927;
-      --surface2: #1e2235;
-      --border: #2a2f4a;
-      --text: #e8eaf6;
-      --muted: #7b82a8;
-      --accent: #5c7cfa;
-      --accent-hover: #4a6cf7;
-      --green: #2ecc71;
-      --green-bg: rgba(46,204,113,0.12);
-      --red: #e74c3c;
-      --red-bg: rgba(231,76,60,0.12);
-      --cat-ledelse:  #f59e0b;
-      --cat-marked:   #ec4899;
-      --cat-regnskap: #00a8e8;
-      --cat-okonomi:  #10b981;
-    }
-
-    html, body {
-      height: 100%;
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-
     body {
+      background: #1a1a2e;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
-      padding: 16px 16px 56px;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      padding: 16px 16px 48px;
     }
 
     /* ── Top bar ── */
     .topbar {
       width: 100%;
-      max-width: 700px;
+      max-width: 400px;
       display: flex;
       align-items: center;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
       padding-top: 4px;
     }
     .back-btn {
@@ -61,407 +37,141 @@
     .topbar-title {
       flex: 1;
       text-align: center;
-      color: #fff;
+      color: #e2e8f0;
       font-size: 17px;
       font-weight: 600;
-      margin-right: 48px; /* balances back-btn width */
+      margin-right: 48px;
     }
 
-    /* ── Progress ── */
-    .progress-wrap { width: 100%; max-width: 700px; margin-bottom: 20px; }
-    .progress-meta { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--muted); margin-bottom: 8px; }
-    .progress-bar-bg { height: 6px; background: var(--border); border-radius: 99px; overflow: hidden; }
-    .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #818cf8); border-radius: 99px; transition: width 0.4s ease; width: 0%; }
-
-    /* ── Card ── */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px 28px 24px;
-      max-width: 700px;
+    /* ── Heading ── */
+    .page-title {
+      color: #e2e8f0;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
       width: 100%;
-      animation: fadeIn 0.25s ease;
+      max-width: 400px;
+    }
+    .page-sub {
+      color: #718096;
+      font-size: 13px;
+      margin-bottom: 24px;
+      width: 100%;
+      max-width: 400px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── Category badge ── */
-    .cat-badge {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 99px;
-      margin-bottom: 14px;
-    }
-    .cat-ledelse  { background: rgba(245,158,11,0.15);  color: var(--cat-ledelse); }
-    .cat-marked   { background: rgba(236,72,153,0.15);  color: var(--cat-marked); }
-    .cat-regnskap { background: rgba(0,168,232,0.15);   color: var(--cat-regnskap); }
-    .cat-okonomi  { background: rgba(16,185,129,0.15);  color: var(--cat-okonomi); }
-
-    /* ── Question & options ── */
-    .question-text { font-size: 1.1rem; font-weight: 600; line-height: 1.55; margin-bottom: 22px; color: #fff; }
-
-    .options { display: flex; flex-direction: column; gap: 10px; }
-
-    .option-btn {
-      background: var(--surface2);
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      padding: 13px 16px;
-      text-align: left;
-      font-size: 0.95rem;
-      font-family: inherit;
-      color: var(--text);
-      cursor: pointer;
-      transition: border-color 0.15s, background 0.15s, transform 0.1s;
+    /* ── Quiz cards ── */
+    .quiz-list {
       display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .option-btn:hover:not(:disabled) { border-color: var(--accent); background: rgba(92,124,250,0.1); transform: translateX(2px); }
-
-    .option-btn .letter {
-      min-width: 26px; height: 26px; border-radius: 6px;
-      background: var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.78rem; font-weight: 700; color: var(--muted);
-      transition: background 0.15s, color 0.15s; flex-shrink: 0;
-    }
-    .option-btn.correct { border-color: var(--green); background: var(--green-bg); }
-    .option-btn.correct .letter { background: var(--green); color: #fff; }
-    .option-btn.wrong   { border-color: var(--red);   background: var(--red-bg); }
-    .option-btn.wrong   .letter { background: var(--red);   color: #fff; }
-    .option-btn:disabled { cursor: default; }
-
-    /* ── Explanation ── */
-    .explanation {
-      margin-top: 16px; padding: 14px 16px;
-      background: var(--surface2);
-      border-left: 3px solid var(--accent);
-      border-radius: 0 8px 8px 0;
-      font-size: 0.88rem; color: var(--muted); line-height: 1.65;
-      display: none; animation: fadeIn 0.2s ease;
-    }
-    .explanation.show { display: block; }
-    .explanation strong { color: var(--text); }
-
-    /* ── Next button ── */
-    .next-btn {
-      margin-top: 20px; width: 100%; padding: 14px;
-      background: var(--accent); border: none; border-radius: 10px;
-      color: #fff; font-size: 0.97rem; font-weight: 600;
-      font-family: inherit; cursor: pointer;
-      transition: background 0.15s, transform 0.1s; display: none;
-    }
-    .next-btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
-    .next-btn.show { display: block; }
-
-    /* ── Result screen ── */
-    #result-screen { max-width: 700px; width: 100%; display: none; animation: fadeIn 0.3s ease; }
-    .result-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 40px 32px; text-align: center; }
-    .result-emoji { font-size: 3.5rem; margin-bottom: 12px; }
-    .result-title { font-size: 1.6rem; font-weight: 700; color: #fff; }
-    .result-sub { color: var(--muted); margin-top: 6px; font-size: 0.95rem; }
-
-    .score-circle {
-      width: 120px; height: 120px; border-radius: 50%;
-      border: 4px solid var(--accent);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      margin: 24px auto;
-      background: rgba(92,124,250,0.08);
-    }
-    .score-number { font-size: 2rem; font-weight: 700; color: #fff; line-height: 1; }
-    .score-total  { font-size: 0.82rem; color: var(--muted); margin-top: 2px; }
-
-    .result-feedback {
-      background: var(--surface2); border-radius: 10px;
-      padding: 14px 20px; color: var(--muted); font-size: 0.92rem;
-      margin: 0 auto 24px; max-width: 440px; line-height: 1.6;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      max-width: 400px;
     }
 
-    .cat-breakdown { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
-    .cat-stat { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; text-align: left; }
-    .cat-stat-name { font-size: 0.78rem; font-weight: 600; margin-bottom: 4px; }
-    .cat-stat-bar-bg { height: 5px; background: var(--border); border-radius: 99px; margin: 6px 0 4px; }
-    .cat-stat-bar-fill { height: 100%; border-radius: 99px; }
-    .cat-stat-score { font-size: 0.78rem; color: var(--muted); }
-
-    .result-btns { display: flex; flex-direction: column; gap: 10px; align-items: center; }
-    .restart-btn {
-      background: var(--accent); border: none; border-radius: 10px;
-      padding: 13px 36px; color: #fff; font-size: 0.97rem; font-weight: 600;
-      font-family: inherit; cursor: pointer; transition: background 0.15s;
+    .quiz-card {
+      display: block;
+      background: #16213e;
+      border-radius: 16px;
+      padding: 20px 20px 18px;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.15s;
     }
-    .restart-btn:hover { background: var(--accent-hover); }
-    .home-link {
-      color: #63b3ed; text-decoration: none; font-size: 14px; padding: 6px 0;
+    .quiz-card:active { background: #1a3a5c; }
+
+    .quiz-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .quiz-card-title {
+      color: #e2e8f0;
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .quiz-card-subtitle {
+      color: #718096;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .quiz-card-arrow {
+      color: #63b3ed;
+      font-size: 20px;
+      line-height: 1;
+      margin-left: 8px;
+      flex-shrink: 0;
     }
 
-    /* ── Start screen ── */
-    #start-screen { max-width: 700px; width: 100%; animation: fadeIn 0.3s ease; }
-    .start-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 36px 32px; text-align: center; }
-    .start-card h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
-    .start-card p { color: var(--muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 24px; }
-
-    .topics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; text-align: left; }
-    .topic-item {
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 8px; padding: 10px 14px; font-size: 0.84rem;
-      display: flex; align-items: center; gap: 8px;
+    .quiz-card-desc {
+      color: #a0aec0;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 12px;
     }
-    .topic-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
-    .start-btn {
-      background: var(--accent); border: none; border-radius: 10px;
-      padding: 14px 44px; color: #fff; font-size: 1rem; font-weight: 700;
-      font-family: inherit; cursor: pointer;
-      transition: background 0.15s, transform 0.1s;
+    .quiz-card-cats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
     }
-    .start-btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
-
-    @media (max-width: 500px) {
-      .topics-grid, .cat-breakdown { grid-template-columns: 1fr; }
-      .card, .result-card, .start-card { padding: 20px 16px; }
+    .cat-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 99px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Top bar with back button -->
   <div class="topbar">
     <a class="back-btn" href="../">← Hjem</a>
     <div class="topbar-title">Quiz</div>
   </div>
 
-  <!-- START SCREEN -->
-  <div id="start-screen">
-    <div class="start-card">
-      <h2>Klar til quiz?</h2>
-      <p id="start-desc">Laster spørsmål…</p>
-      <div class="topics-grid" id="topics-grid"></div>
-      <button class="start-btn" onclick="startQuiz()">Start Quiz →</button>
-    </div>
+  <div class="page-title">Velg quiz</div>
+  <p class="page-sub">Velg et tema og test kunnskapene dine</p>
+
+  <div class="quiz-list">
+
+    <a class="quiz-card" href="spill.html?tema=lom">
+      <div class="quiz-card-header">
+        <div>
+          <div class="quiz-card-title">LØM</div>
+          <div class="quiz-card-subtitle">Fagskole · 36 spørsmål</div>
+        </div>
+        <span class="quiz-card-arrow">›</span>
+      </div>
+      <div class="quiz-card-desc">Ledelse & Organisasjon, Markedsføringsledelse, Regnskapsanalyse og Økonomistyring.</div>
+      <div class="quiz-card-cats">
+        <span class="cat-tag" style="background:rgba(245,158,11,0.15); color:#f59e0b">Ledelse</span>
+        <span class="cat-tag" style="background:rgba(236,72,153,0.15); color:#ec4899">Marked</span>
+        <span class="cat-tag" style="background:rgba(0,168,232,0.15);  color:#00a8e8">Regnskap</span>
+        <span class="cat-tag" style="background:rgba(16,185,129,0.15); color:#10b981">Økonomi</span>
+      </div>
+    </a>
+
+    <a class="quiz-card" href="spill.html?tema=rlc">
+      <div class="quiz-card-header">
+        <div>
+          <div class="quiz-card-title">RLC-kretser</div>
+          <div class="quiz-card-subtitle">Elektroteori · 28 spørsmål</div>
+        </div>
+        <span class="quiz-card-arrow">›</span>
+      </div>
+      <div class="quiz-card-desc">Grunnleggende teori, resistans, kondensatorer, spoler og RLC-kretser.</div>
+      <div class="quiz-card-cats">
+        <span class="cat-tag" style="background:rgba(245,158,11,0.15); color:#f59e0b">Grunnlag</span>
+        <span class="cat-tag" style="background:rgba(236,72,153,0.15); color:#ec4899">Resistans</span>
+        <span class="cat-tag" style="background:rgba(0,168,232,0.15);  color:#00a8e8">Kondensator</span>
+        <span class="cat-tag" style="background:rgba(16,185,129,0.15); color:#10b981">Spoler</span>
+        <span class="cat-tag" style="background:rgba(139,92,246,0.15); color:#8b5cf6">RLC</span>
+      </div>
+    </a>
+
   </div>
 
-  <!-- QUIZ SCREEN -->
-  <div id="quiz-screen" style="display:none; width:100%; max-width:700px;">
-    <div class="progress-wrap">
-      <div class="progress-meta">
-        <span id="q-counter">Spørsmål 1</span>
-        <span id="score-live">Poeng: 0</span>
-      </div>
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" id="progress-fill"></div>
-      </div>
-    </div>
-    <div class="card" id="question-card">
-      <span class="cat-badge" id="cat-badge">Kategori</span>
-      <div class="question-text" id="question-text"></div>
-      <div class="options" id="options-container"></div>
-      <div class="explanation" id="explanation"></div>
-      <button class="next-btn" id="next-btn" onclick="nextQuestion()">Neste spørsmål →</button>
-    </div>
-  </div>
-
-  <!-- RESULT SCREEN -->
-  <div id="result-screen">
-    <div class="result-card">
-      <div class="result-emoji" id="result-emoji">🎉</div>
-      <div class="result-title" id="result-title">Bra jobbet!</div>
-      <div class="result-sub"   id="result-sub">Her er resultatet ditt</div>
-      <div class="score-circle">
-        <div class="score-number" id="final-score">0</div>
-        <div class="score-total"  id="final-total">av 36</div>
-      </div>
-      <div class="result-feedback" id="result-feedback"></div>
-      <div class="cat-breakdown"   id="cat-breakdown"></div>
-      <div class="result-btns">
-        <button class="restart-btn" onclick="restartQuiz()">Ta quizen på nytt</button>
-        <a class="home-link" href="../">← Tilbake til hjem</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Questions loaded from separate file — swap file to change theme -->
-  <script src="sporsmal-lom.js"></script>
-
-  <script>
-    // ── Category metadata ────────────────────────────────────────
-    const CAT_META = {
-      ledelse:  { label: 'Ledelse & Organisasjon', color: 'var(--cat-ledelse)' },
-      marked:   { label: 'Markedsføringsledelse',  color: 'var(--cat-marked)' },
-      regnskap: { label: 'Regnskapsanalyse',        color: 'var(--cat-regnskap)' },
-      okonomi:  { label: 'Økonomistyring',          color: 'var(--cat-okonomi)' }
-    };
-
-    // ── State ────────────────────────────────────────────────────
-    let questions = [];
-    let currentIdx = 0;
-    let score = 0;
-    let answered = false;
-    let catScores = {};
-
-    const LETTERS = ['A', 'B', 'C', 'D'];
-
-    // ── Build start screen from QUESTIONS data ───────────────────
-    (function buildStartScreen() {
-      const counts = {};
-      QUESTIONS.forEach(q => { counts[q.cat] = (counts[q.cat] || 0) + 1; });
-
-      document.getElementById('start-desc').textContent =
-        `${QUESTIONS.length} spørsmål som dekker hele pensumet. Svar, se om du treffer – og les forklaringen etterpå.`;
-
-      const grid = document.getElementById('topics-grid');
-      Object.entries(CAT_META).forEach(([key, meta]) => {
-        if (!counts[key]) return;
-        const div = document.createElement('div');
-        div.className = 'topic-item';
-        div.innerHTML = `<span class="topic-dot" style="background:${meta.color}"></span>${meta.label} (${counts[key]} spørsm.)`;
-        grid.appendChild(div);
-      });
-    })();
-
-    // ── Helpers ──────────────────────────────────────────────────
-    function shuffle(arr) {
-      const a = [...arr];
-      for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-      }
-      return a;
-    }
-
-    // ── Quiz flow ────────────────────────────────────────────────
-    function startQuiz() {
-      questions = shuffle(QUESTIONS);
-      currentIdx = 0;
-      score = 0;
-      answered = false;
-      catScores = {};
-      questions.forEach(q => {
-        if (!catScores[q.cat]) catScores[q.cat] = { correct: 0, total: 0 };
-        catScores[q.cat].total++;
-      });
-
-      document.getElementById('start-screen').style.display  = 'none';
-      document.getElementById('quiz-screen').style.display   = 'block';
-      document.getElementById('result-screen').style.display = 'none';
-      renderQuestion();
-    }
-
-    function renderQuestion() {
-      const q = questions[currentIdx];
-      answered = false;
-
-      document.getElementById('q-counter').textContent  = `Spørsmål ${currentIdx + 1} av ${questions.length}`;
-      document.getElementById('score-live').textContent = `Poeng: ${score}`;
-      document.getElementById('progress-fill').style.width = (currentIdx / questions.length * 100) + '%';
-
-      const badge = document.getElementById('cat-badge');
-      badge.textContent = q.catLabel;
-      badge.className   = 'cat-badge cat-' + q.cat;
-
-      document.getElementById('question-text').textContent = q.q;
-
-      const expl = document.getElementById('explanation');
-      expl.className = 'explanation';
-      expl.innerHTML = '';
-
-      const nextBtn = document.getElementById('next-btn');
-      nextBtn.className   = 'next-btn';
-      nextBtn.textContent = currentIdx === questions.length - 1 ? 'Se resultat →' : 'Neste spørsmål →';
-
-      // Shuffle answer options, track where correct answer ends up
-      const indices = shuffle([0, 1, 2, 3]);
-      const shuffledOpts = indices.map(i => q.opts[i]);
-      const shuffledCorrect = indices.indexOf(q.correct);
-
-      const container = document.getElementById('options-container');
-      container.innerHTML = '';
-      shuffledOpts.forEach((opt, i) => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.innerHTML = `<span class="letter">${LETTERS[i]}</span><span>${opt}</span>`;
-        btn.addEventListener('click', () => selectAnswer(i, shuffledCorrect, q));
-        container.appendChild(btn);
-      });
-    }
-
-    function selectAnswer(chosen, correctIdx, q) {
-      if (answered) return;
-      answered = true;
-
-      document.querySelectorAll('.option-btn').forEach((btn, i) => {
-        btn.disabled = true;
-        if (i === correctIdx)  btn.classList.add('correct');
-        else if (i === chosen) btn.classList.add('wrong');
-      });
-
-      if (chosen === correctIdx) {
-        score++;
-        catScores[q.cat].correct++;
-      }
-
-      document.getElementById('score-live').textContent = `Poeng: ${score}`;
-
-      const expl = document.getElementById('explanation');
-      expl.innerHTML = `<strong>${chosen === correctIdx ? '✓ Riktig!' : '✗ Feil.'}</strong> ${q.explain}`;
-      expl.classList.add('show');
-      document.getElementById('next-btn').classList.add('show');
-    }
-
-    function nextQuestion() {
-      currentIdx++;
-      if (currentIdx >= questions.length) showResult();
-      else renderQuestion();
-    }
-
-    function showResult() {
-      document.getElementById('quiz-screen').style.display   = 'none';
-      document.getElementById('result-screen').style.display = 'block';
-
-      const pct = Math.round((score / questions.length) * 100);
-      let emoji, title, feedback;
-      if      (pct >= 90) { emoji = '🏆'; title = 'Utmerket!';    feedback = 'Du behersker pensumet svært godt. Solid grunnlag foran eksamen!'; }
-      else if (pct >= 75) { emoji = '🎉'; title = 'Bra jobbet!';   feedback = 'Du kan det meste. Gå gjennom kategoriene du bommet mest på for å tette hullene.'; }
-      else if (pct >= 55) { emoji = '📚'; title = 'På rett vei!';  feedback = 'Greit resultat – men det er rom for forbedring. Fokuser på formler og definisjoner.'; }
-      else                { emoji = '💪'; title = 'Hold ut!';       feedback = 'Ta en ny runde etter å ha lest gjennom teorien. Du er på vei!'; }
-
-      document.getElementById('result-emoji').textContent    = emoji;
-      document.getElementById('result-title').textContent    = title;
-      document.getElementById('result-sub').textContent      = `${pct}% riktige svar`;
-      document.getElementById('final-score').textContent     = score;
-      document.getElementById('final-total').textContent     = `av ${questions.length}`;
-      document.getElementById('result-feedback').textContent = feedback;
-
-      const breakdown = document.getElementById('cat-breakdown');
-      breakdown.innerHTML = '';
-      Object.entries(catScores).forEach(([cat, data]) => {
-        const meta = CAT_META[cat];
-        if (!meta) return;
-        const p = data.total > 0 ? Math.round((data.correct / data.total) * 100) : 0;
-        breakdown.innerHTML += `
-          <div class="cat-stat">
-            <div class="cat-stat-name" style="color:${meta.color}">${meta.label}</div>
-            <div class="cat-stat-bar-bg">
-              <div class="cat-stat-bar-fill" style="width:${p}%; background:${meta.color}"></div>
-            </div>
-            <div class="cat-stat-score">${data.correct} / ${data.total} (${p}%)</div>
-          </div>`;
-      });
-    }
-
-    function restartQuiz() {
-      document.getElementById('result-screen').style.display = 'none';
-      document.getElementById('start-screen').style.display  = 'block';
-    }
-  </script>
 </body>
 </html>
