@@ -1,18 +1,22 @@
-const CACHE = 'kalkulator-v48';
+const CACHE = 'kalkulator-v49';
 
 const FILES = [
   './',
   './index.html',
   './manifest.json',
-  './css/style.css',
-  './js/menu.js',
-  './js/calc-ohm.js',
-  './js/kabel-data.js',
-  './js/calc-kabel.js',
-  './js/calc-spenning.js',
-  './js/calc-krets.js',
   './icons/icon.svg',
   './icons/icon-192.png',
+  './kalkulator/',
+  './kalkulator/index.html',
+  './kalkulator/css/style.css',
+  './kalkulator/js/menu.js',
+  './kalkulator/js/calc-ohm.js',
+  './kalkulator/js/kabel-data.js',
+  './kalkulator/js/calc-kabel.js',
+  './kalkulator/js/calc-spenning.js',
+  './kalkulator/js/calc-krets.js',
+  './quiz/',
+  './quiz/index.html',
 ];
 
 self.addEventListener('install', event => {

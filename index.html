@@ -6,438 +6,121 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Kalkulator">
+  <meta name="apple-mobile-web-app-title" content="Elektriker">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0f3460">
-  <link rel="stylesheet" href="css/style.css">
-  <title>Kalkulator</title>
+  <title>Elektriker-app</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #1a1a2e;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 32px 16px;
+    }
+    .logo {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+    h1 {
+      color: #e2e8f0;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+    .subtitle {
+      color: #63b3ed;
+      font-size: 13px;
+      margin-bottom: 48px;
+    }
+    .nav-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+      max-width: 320px;
+    }
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: #16213e;
+      border: none;
+      border-radius: 18px;
+      padding: 22px 24px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .nav-btn:active { background: #1a3a5c; }
+    .nav-btn .icon {
+      font-size: 32px;
+      width: 44px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .nav-btn .text { text-align: left; }
+    .nav-btn .text strong {
+      display: block;
+      color: #e2e8f0;
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    .nav-btn .text span {
+      color: #718096;
+      font-size: 12px;
+    }
+    .nav-btn .arrow {
+      margin-left: auto;
+      color: #63b3ed;
+      font-size: 18px;
+    }
+    #appVersion {
+      position: fixed;
+      bottom: 8px;
+      right: 10px;
+      font-size: 10px;
+      color: #2d4a6e;
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
 
-  <div class="topbar">
-    <div class="menu-wrapper">
-      <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">
-        <span id="menuLabel">Kabel og vern</span>
-        <span class="arrow">▼</span>
-      </button>
-      <div class="dropdown" id="dropdown">
-        <div class="dropdown-item active" onclick="switchTo('kabel')">Kabel og vern</div>
-        <div class="dropdown-item" onclick="switchTo('ohm')">Ohms lov</div>
-        <div class="dropdown-item" onclick="switchTo('spenning')">Vekselspenning</div>
-        <div class="dropdown-item" onclick="switchTo('krets')">RC / RL / RLC krets</div>
+  <div class="logo">⚡</div>
+  <h1>Elektriker-app</h1>
+  <p class="subtitle">Verktøy for elektrikere</p>
+
+  <div class="nav-grid">
+    <a class="nav-btn" href="kalkulator/">
+      <div class="icon">🧮</div>
+      <div class="text">
+        <strong>Kalkulatorer</strong>
+        <span>Kabel, vern, Ohms lov, vekselspenning</span>
       </div>
-    </div>
-  </div>
+      <div class="arrow">›</div>
+    </a>
 
-  <!-- Ohms lov -->
-  <div class="card hidden" id="viewOhm">
-    <div class="calc-title">Ohms lov</div>
-    <div class="ohm-grid">
-      <div class="ohm-field" id="fieldV">
-        <label>SPENNING</label>
-        <div class="ohm-symbol">V</div>
-        <input type="number" id="inV" placeholder="—" inputmode="decimal">
+    <a class="nav-btn" href="quiz/">
+      <div class="icon">📝</div>
+      <div class="text">
+        <strong>Quiz</strong>
+        <span>Test kunnskapene dine</span>
       </div>
-      <div class="ohm-field" id="fieldA">
-        <label>STRØM</label>
-        <div class="ohm-symbol">A</div>
-        <input type="number" id="inA" placeholder="—" inputmode="decimal">
-      </div>
-      <div class="ohm-field" id="fieldR">
-        <label>MOTSTAND</label>
-        <div class="ohm-symbol">Ω</div>
-        <input type="number" id="inR" placeholder="—" inputmode="decimal">
-      </div>
-      <div class="ohm-field" id="fieldW">
-        <label>EFFEKT</label>
-        <div class="ohm-symbol">W</div>
-        <input type="number" id="inW" placeholder="—" inputmode="decimal">
-      </div>
-    </div>
-    <div class="ohm-multiplier">
-      <label>MULTIPLISER SVAR MED</label>
-      <input type="number" id="inMult" value="1" inputmode="decimal" min="1">
-    </div>
-    <div class="action-row">
-      <button class="btn-secondary" onclick="ohmClear()">Nullstill</button>
-      <button class="btn-primary" id="ohmCalcBtn" onclick="ohmCalc()">Beregn</button>
-    </div>
-    <div class="hint" id="ohmHint">Fyll inn to verdier og trykk Beregn</div>
-  </div>
-
-  <!-- Kabel og vern -->
-  <div class="card" id="viewKabel">
-    <div class="calc-title">Kabel og vern</div>
-    <div class="kabel-form">
-
-      <div class="kabel-row">
-        <label>Kabellengde</label>
-        <div class="kabel-input-unit">
-          <input type="number" id="kbLength" placeholder="0" inputmode="decimal">
-          <span>m</span>
-        </div>
-      </div>
-
-      <div class="kabel-row">
-        <label>Antall faser</label>
-        <div class="toggle-group" id="kbPhase">
-          <button class="toggle-btn active" data-val="1">1-fase</button>
-          <button class="toggle-btn" data-val="3">3-fase</button>
-        </div>
-      </div>
-
-      <div class="kabel-row" id="kbSystemRow">
-        <label>Fordelingssystem</label>
-        <div class="toggle-group" id="kbSystem">
-          <button class="toggle-btn" data-val="IT">IT (230V)</button>
-          <button class="toggle-btn active" data-val="TN">TN (400V)</button>
-        </div>
-      </div>
-
-      <div class="kabel-row">
-        <label>Last</label>
-        <div class="kabel-input-unit">
-          <input type="number" id="kbLoad" placeholder="0" inputmode="decimal">
-          <div class="toggle-group" id="kbLoadUnit">
-            <button class="toggle-btn active" data-val="W">W</button>
-            <button class="toggle-btn" data-val="A">A</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="kabel-row" id="kbCosPRow">
-        <label>Cos φ</label>
-        <div class="kabel-input-unit">
-          <input type="number" id="kbCosP" value="1" min="0.1" max="1" step="0.01" inputmode="decimal">
-        </div>
-      </div>
-
-      <div class="kabel-row">
-        <label>Forlegning</label>
-        <select id="kbInstall" onchange="updateTempForInstall()">
-          <option value="A1">A1 — PN i rør i isolert vegg</option>
-          <option value="A2">A2 — Flerleder i rør i isolert vegg</option>
-          <option value="B1">B1 — PN i rør på vegg</option>
-          <option value="B2">B2 — Flerleder i rør på vegg</option>
-          <option value="C" selected>C — Direkte på vegg / tak</option>
-          <option value="D1">D1 — Nedgravd i rør i jord</option>
-          <option value="D2">D2 — Direkte nedgravd i jord</option>
-          <option value="E">E — På perforert kabelbro</option>
-        </select>
-      </div>
-
-      <div class="kabel-row">
-        <label>Bruksområde</label>
-        <div class="toggle-group" id="kbUse">
-          <button class="toggle-btn active" data-val="bolig">Bolig</button>
-          <button class="toggle-btn" data-val="industri">Industri</button>
-        </div>
-      </div>
-
-      <div class="kabel-row">
-        <label>Leder</label>
-        <div class="toggle-group" id="kbConductor">
-          <button class="toggle-btn active" data-val="Cu">Kobber</button>
-          <button class="toggle-btn" data-val="Al">Aluminium</button>
-        </div>
-      </div>
-
-      <div class="kabel-row">
-        <label>Omgivelsestemperatur</label>
-        <div class="kabel-input-unit">
-          <input type="number" id="kbTemp" value="30" inputmode="decimal">
-          <span>°C</span>
-        </div>
-      </div>
-
-      <div class="kabel-row">
-        <label>Isolasjon</label>
-        <div class="toggle-group" id="kbInsul">
-          <button class="toggle-btn active" data-val="PVC">PVC</button>
-          <button class="toggle-btn" data-val="PEX">PEX</button>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="kr-warning hidden" id="krWarning"></div>
-
-    <div class="kabel-result hidden" id="kbResult">
-      <div class="kabel-result-grid">
-        <div class="kr-item">
-          <div class="kr-label">STRØM</div>
-          <div class="kr-value" id="krCurrent">—</div>
-          <div class="kr-unit">A</div>
-        </div>
-        <div class="kr-item">
-          <div class="kr-label">TVERRSNITT</div>
-          <div class="kr-value" id="krCross">—</div>
-          <div class="kr-unit">mm²</div>
-        </div>
-        <div class="kr-item">
-          <div class="kr-label">SPENNINGSFALL</div>
-          <div class="kr-value" id="krDrop">—</div>
-          <div class="kr-unit">%</div>
-        </div>
-        <div class="kr-item">
-          <div class="kr-label">VERN</div>
-          <div class="kr-value" id="krBreaker">—</div>
-          <div class="kr-unit">A</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="kabel-utregning-box hidden" id="kbUtregningBox">
-      <div class="kabel-utregning-title">Utregning</div>
-      <div class="kabel-utregning" id="kbUtregning"></div>
-    </div>
-
-    <div class="action-row">
-      <button class="btn-secondary" onclick="kabelClear()">Nullstill</button>
-      <button class="btn-primary ready" onclick="kabelCalc()">Beregn</button>
-    </div>
-  </div>
-
-  <!-- RC / RL / RLC krets -->
-  <div class="card hidden" id="viewKrets">
-    <div class="calc-title">RC / RL / RLC krets</div>
-    <div class="kabel-form">
-
-      <div class="kabel-row">
-        <label>Kobling</label>
-        <div class="toggle-group" id="kcConn">
-          <button class="toggle-btn active" data-val="serie">Serie</button>
-          <button class="toggle-btn" data-val="parallell">Parallell</button>
-        </div>
-      </div>
-
-      <div class="kabel-row">
-        <label>Kretstype</label>
-        <div class="toggle-group" id="kcType">
-          <button class="toggle-btn active" data-val="RC">RC</button>
-          <button class="toggle-btn" data-val="RL">RL</button>
-          <button class="toggle-btn" data-val="RLC">RLC</button>
-        </div>
-      </div>
-
-      <div class="kabel-row">
-        <label>Spenning</label>
-        <div class="kabel-input-unit">
-          <input type="number" id="kcU" placeholder="0" inputmode="decimal">
-          <span>V</span>
-        </div>
-      </div>
-
-      <div class="kabel-row">
-        <label>Frekvens</label>
-        <div class="kabel-input-unit">
-          <input type="number" id="kcF" value="50" inputmode="decimal">
-          <span>Hz</span>
-        </div>
-      </div>
-
-      <div class="kabel-row">
-        <label>Motstand R</label>
-        <div class="kabel-input-unit">
-          <input type="number" id="kcR" placeholder="0" inputmode="decimal">
-          <span>Ω</span>
-        </div>
-      </div>
-
-      <div class="kabel-row hidden" id="kcRowL">
-        <label>Induktans L</label>
-        <div class="kabel-input-unit">
-          <input type="number" id="kcL" placeholder="0" inputmode="decimal">
-          <span>mH</span>
-        </div>
-      </div>
-
-      <div class="kabel-row hidden" id="kcRowC">
-        <label>Kapasitans C</label>
-        <div class="kabel-input-unit">
-          <input type="number" id="kcC" placeholder="0" inputmode="decimal">
-          <span>μF</span>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="kr-warning hidden" id="kcError"></div>
-
-    <div class="kabel-result hidden" id="kcResult">
-      <div class="kabel-result-grid">
-        <div class="kr-item">
-          <div class="kr-label">AKTIV EFFEKT</div>
-          <div class="kr-value" id="kcResP">—</div>
-          <div class="kr-unit">W</div>
-        </div>
-        <div class="kr-item">
-          <div class="kr-label">REAKTIV EFFEKT</div>
-          <div class="kr-value" id="kcResQ">—</div>
-          <div class="kr-unit">VAR</div>
-        </div>
-        <div class="kr-item">
-          <div class="kr-label">SYNEFFEKT</div>
-          <div class="kr-value" id="kcResS">—</div>
-          <div class="kr-unit">VA</div>
-        </div>
-        <div class="kr-item">
-          <div class="kr-label">EFFEKTFAKTOR</div>
-          <div class="kr-value" id="kcResCosP">—</div>
-          <div class="kr-unit">cos φ</div>
-        </div>
-        <div class="kr-item">
-          <div class="kr-label">IMPEDANS</div>
-          <div class="kr-value" id="kcResZ">—</div>
-          <div class="kr-unit">Ω</div>
-        </div>
-        <div class="kr-item">
-          <div class="kr-label">STRØM</div>
-          <div class="kr-value" id="kcResI">—</div>
-          <div class="kr-unit">A</div>
-        </div>
-        <div class="kr-item" style="grid-column: span 2;">
-          <div class="kr-label">FASEVINKEL</div>
-          <div class="kr-value" id="kcResPhi">—</div>
-          <div class="kr-unit">°</div>
-        </div>
-      </div>
-      <div class="kr-item hidden" id="kcResFreq" style="text-align:center; margin-top:12px;">
-        <div class="kr-label">RESONANSFREKVENS</div>
-        <div class="kr-value" id="kcResF0">—</div>
-        <div class="kr-unit">Hz</div>
-      </div>
-      <div class="hint" id="kcChar"></div>
-    </div>
-
-    <div class="kabel-utregning-box hidden" id="kcUtregningBox">
-      <div class="kabel-utregning-title">Utregning</div>
-      <div class="kabel-utregning" id="kcUtregning"></div>
-    </div>
-
-    <div class="action-row">
-      <button class="btn-secondary" onclick="kretsClear()">Nullstill</button>
-      <button class="btn-primary ready" onclick="kretsCalc()">Beregn</button>
-    </div>
-  </div>
-
-  <!-- Vekselspenning -->
-  <div class="card hidden" id="viewSpenning">
-    <div class="calc-title">Vekselspenning</div>
-
-    <div class="kabel-form">
-
-    <div class="kabel-row">
-      <label>Faser</label>
-      <div class="toggle-group" id="spPhase">
-        <button class="toggle-btn active" data-val="1">1-fase</button>
-        <button class="toggle-btn" data-val="3">3-fase</button>
-      </div>
-    </div>
-
-    </div>
-
-    <div class="ohm-grid">
-      <div class="ohm-field" id="fieldSpU">
-        <label>SPENNING</label>
-        <div class="ohm-symbol">V</div>
-        <input type="number" id="spU" placeholder="—" inputmode="decimal">
-      </div>
-      <div class="ohm-field" id="fieldSpI">
-        <label>STRØM</label>
-        <div class="ohm-symbol">A</div>
-        <input type="number" id="spI" placeholder="—" inputmode="decimal">
-      </div>
-      <div class="ohm-field" id="fieldSpP">
-        <label>AKTIV EFFEKT</label>
-        <div class="ohm-symbol">W</div>
-        <input type="number" id="spP" placeholder="—" inputmode="decimal">
-      </div>
-      <div class="ohm-field" id="fieldSpCosP">
-        <label>EFFEKTFAKTOR</label>
-        <div class="ohm-symbol">cos φ</div>
-        <input type="number" id="spCosP" placeholder="—" min="0.01" max="1" step="0.01" inputmode="decimal">
-      </div>
-      <div class="ohm-field" id="fieldSpPhi">
-        <label>FASEVINKEL</label>
-        <div class="ohm-symbol">φ °</div>
-        <input type="number" id="spPhi" placeholder="—" min="0" max="90" step="0.1" inputmode="decimal">
-      </div>
-    </div>
-
-    <div class="kr-warning hidden" id="spError"></div>
-
-    <div class="action-row">
-      <button class="btn-secondary" onclick="spClear()">Nullstill</button>
-      <button class="btn-primary ready" id="spCalcBtnEl" onclick="spCalc()">Beregn</button>
-    </div>
-
-    <div class="hint">Fyll inn minst to verdier og trykk Beregn</div>
-
-    <div class="kabel-result hidden" id="spResult">
-      <div class="kabel-result-grid">
-        <div class="kr-item">
-          <div class="kr-label">SPENNING</div>
-          <div class="kr-value" id="spResU">—</div>
-          <div class="kr-unit">V</div>
-        </div>
-        <div class="kr-item">
-          <div class="kr-label">STRØM</div>
-          <div class="kr-value" id="spResI">—</div>
-          <div class="kr-unit">A</div>
-        </div>
-        <div class="kr-item">
-          <div class="kr-label">AKTIV EFFEKT</div>
-          <div class="kr-value" id="spResP">—</div>
-          <div class="kr-unit">W</div>
-        </div>
-        <div class="kr-item">
-          <div class="kr-label">REAKTIV EFFEKT</div>
-          <div class="kr-value" id="spResQ">—</div>
-          <div class="kr-unit">VAR</div>
-        </div>
-        <div class="kr-item">
-          <div class="kr-label">SYNEFFEKT</div>
-          <div class="kr-value" id="spResS">—</div>
-          <div class="kr-unit">VA</div>
-        </div>
-        <div class="kr-item">
-          <div class="kr-label">EFFEKTFAKTOR</div>
-          <div class="kr-value" id="spResCosP">—</div>
-          <div class="kr-unit">cos φ</div>
-        </div>
-        <div class="kr-item">
-          <div class="kr-label">FASEVINKEL</div>
-          <div class="kr-value" id="spResPhi">—</div>
-          <div class="kr-unit">°</div>
-        </div>
-        <div class="kr-item">
-          <div class="kr-label">TOPPVERDI</div>
-          <div class="kr-value" id="spResPeak">—</div>
-          <div class="kr-unit">V</div>
-        </div>
-        <div class="kr-item hidden" id="spResFaseRow">
-          <div class="kr-label">FASESPENNING</div>
-          <div class="kr-value" id="spResFase">—</div>
-          <div class="kr-unit">V</div>
-        </div>
-        <div class="kr-item hidden" id="spResIFaseRow" style="grid-column: span 2;">
-          <div class="kr-label">STRØM PER FASE</div>
-          <div class="kr-value" id="spResIFase" style="font-size:16px; white-space:pre-line;">—</div>
-        </div>
-      </div>
-    </div>
+      <div class="arrow">›</div>
+    </a>
   </div>
 
   <div id="appVersion"></div>
 
-  <script src="js/menu.js"></script>
-  <script src="js/calc-ohm.js"></script>
-  <script src="js/kabel-data.js"></script>
-  <script src="js/calc-kabel.js"></script>
-  <script src="js/calc-spenning.js"></script>
-  <script src="js/calc-krets.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./service-worker.js');
@@ -445,7 +128,6 @@
         window.location.reload();
       });
     }
-    // Hent versjon fra aktiv service worker cache-navn
     if ('caches' in window) {
       caches.keys().then(keys => {
         const cache = keys.find(k => k.startsWith('kalkulator-'));
