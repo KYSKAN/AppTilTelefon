@@ -236,13 +236,44 @@
     .start-card h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
     .start-card p { color: var(--muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 24px; }
 
-    .topics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; text-align: left; }
+    .topics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; text-align: left; }
     .topic-item {
       background: var(--surface2); border: 1px solid var(--border);
       border-radius: 8px; padding: 10px 14px; font-size: 0.84rem;
       display: flex; align-items: center; gap: 8px;
     }
     .topic-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── Score history (start screen) ── */
+    .history-section {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .history-section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .history-list { display: flex; flex-direction: column; gap: 6px; }
+    .history-entry {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 9px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.84rem;
+    }
+    .history-entry-left { display: flex; align-items: center; gap: 8px; }
+    .history-medal { font-size: 1rem; }
+    .history-score { font-weight: 700; color: #fff; }
+    .history-pct { font-size: 0.78rem; color: var(--muted); margin-left: 2px; }
+    .history-date { font-size: 0.78rem; color: var(--muted); }
 
     .start-btns { display: flex; flex-direction: column; gap: 10px; align-items: center; }
     .start-btn {
@@ -259,6 +290,114 @@
       transition: background 0.15s, transform 0.1s;
     }
     .continue-btn:hover { background: rgba(92,124,250,0.15); transform: translateY(-1px); }
+
+    /* ── Wrong answers review ── */
+    .review-wrap {
+      max-width: 700px;
+      width: 100%;
+      margin-top: 12px;
+      animation: fadeIn 0.3s ease;
+    }
+    .review-toggle {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 20px;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.15s, border-color 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .review-toggle:hover { background: var(--surface2); }
+    .review-toggle.open { border-color: var(--accent); }
+    .review-toggle-left { display: flex; align-items: center; gap: 10px; }
+    .review-toggle-count {
+      font-size: 0.78rem; font-weight: 700;
+      background: var(--red-bg); color: var(--red);
+      border: 1px solid rgba(231,76,60,0.3);
+      border-radius: 99px; padding: 2px 9px;
+    }
+    .review-toggle-arrow {
+      color: var(--accent);
+      font-size: 1.1rem;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+    .review-toggle.open .review-toggle-arrow { transform: rotate(90deg); }
+    .review-list {
+      margin-top: 8px;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .review-list.open { display: flex; }
+    .review-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      animation: fadeIn 0.2s ease;
+    }
+    .review-item-num {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .review-item-q {
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .review-answer-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.87rem;
+      padding: 9px 12px;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      line-height: 1.45;
+    }
+    .review-answer-row.wrong-ans {
+      background: var(--red-bg);
+      border: 1px solid rgba(231,76,60,0.25);
+    }
+    .review-answer-row.correct-ans {
+      background: var(--green-bg);
+      border: 1px solid rgba(46,204,113,0.25);
+    }
+    .review-answer-icon { flex-shrink: 0; font-size: 0.9rem; margin-top: 1px; }
+    .review-explain {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .review-all-correct {
+      background: var(--green-bg);
+      border: 1px solid rgba(46,204,113,0.25);
+      border-radius: 12px;
+      padding: 16px 20px;
+      text-align: center;
+      color: var(--green);
+      font-size: 0.93rem;
+      font-weight: 600;
+    }
 
     /* ── Loading / error ── */
     #loading { color: var(--muted); font-size: 0.95rem; margin-top: 80px; }
@@ -285,6 +424,10 @@
       <h2 id="start-title"></h2>
       <p id="start-desc"></p>
       <div class="topics-grid" id="topics-grid"></div>
+      <div id="history-section" class="history-section" style="display:none;">
+        <div class="history-section-title">Dine beste resultater</div>
+        <div class="history-list" id="history-list"></div>
+      </div>
       <div class="start-btns">
         <button class="continue-btn" id="continue-btn" style="display:none;" onclick="continueQuiz()"></button>
         <button class="start-btn" id="new-quiz-btn" onclick="startQuiz()">Start Quiz →</button>
@@ -332,6 +475,18 @@
     </div>
   </div>
 
+  <!-- WRONG ANSWERS REVIEW -->
+  <div id="review-wrap" class="review-wrap" style="display:none;">
+    <button class="review-toggle" id="review-toggle" onclick="toggleReview()">
+      <div class="review-toggle-left">
+        <span id="review-toggle-label">Se feil svar</span>
+        <span class="review-toggle-count" id="review-toggle-count"></span>
+      </div>
+      <span class="review-toggle-arrow">›</span>
+    </button>
+    <div class="review-list" id="review-list"></div>
+  </div>
+
   <script>
     // ── Load question file based on ?tema= URL param ─────────────
     const tema = new URLSearchParams(location.search).get('tema') || '';
@@ -344,42 +499,141 @@
     document.head.appendChild(script);
 
     // ── State ────────────────────────────────────────────────────
-    let questions = [];
-    let currentIdx = 0;
-    let score = 0;
-    let answered = false;
-    let catScores = {};
+    let questions    = [];
+    let currentIdx   = 0;
+    let score        = 0;
+    let answered     = false;
+    let catScores    = {};
+    let wrongAnswers = [];   // { q, chosenText, correctText }
 
-    const STORAGE_KEY = `quiz_progress_${tema}`;
+    // ── Storage keys ─────────────────────────────────────────────
+    const PROGRESS_KEY = `quiz_progress_${tema}`;
+    const HISTORY_KEY  = `quiz_history_${tema}`;
 
+    // ── Progress helpers ─────────────────────────────────────────
     function saveProgress() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({
-        order: questions.map(q => QUESTIONS.indexOf(q)),
-        idx: currentIdx,
-        score,
-        cats: catScores
-      }));
+      try {
+        localStorage.setItem(PROGRESS_KEY, JSON.stringify({
+          order: questions.map(q => QUESTIONS.indexOf(q)),
+          idx: currentIdx,
+          score,
+          cats: catScores
+        }));
+      } catch(e) {}
     }
 
     function clearProgress() {
-      localStorage.removeItem(STORAGE_KEY);
+      try { localStorage.removeItem(PROGRESS_KEY); } catch(e) {}
     }
 
     function getSavedProgress() {
-      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); }
+      try { return JSON.parse(localStorage.getItem(PROGRESS_KEY)); }
       catch { return null; }
+    }
+
+    // ── History helpers ───────────────────────────────────────────
+    function saveToHistory(sc, total) {
+      const pct  = Math.round(sc / total * 100);
+      const date = new Date().toLocaleDateString('no-NO', { day: 'numeric', month: 'short' });
+      let hist   = getHistory();
+      hist.push({ score: sc, total, pct, date });
+      hist.sort((a, b) => b.pct - a.pct || b.score - a.score);
+      hist = hist.slice(0, 3);
+      try { localStorage.setItem(HISTORY_KEY, JSON.stringify(hist)); } catch(e) {}
+    }
+
+    function getHistory() {
+      try { return JSON.parse(localStorage.getItem(HISTORY_KEY)) || []; }
+      catch { return []; }
+    }
+
+    function renderHistory() {
+      const hist = getHistory();
+      const section = document.getElementById('history-section');
+      if (!hist.length) { section.style.display = 'none'; return; }
+      const medals = ['🥇', '🥈', '🥉'];
+      section.style.display = 'block';
+      const list = document.getElementById('history-list');
+      list.innerHTML = '';
+      hist.forEach((entry, i) => {
+        const div = document.createElement('div');
+        div.className = 'history-entry';
+        div.innerHTML =
+          `<div class="history-entry-left">` +
+            `<span class="history-medal">${medals[i]}</span>` +
+            `<span class="history-score">${entry.score}/${entry.total}</span>` +
+            `<span class="history-pct">${entry.pct}%</span>` +
+          `</div>` +
+          `<span class="history-date">${entry.date}</span>`;
+        list.appendChild(div);
+      });
+    }
+
+    // ── Wrong answers helpers ─────────────────────────────────────
+    function renderWrongAnswers() {
+      const wrap = document.getElementById('review-wrap');
+      if (!wrongAnswers.length) {
+        wrap.innerHTML =
+          `<div class="review-all-correct">` +
+            `✓ Perfekt! Du svarte riktig på alle spørsmålene.` +
+          `</div>`;
+        wrap.style.display = 'block';
+        return;
+      }
+      wrap.style.display = 'block';
+      document.getElementById('review-toggle-label').textContent =
+        wrongAnswers.length === 1 ? 'Se 1 feil svar' : `Se ${wrongAnswers.length} feil svar`;
+      document.getElementById('review-toggle-count').textContent =
+        `${wrongAnswers.length}`;
+
+      const list = document.getElementById('review-list');
+      list.innerHTML = '';
+      list.classList.remove('open');
+      document.getElementById('review-toggle').classList.remove('open');
+
+      wrongAnswers.forEach((item, i) => {
+        const div = document.createElement('div');
+        div.className = 'review-item';
+        div.innerHTML =
+          `<div class="review-item-num">Feil ${i + 1} av ${wrongAnswers.length}</div>` +
+          `<div class="review-item-q">${esc(item.q.q)}</div>` +
+          `<div class="review-answer-row wrong-ans">` +
+            `<span class="review-answer-icon">✗</span>` +
+            `<span><strong>Ditt svar:</strong> ${esc(item.chosenText)}</span>` +
+          `</div>` +
+          `<div class="review-answer-row correct-ans">` +
+            `<span class="review-answer-icon">✓</span>` +
+            `<span><strong>Riktig svar:</strong> ${esc(item.correctText)}</span>` +
+          `</div>` +
+          `<div class="review-explain">${esc(item.q.explain)}</div>`;
+        list.appendChild(div);
+      });
+    }
+
+    function toggleReview() {
+      const toggle = document.getElementById('review-toggle');
+      const list   = document.getElementById('review-list');
+      const open   = toggle.classList.toggle('open');
+      list.classList.toggle('open', open);
+    }
+
+    function esc(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
     }
 
     const LETTERS = ['A', 'B', 'C', 'D'];
 
+    // ── Init ─────────────────────────────────────────────────────
     function initQuiz() {
       document.getElementById('loading').style.display = 'none';
 
-      // Title in topbar
       document.getElementById('topbar-title').textContent = QUIZ_META.title;
       document.title = QUIZ_META.title + ' Quiz';
 
-      // Build start screen
       document.getElementById('start-title').textContent = QUIZ_META.title;
       document.getElementById('start-desc').textContent  = QUIZ_META.description;
 
@@ -391,14 +645,19 @@
         if (!counts[key]) return;
         const div = document.createElement('div');
         div.className = 'topic-item';
-        div.innerHTML = `<span class="topic-dot" style="background:${cat.color}"></span>${cat.label} (${counts[key]} spørsm.)`;
+        div.innerHTML =
+          `<span class="topic-dot" style="background:${cat.color}"></span>` +
+          `${cat.label} (${counts[key]} spørsm.)`;
         grid.appendChild(div);
       });
 
+      renderHistory();
+
       const saved = getSavedProgress();
-      if (saved && saved.idx < saved.order.length) {
+      if (saved && saved.idx > 0 && saved.idx < saved.order.length) {
         const continueBtn = document.getElementById('continue-btn');
-        continueBtn.textContent = `Fortsett (spørsmål ${saved.idx + 1} av ${saved.order.length}, ${saved.score} poeng) →`;
+        continueBtn.textContent =
+          `Fortsett fra spørsmål ${saved.idx + 1} av ${saved.order.length} (${saved.score} poeng) →`;
         continueBtn.style.display = 'block';
         document.getElementById('new-quiz-btn').textContent = 'Start på nytt';
       }
@@ -419,11 +678,12 @@
     // ── Quiz flow ────────────────────────────────────────────────
     function startQuiz() {
       clearProgress();
-      questions = shuffle(QUESTIONS);
-      currentIdx = 0;
-      score = 0;
-      answered = false;
-      catScores = {};
+      questions    = shuffle(QUESTIONS);
+      currentIdx   = 0;
+      score        = 0;
+      answered     = false;
+      wrongAnswers = [];
+      catScores    = {};
       questions.forEach(q => {
         if (!catScores[q.cat]) catScores[q.cat] = { correct: 0, total: 0 };
         catScores[q.cat].total++;
@@ -432,22 +692,39 @@
       document.getElementById('start-screen').style.display  = 'none';
       document.getElementById('quiz-screen').style.display   = 'block';
       document.getElementById('result-screen').style.display = 'none';
+      hideReviewWrap();
       renderQuestion();
     }
 
     function continueQuiz() {
       const saved = getSavedProgress();
       if (!saved) { startQuiz(); return; }
-      questions = saved.order.map(i => QUESTIONS[i]);
-      currentIdx = saved.idx;
-      score = saved.score;
-      catScores = saved.cats;
-      answered = false;
+      questions    = saved.order.map(i => QUESTIONS[i]);
+      currentIdx   = saved.idx;
+      score        = saved.score;
+      catScores    = saved.cats;
+      answered     = false;
+      wrongAnswers = [];
 
       document.getElementById('start-screen').style.display  = 'none';
       document.getElementById('quiz-screen').style.display   = 'block';
       document.getElementById('result-screen').style.display = 'none';
+      hideReviewWrap();
       renderQuestion();
+    }
+
+    function hideReviewWrap() {
+      const wrap = document.getElementById('review-wrap');
+      wrap.style.display = 'none';
+      wrap.innerHTML =
+        `<button class="review-toggle" id="review-toggle" onclick="toggleReview()">` +
+          `<div class="review-toggle-left">` +
+            `<span id="review-toggle-label">Se feil svar</span>` +
+            `<span class="review-toggle-count" id="review-toggle-count"></span>` +
+          `</div>` +
+          `<span class="review-toggle-arrow">›</span>` +
+        `</button>` +
+        `<div class="review-list" id="review-list"></div>`;
     }
 
     function renderQuestion() {
@@ -458,11 +735,11 @@
       document.getElementById('score-live').textContent = `Poeng: ${score}`;
       document.getElementById('progress-fill').style.width = (currentIdx / questions.length * 100) + '%';
 
-      const cat = QUIZ_META.cats[q.cat] || { label: q.catLabel, color: 'var(--accent)' };
+      const cat   = QUIZ_META.cats[q.cat] || { label: q.catLabel || q.cat, color: 'var(--accent)' };
       const badge = document.getElementById('cat-badge');
-      badge.textContent = cat.label;
-      badge.style.background = cat.color + '26'; // ~15% opacity
-      badge.style.color = cat.color;
+      badge.textContent       = cat.label;
+      badge.style.background  = cat.color + '26';
+      badge.style.color       = cat.color;
 
       const imgDiv = document.getElementById('q-image');
       if (q.img) { imgDiv.innerHTML = q.img; imgDiv.style.display = 'block'; }
@@ -478,10 +755,9 @@
       nextBtn.className   = 'next-btn';
       nextBtn.textContent = currentIdx === questions.length - 1 ? 'Se resultat →' : 'Neste spørsmål →';
 
-      // Shuffle answer options
-      const indices = shuffle([0, 1, 2, 3]);
-      const shuffledOpts    = indices.map(i => q.opts[i]);
-      const shuffledCorrect = indices.indexOf(q.correct);
+      const indices      = shuffle([0, 1, 2, 3]);
+      const shuffledOpts = indices.map(i => q.opts[i]);
+      const correctIdx   = indices.indexOf(q.correct);
 
       const container = document.getElementById('options-container');
       container.innerHTML = '';
@@ -489,12 +765,12 @@
         const btn = document.createElement('button');
         btn.className = 'option-btn';
         btn.innerHTML = `<span class="letter">${LETTERS[i]}</span><span>${opt}</span>`;
-        btn.addEventListener('click', () => selectAnswer(i, shuffledCorrect, q));
+        btn.addEventListener('click', () => selectAnswer(i, correctIdx, q, shuffledOpts));
         container.appendChild(btn);
       });
     }
 
-    function selectAnswer(chosen, correctIdx, q) {
+    function selectAnswer(chosen, correctIdx, q, shuffledOpts) {
       if (answered) return;
       answered = true;
 
@@ -507,6 +783,12 @@
       if (chosen === correctIdx) {
         score++;
         catScores[q.cat].correct++;
+      } else {
+        wrongAnswers.push({
+          q,
+          chosenText:  shuffledOpts[chosen],
+          correctText: shuffledOpts[correctIdx]
+        });
       }
 
       document.getElementById('score-live').textContent = `Poeng: ${score}`;
@@ -532,6 +814,9 @@
       document.getElementById('quiz-screen').style.display   = 'none';
       document.getElementById('result-screen').style.display = 'block';
 
+      saveToHistory(score, questions.length);
+      renderHistory();
+
       const pct = Math.round((score / questions.length) * 100);
       let emoji, title, feedback;
       if      (pct >= 90) { emoji = '🏆'; title = 'Utmerket!';    feedback = 'Du behersker pensumet svært godt. Solid grunnlag foran eksamen!'; }
@@ -552,22 +837,26 @@
         const meta = QUIZ_META.cats[cat];
         if (!meta) return;
         const p = data.total > 0 ? Math.round((data.correct / data.total) * 100) : 0;
-        breakdown.innerHTML += `
-          <div class="cat-stat">
-            <div class="cat-stat-name" style="color:${meta.color}">${meta.label}</div>
-            <div class="cat-stat-bar-bg">
-              <div class="cat-stat-bar-fill" style="width:${p}%; background:${meta.color}"></div>
-            </div>
-            <div class="cat-stat-score">${data.correct} / ${data.total} (${p}%)</div>
-          </div>`;
+        breakdown.innerHTML +=
+          `<div class="cat-stat">` +
+            `<div class="cat-stat-name" style="color:${meta.color}">${meta.label}</div>` +
+            `<div class="cat-stat-bar-bg">` +
+              `<div class="cat-stat-bar-fill" style="width:${p}%; background:${meta.color}"></div>` +
+            `</div>` +
+            `<div class="cat-stat-score">${data.correct} / ${data.total} (${p}%)</div>` +
+          `</div>`;
       });
+
+      renderWrongAnswers();
     }
 
     function restartQuiz() {
       clearProgress();
+      hideReviewWrap();
       document.getElementById('result-screen').style.display = 'none';
       document.getElementById('continue-btn').style.display  = 'none';
       document.getElementById('new-quiz-btn').textContent    = 'Start Quiz →';
+      renderHistory();
       document.getElementById('start-screen').style.display  = 'block';
     }
   </script>

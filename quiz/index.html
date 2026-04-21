@@ -151,6 +151,33 @@
       padding: 3px 9px;
       border-radius: 99px;
     }
+
+    /* ── Progress & history badges ── */
+    .quiz-card-status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .status-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 99px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .status-badge.progress {
+      background: rgba(245,158,11,0.13);
+      color: #f59e0b;
+      border: 1px solid rgba(245,158,11,0.3);
+    }
+    .status-badge.best-score {
+      background: rgba(92,124,250,0.12);
+      color: #818cf8;
+      border: 1px solid rgba(92,124,250,0.25);
+    }
   </style>
 </head>
 <body>
@@ -165,7 +192,7 @@
 
   <div class="quiz-list">
 
-    <a class="quiz-card" href="spill.html?tema=lom-ledelse">
+    <a class="quiz-card" href="spill.html?tema=lom-ledelse" data-tema="lom-ledelse">
       <div class="quiz-card-header">
         <div>
           <div class="quiz-card-title">Ledelse & Organisasjon</div>
@@ -183,7 +210,7 @@
       </div>
     </a>
 
-    <a class="quiz-card" href="spill.html?tema=lom-marked">
+    <a class="quiz-card" href="spill.html?tema=lom-marked" data-tema="lom-marked">
       <div class="quiz-card-header">
         <div>
           <div class="quiz-card-title">Markedsføringsledelse</div>
@@ -201,7 +228,7 @@
       </div>
     </a>
 
-    <a class="quiz-card" href="spill.html?tema=lom-regnskap">
+    <a class="quiz-card" href="spill.html?tema=lom-regnskap" data-tema="lom-regnskap">
       <div class="quiz-card-header">
         <div>
           <div class="quiz-card-title">Regnskapsanalyse</div>
@@ -217,7 +244,7 @@
       </div>
     </a>
 
-    <a class="quiz-card" href="spill.html?tema=lom-okonomi">
+    <a class="quiz-card" href="spill.html?tema=lom-okonomi" data-tema="lom-okonomi">
       <div class="quiz-card-header">
         <div>
           <div class="quiz-card-title">Økonomistyring</div>
@@ -236,7 +263,7 @@
       </div>
     </a>
 
-    <a class="quiz-card" href="spill.html?tema=lom-lovavtale">
+    <a class="quiz-card" href="spill.html?tema=lom-lovavtale" data-tema="lom-lovavtale">
       <div class="quiz-card-header">
         <div>
           <div class="quiz-card-title">Lover & Avtaler</div>
@@ -254,7 +281,7 @@
       </div>
     </a>
 
-    <a class="quiz-card" href="spill.html?tema=rlc">
+    <a class="quiz-card" href="spill.html?tema=rlc" data-tema="rlc">
       <div class="quiz-card-header">
         <div>
           <div class="quiz-card-title">RLC-kretser</div>
@@ -273,6 +300,45 @@
     </a>
 
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.quiz-card[data-tema]').forEach(function (card) {
+        var tema   = card.dataset.tema;
+        var badges = [];
+
+        try {
+          var prog = JSON.parse(localStorage.getItem('quiz_progress_' + tema));
+          if (prog && prog.idx > 0 && prog.idx < prog.order.length) {
+            badges.push(
+              '<span class="status-badge progress">' +
+                '▶ Pågår: spørsmål ' + (prog.idx + 1) + ' av ' + prog.order.length +
+              '</span>'
+            );
+          }
+        } catch (e) {}
+
+        try {
+          var hist = JSON.parse(localStorage.getItem('quiz_history_' + tema));
+          if (hist && hist.length > 0) {
+            badges.push(
+              '<span class="status-badge best-score">' +
+                '★ Beste: ' + hist[0].pct + '% (' + hist[0].score + '/' + hist[0].total + ')' +
+              '</span>'
+            );
+          }
+        } catch (e) {}
+
+        if (badges.length > 0) {
+          var statusDiv = document.createElement('div');
+          statusDiv.className = 'quiz-card-status';
+          statusDiv.innerHTML = badges.join('');
+          var cats = card.querySelector('.quiz-card-cats');
+          if (cats) cats.before(statusDiv);
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
