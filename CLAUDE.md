@@ -1,7 +1,7 @@
 # CLAUDE.md — Prosjektoversikt
 
 ## Hva er dette?
-Personlig PWA-app for Android (Chrome). Elektriker-verktøy med fagkalkulatorer. Hostet på GitHub Pages — automatisk deploy ved `git push`. URL: https://kyskan.github.io/AppTilTelefon
+PWA og nettside for elektrikere. Fagkalkulatorer og quiz. Fungerer som installerbar PWA på Android og iOS, og som nettside i alle nettlesere på mobil og PC. Hostet på GitHub Pages — automatisk deploy ved `git push`. URL: https://kyskan.github.io/AppTilTelefon
 
 ## Filstruktur
 ```
@@ -46,7 +46,7 @@ Separat app på `quiz/index.html`. Lenkes fra hoved-appen via menyen.
 ## Viktige regler
 - **Service worker:** Bump `CACHE` (v18 → v19 osv.) i `service-worker.js` ved HVER deploy — ellers ser ikke telefonen endringene
 - **Deploy:** `git add . && git commit -m "..." && git push` — GitHub Pages deployer automatisk
-- **Platform:** Android-only, Chrome PWA. Ingen iOS/Safari-støtte nødvendig.
+- **Platform:** PWA på Android og iOS, nettside i alle nettlesere på mobil og PC.
 - **Stil:** Mørkt tema — bakgrunn `#1a1a2e`, kort `#16213e`, aksentblå `#63b3ed`
 - **Knapper:** Aktive toggle/beregn-knapper bruker gradient `#3b82f6 → #6366f1`
 

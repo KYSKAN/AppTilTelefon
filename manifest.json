@@ -1,7 +1,7 @@
 {
-  "name": "Kalkulator",
-  "short_name": "Kalkulator",
-  "description": "Enkel kalkulator — fremtidig elektriker-app",
+  "name": "Elektriker-app",
+  "short_name": "Elektriker",
+  "description": "Elektriker-verktøy med fagkalkulatorer og quiz. Fungerer som PWA på Android og iOS, og som nettside i alle nettlesere på mobil og PC.",
   "start_url": "./index.html",
   "display": "standalone",
   "orientation": "portrait",
