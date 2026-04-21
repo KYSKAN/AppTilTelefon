@@ -1,60 +1,84 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
-    <!-- Bakgrunnsgraident: litt lysere i midten -->
+    <!-- Bakgrunn: litt lysere i midten -->
     <radialGradient id="bgGrad" cx="50%" cy="45%" r="60%">
       <stop offset="0%" stop-color="#1a1f35"/>
       <stop offset="100%" stop-color="#0d0f1a"/>
     </radialGradient>
 
-    <!-- Lyn-gradient: topp lys gul, bunn varm oransje -->
-    <linearGradient id="boltGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%"   stop-color="#fde68a"/>
-      <stop offset="40%"  stop-color="#f59e0b"/>
+    <!-- Frontflate: lys øverst-venstre, mørkere bunn -->
+    <linearGradient id="boltGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%"   stop-color="#fef3c7"/>
+      <stop offset="35%"  stop-color="#fbbf24"/>
       <stop offset="100%" stop-color="#d97706"/>
     </linearGradient>
 
-    <!-- Glow-filter -->
-    <filter id="glow" x="-40%" y="-20%" width="180%" height="140%">
-      <feGaussianBlur stdDeviation="18" result="blur"/>
+    <!-- Blur til kastet skygge -->
+    <filter id="castShadow" x="-30%" y="-10%" width="170%" height="150%">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+
+    <!-- Ambient glow rundt lynet -->
+    <filter id="glow" x="-50%" y="-30%" width="200%" height="160%">
+      <feGaussianBlur stdDeviation="20" result="blur"/>
       <feMerge>
-        <feMergeNode in="blur"/>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
-    </filter>
-
-    <!-- Subtil skygge under lynet -->
-    <filter id="shadow" x="-20%" y="-10%" width="140%" height="130%">
-      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000" flood-opacity="0.5"/>
     </filter>
   </defs>
 
   <!-- Bakgrunn -->
   <rect width="512" height="512" rx="96" fill="url(#bgGrad)"/>
 
-  <!-- Subtile bakgrunnsringer (atmosfære) -->
-  <circle cx="256" cy="256" r="190" fill="none" stroke="#1e2340" stroke-width="1.5"/>
+  <!-- Subtile bakgrunnsringer -->
+  <circle cx="256" cy="256" r="192" fill="none" stroke="#1e2340" stroke-width="1.5"/>
   <circle cx="256" cy="256" r="148" fill="none" stroke="#1e2340" stroke-width="1"/>
 
-  <!-- Glød bak lynet -->
+  <!--
+    Lynet: frontflate-punkter
+      A = 300,72   (topp)
+      B = 176,272  (venstre inn mot hakket)
+      C = 252,272  (hakket, venstre)
+      D = 212,448  (bunn)
+      E = 336,240  (hakket, høyre)
+      F = 258,240  (oppe ved hakket, høyre)
+
+    Ekstrudering (lys fra øverst-venstre): vektor (+18, +14)
+    A' = 318,86   B' = 194,286  C' = 270,286
+    D' = 230,462  E' = 354,254  F' = 276,254
+  -->
+
+  <!-- Kastet skygge på bakgrunnen (tegnet polygon, blurra) -->
+  <polygon
+    points="318,86 194,286 270,286 230,462 354,254 276,254"
+    fill="#000"
+    opacity="0.55"
+    filter="url(#castShadow)"/>
+
+  <!-- Ambient glød -->
   <polygon
     points="300,72 176,272 252,272 212,448 336,240 258,240"
     fill="#f59e0b"
-    opacity="0.22"
+    opacity="0.18"
     filter="url(#glow)"/>
 
-  <!-- Lyn-kropp med gradient og skygge -->
+  <!-- ── 3D-sideflater (ekstruderte kanter, mørkere amber) ── -->
+
+  <!-- Sideflate 1: høyre skrå kant øverst  A→F → F'→A' -->
+  <polygon points="300,72 258,240 276,254 318,86"  fill="#b45309"/>
+
+  <!-- Sideflate 2: horisontalt hakk         F→E → E'→F' -->
+  <polygon points="258,240 336,240 354,254 276,254" fill="#78350f"/>
+
+  <!-- Sideflate 3: høyre skrå kant nederst  E→D → D'→E' -->
+  <polygon points="336,240 212,448 230,462 354,254" fill="#92400e"/>
+
+  <!-- ── Frontflate ── -->
   <polygon
     points="300,72 176,272 252,272 212,448 336,240 258,240"
-    fill="url(#boltGrad)"
-    filter="url(#shadow)"/>
+    fill="url(#boltGrad)"/>
 
-  <!-- Høylys-stripe langs venstre kant av lynet (3D-effekt) -->
-  <polygon
-    points="300,72 258,240 268,240 308,82"
-    fill="#fef3c7"
-    opacity="0.55"/>
-
-  <!-- Liten glans-flekk øverst -->
-  <ellipse cx="291" cy="108" rx="14" ry="22" fill="#fff" opacity="0.18" transform="rotate(-20,291,108)"/>
+  <!-- Glansflekk øverst på fronten -->
+  <ellipse cx="286" cy="112" rx="15" ry="26" fill="#fff" opacity="0.13" transform="rotate(-28,286,112)"/>
 </svg>
