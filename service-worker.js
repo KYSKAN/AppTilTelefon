@@ -1,4 +1,4 @@
-const CACHE = 'kalkulator-v67';
+const CACHE = 'kalkulator-v68';
 
 const FILES = [
   './',
@@ -21,6 +21,7 @@ const FILES = [
   './quiz/sporsmal-lom-marked.js',
   './quiz/sporsmal-lom-regnskap.js',
   './quiz/sporsmal-lom-okonomi.js',
+  './quiz/sporsmal-lom-lovavtale.js',
   './quiz/sporsmal-rlc.js',
 ];
 

@@ -10,6 +10,7 @@ quiz/
 ├── sporsmal-lom-marked.js      Spørsmålsdata: LØM – Markedsføringsledelse (35 spørsmål)
 ├── sporsmal-lom-regnskap.js    Spørsmålsdata: LØM – Regnskapsanalyse (27 spørsmål)
 ├── sporsmal-lom-okonomi.js     Spørsmålsdata: LØM – Økonomistyring (28 spørsmål)
+├── sporsmal-lom-lovavtale.js   Spørsmålsdata: LØM – Lover & Avtaler (28 spørsmål)
 ├── sporsmal-rlc.js             Spørsmålsdata: RLC kretser
 └── QUIZ-FORMAT.md              Denne filen
 ```
