@@ -1,10 +1,10 @@
-# AppTilTelefon — Utviklingsdokument
+# Elektriker-App — Utviklingsdokument
 
 ## Formål
-Personlig PWA-app til eget bruk på Android. Elektriker-verktøy med fagkalkulatorer.
+PWA og nettside for elektrikere. Fagkalkulatorer og quiz. Fungerer på Android, iOS og i alle nettlesere på mobil og PC.
 
 ## Nåværende status
-PWA er oppe og kjører på telefon. Koblet til GitHub — automatisk deploy via GitHub Pages ved `git push`. URL: https://kyskan.github.io/AppTilTelefon
+PWA er oppe og kjører. Koblet til GitHub — automatisk deploy via GitHub Pages ved `git push`. URL: https://kyskan.github.io/Elektriker-App
 
 ### Implementerte kalkulatorer
 - **Ohms lov** — V, A, Ω, W. Fyll inn 2, beregn 2. Støtter multiplikator.
@@ -12,7 +12,10 @@ PWA er oppe og kjører på telefon. Koblet til GitHub — automatisk deploy via 
 - **RC/RL/RLC krets** — Aktiv, reaktiv og syneffekt, impedans, strøm, fasevinkel, resonansfrekvens.
 
 ### Quiz-app (`quiz/`)
-- **LØM fagskole** — Ledelse, marked, regnskap, økonomi
+- **LØM – Ledelse & Organisasjon** — 28 spørsmål
+- **LØM – Markedsføringsledelse** — 35 spørsmål
+- **LØM – Regnskapsanalyse** — 27 spørsmål
+- **LØM – Økonomistyring** — 28 spørsmål
 - **RLC kretser** — Fagspørsmål om RC/RL/RLC
 - Quiz-velger + flertemastøtte via `?tema=`-URL-param
 
@@ -24,9 +27,9 @@ PWA er oppe og kjører på telefon. Koblet til GitHub — automatisk deploy via 
 | Markup | HTML5 |
 | Logikk | Vanilla JavaScript (én fil per kalkulator) |
 | Styling | CSS (`css/style.css`) |
-| Distribusjonsformat | PWA — Android / Chrome |
+| Distribusjonsformat | PWA (Android/iOS) + nettside (alle nettlesere) |
 | Hosting | GitHub Pages (auto-deploy via GitHub) |
-| Versjonskontroll | Git + GitHub (KYSKAN/AppTilTelefon) |
+| Versjonskontroll | Git + GitHub (KYSKAN/Elektriker-App) |
 
 ---
 
@@ -51,7 +54,7 @@ PWA er oppe og kjører på telefon. Koblet til GitHub — automatisk deploy via 
 ---
 
 ## Notater
-- Android-only, ingen iOS/Safari-hensyn
+- Støtter Android, iOS og desktop-nettlesere
 - Hold all logikk i frontend — ingen server nødvendig
 - Legg til ny kalkulator: se instruksjoner i `CLAUDE.md`
 - **Husk:** Bump `CACHE`-versjon i `service-worker.js` linje 1 ved hver deploy

@@ -4,11 +4,14 @@
 
 ```
 quiz/
-├── index.html          Quiz-velger — temavelger med ett kort per tema
-├── spill.html          Quiz-motoren — laster spørsmålsfil dynamisk via ?tema=X
-├── sporsmal-lom.js     Spørsmålsdata: LØM fagskole
-├── sporsmal-rlc.js     Spørsmålsdata: RLC kretser
-└── QUIZ-FORMAT.md      Denne filen
+├── index.html                  Quiz-velger — temavelger med ett kort per tema
+├── spill.html                  Quiz-motoren — laster spørsmålsfil dynamisk via ?tema=X
+├── sporsmal-lom-ledelse.js     Spørsmålsdata: LØM – Ledelse & Organisasjon (28 spørsmål)
+├── sporsmal-lom-marked.js      Spørsmålsdata: LØM – Markedsføringsledelse (35 spørsmål)
+├── sporsmal-lom-regnskap.js    Spørsmålsdata: LØM – Regnskapsanalyse (27 spørsmål)
+├── sporsmal-lom-okonomi.js     Spørsmålsdata: LØM – Økonomistyring (28 spørsmål)
+├── sporsmal-rlc.js             Spørsmålsdata: RLC kretser
+└── QUIZ-FORMAT.md              Denne filen
 ```
 
 ---
@@ -22,7 +25,7 @@ quiz/
 
 ## Slik legger du til et nytt quiztema
 
-1. Lag en ny fil, f.eks. `sporsmal-elektro.js`, med samme format som `sporsmal-lom.js`
+1. Lag en ny fil, f.eks. `sporsmal-elektro.js`, med samme format som `sporsmal-lom-ledelse.js`
 2. I `quiz/index.html`, legg til et nytt kort:
    ```html
    <a class="quiz-card" href="spill.html?tema=elektro">

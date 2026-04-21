@@ -20,13 +20,16 @@ AppTilTelefon/
 │   ├── calc-kabel.js      Kabel og vern: NEK 400, IT/TN, logikk og utregning
 │   └── calc-krets.js      RC/RL/RLC: impedans, effekter, fasevinkel
 ├── icons/
-│   └── icon.svg           App-ikon (kalkulator-illustrasjon, mørk bakgrunn)
+│   └── icon.svg           App-ikon (gult lyn på mørk bakgrunn)
 └── quiz/
-    ├── index.html          Quiz-velger — kort per tema, lenker til spill.html?tema=X
-    ├── spill.html          Quiz-spill — laster sporsmal-${tema}.js dynamisk fra URL-param
-    ├── sporsmal-lom.js     Spørsmål: LØM fagskole (ledelse, marked, regnskap, økonomi)
-    ├── sporsmal-rlc.js     Spørsmål: RC/RL/RLC kretser
-    └── QUIZ-FORMAT.md      Format og instruksjoner for quiz-data
+    ├── index.html                  Quiz-velger — kort per tema, lenker til spill.html?tema=X
+    ├── spill.html                  Quiz-spill — laster sporsmal-${tema}.js dynamisk fra URL-param
+    ├── sporsmal-lom-ledelse.js     Spørsmål: LØM – Ledelse & Organisasjon (28 spørsmål)
+    ├── sporsmal-lom-marked.js      Spørsmål: LØM – Markedsføringsledelse (35 spørsmål)
+    ├── sporsmal-lom-regnskap.js    Spørsmål: LØM – Regnskapsanalyse (27 spørsmål)
+    ├── sporsmal-lom-okonomi.js     Spørsmål: LØM – Økonomistyring (28 spørsmål)
+    ├── sporsmal-rlc.js             Spørsmål: RC/RL/RLC kretser
+    └── QUIZ-FORMAT.md              Format og instruksjoner for quiz-data
 ```
 
 ## Kalkulatorer
