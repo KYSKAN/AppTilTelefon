@@ -1,16 +1,60 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <!-- Bakgrunnsgraident: litt lysere i midten -->
+    <radialGradient id="bgGrad" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#1a1f35"/>
+      <stop offset="100%" stop-color="#0d0f1a"/>
+    </radialGradient>
+
+    <!-- Lyn-gradient: topp lys gul, bunn varm oransje -->
+    <linearGradient id="boltGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#fde68a"/>
+      <stop offset="40%"  stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+
+    <!-- Glow-filter -->
+    <filter id="glow" x="-40%" y="-20%" width="180%" height="140%">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Subtil skygge under lynet -->
+    <filter id="shadow" x="-20%" y="-10%" width="140%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
   <!-- Bakgrunn -->
-  <rect width="512" height="512" rx="96" fill="#0d0f1a"/>
+  <rect width="512" height="512" rx="96" fill="url(#bgGrad)"/>
 
-  <!-- Glow-lag bak lynet -->
-  <polygon points="296,60 180,280 248,280 216,452 332,232 264,232"
-    fill="#f59e0b" opacity="0.18"/>
+  <!-- Subtile bakgrunnsringer (atmosfære) -->
+  <circle cx="256" cy="256" r="190" fill="none" stroke="#1e2340" stroke-width="1.5"/>
+  <circle cx="256" cy="256" r="148" fill="none" stroke="#1e2340" stroke-width="1"/>
 
-  <!-- Lyn-form -->
-  <polygon points="296,60 180,280 248,280 216,452 332,232 264,232"
-    fill="#f59e0b"/>
+  <!-- Glød bak lynet -->
+  <polygon
+    points="300,72 176,272 252,272 212,448 336,240 258,240"
+    fill="#f59e0b"
+    opacity="0.22"
+    filter="url(#glow)"/>
 
-  <!-- Lyse spiss på lynet for dybde -->
-  <polygon points="296,60 264,232 295,232 295,60"
-    fill="#fde68a" opacity="0.5"/>
+  <!-- Lyn-kropp med gradient og skygge -->
+  <polygon
+    points="300,72 176,272 252,272 212,448 336,240 258,240"
+    fill="url(#boltGrad)"
+    filter="url(#shadow)"/>
+
+  <!-- Høylys-stripe langs venstre kant av lynet (3D-effekt) -->
+  <polygon
+    points="300,72 258,240 268,240 308,82"
+    fill="#fef3c7"
+    opacity="0.55"/>
+
+  <!-- Liten glans-flekk øverst -->
+  <ellipse cx="291" cy="108" rx="14" ry="22" fill="#fff" opacity="0.18" transform="rotate(-20,291,108)"/>
 </svg>
