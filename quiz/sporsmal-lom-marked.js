@@ -24,10 +24,10 @@ const QUESTIONS = [
     cat: 'grunnlag', catLabel: 'Markedsgrunnlag',
     q: 'Hva er definisjonen på et marked ifølge Kotler?',
     opts: [
-      'Et fysisk sted hvor varer selges',
+      'Et fysisk, geografisk sted der varer og tjenester selges og byttes',
       'Summen av alle nåværende og potensielle kjøpere av et produkt',
-      'En gruppe konkurrenter i samme bransje',
-      'En digital plattform for handel'
+      'En avgrenset gruppe av konkurrenter som opererer i samme bransje og marked',
+      'En digital plattform eller nettside der handel foregår elektronisk'
     ],
     correct: 1,
     explain: 'Kotler definerer et marked som «summen av alle nåværende og potensielle kjøpere av et produkt». Markedet omfatter altså både dem som kjøper nå og dem som kan tenkes å kjøpe i framtiden.'
@@ -36,10 +36,10 @@ const QUESTIONS = [
     cat: 'grunnlag', catLabel: 'Markedsgrunnlag',
     q: 'Hva er forskjellen mellom primærmarked og sekundærmarked?',
     opts: [
-      'Primær er det største markedet i antall, sekundær er det minste',
+      'Primærmarked er det største markedet målt i antall kjøpere, sekundærmarked er det minste',
       'Primærmarkedet er det markedet produktet først og fremst er ment for; sekundærmarkedet er et tilleggsmarked som også kan ha behov for produktet',
-      'Primær er innenlandsk, sekundær er utenlandsk',
-      'Primær er nytt salg, sekundær er bruktmarked'
+      'Primærmarked er innenlandsk omsetning, sekundærmarked er eksport til utlandet',
+      'Primærmarked er salg av nye produkter, sekundærmarked er handel med brukte produkter'
     ],
     correct: 1,
     explain: 'Eksempel: En varebil som Caddy er laget primært for bedrifter (primærmarked), men selges også til privatpersoner (sekundærmarked). Begge er viktige å forstå i markedsføringen.'
@@ -48,10 +48,10 @@ const QUESTIONS = [
     cat: 'grunnlag', catLabel: 'Markedsgrunnlag',
     q: 'Hva er markedsføring?',
     opts: [
-      'Bare reklame og annonsering',
+      'Bare reklame, annonsering og betalt promotering av produkter og tjenester',
       'Alle aktivitetene bedriften utfører for å avdekke og imøtekomme markedets behov på en lønnsom måte',
-      'Salg av varer til eksisterende kunder',
-      'Regnskap og rapportering'
+      'Kun salg og mersalg av varer og tjenester til eksisterende og lojale kunder',
+      'Regnskap, rapportering og finansiell styring av bedriftens inntekter og kostnader'
     ],
     correct: 1,
     explain: 'Markedsføring er bred: markedsundersøkelse, produktutvikling, prissetting, distribusjon, kommunikasjon og kundeoppfølging – alt for å avdekke og tilfredsstille kundens behov lønnsomt.'
@@ -97,10 +97,10 @@ const QUESTIONS = [
     cat: 'miks', catLabel: 'Markedsmiks & STP',
     q: 'Hva er STP-prosessen i markedsføring?',
     opts: [
-      'Salg, Tilbud og Pris',
-      'Strategi, Taktikk og Planlegging',
+      'Salg, Tilbud og Prisfastsettelse for bedriftens produkter',
+      'Strategi, Taktikk og operativ Planlegging av markedsarbeidet',
       'Segmentering, Targeting (målretting) og Posisjonering',
-      'Salgskanal, Tilgjengelighet og Prisstrategi'
+      'Salgskanal, Tilgjengelighet og Prissettingsstrategi overfor ulike målgrupper'
     ],
     correct: 2,
     explain: 'STP er kjernen i markedsstrategien: Segmenter markedet → Velg målsegment (Target) → Posisjoner tilbudet slik at det skiller seg ut i kundens bevissthet.'
@@ -109,10 +109,10 @@ const QUESTIONS = [
     cat: 'miks', catLabel: 'Markedsmiks & STP',
     q: 'Hva er markedssegmentering?',
     opts: [
-      'Å bygge ett produkt som passer alle',
+      'Å utvikle og bygge ett standardprodukt som er ment å passe alle mulige kjøpere',
       'Å dele totalmarkedet inn i grupper av kjøpere med like behov, ønsker eller kjennetegn',
-      'Å finne konkurrentene i bransjen',
-      'Å beregne markedsandel'
+      'Å kartlegge og identifisere alle konkurrenter som opererer i samme bransje',
+      'Å beregne og sammenligne markedsandeler mellom bedrifter i bransjen'
     ],
     correct: 1,
     explain: 'Segmentering deler markedet inn etter f.eks. demografi (alder, kjønn), geografi, livsstil, atferd eller fordeler kunden søker. Poenget er å finne grupper man kan betjene best mulig.'
@@ -121,10 +121,10 @@ const QUESTIONS = [
     cat: 'miks', catLabel: 'Markedsmiks & STP',
     q: 'Hva beskriver AIDA-modellen?',
     opts: [
-      'En regnskapsmodell for analyse av markedsinntekter',
+      'En regnskapsmodell som brukes til å analysere og kategorisere markedsinntekter over tid',
       'Stegene i kjøpsprosessen: Attention, Interest, Desire, Action',
-      'En ledelsesmodell for medarbeiderutvikling',
-      'En modell for å sette riktig pris på et produkt'
+      'En ledelsesmodell som brukes til systematisk medarbeiderutvikling og kompetansebygging',
+      'En prismodell for å beregne og fastsette riktig salgspris på et gitt produkt'
     ],
     correct: 1,
     img: `<svg viewBox="0 0 280 172" xmlns="http://www.w3.org/2000/svg"><rect width="280" height="172" fill="#161927" rx="8"/><polygon points="10,10 270,10 242,50 38,50" fill="#5c7cfa" opacity="0.8"/><polygon points="38,56 242,56 214,96 66,96" fill="#00a8e8" opacity="0.8"/><polygon points="66,102 214,102 190,137 90,137" fill="#10b981" opacity="0.8"/><polygon points="90,143 190,143 172,165 108,165" fill="#f59e0b" opacity="0.8"/><text x="140" y="35" fill="white" font-size="12" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700">A – Attention (oppmerksomhet)</text><text x="140" y="80" fill="white" font-size="12" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700">I – Interest (interesse)</text><text x="140" y="124" fill="white" font-size="11" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700">D – Desire (ønske)</text><text x="140" y="158" fill="white" font-size="10" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700">A – Action</text></svg>`,
@@ -134,10 +134,10 @@ const QUESTIONS = [
     cat: 'miks', catLabel: 'Markedsmiks & STP',
     q: 'Hva menes med posisjonering i markedsføring?',
     opts: [
-      'Plassering av varer i butikkhyllen',
-      'Valg av hvilke distribusjonskanaler man skal bruke',
+      'Å fysisk plassere og eksponere varer optimalt i butikkhyllen for best mulig synlighet',
+      'Å velge og sette opp de riktige distribusjons- og salgskanalene for produktet',
       'Å skape et bestemt bilde av produktet i kundens bevissthet, sett opp mot konkurrentene',
-      'Å beregne riktig pris basert på kostnadene'
+      'Å beregne og fastsette riktig salgspris basert på kostnader og ønsket fortjeneste'
     ],
     correct: 2,
     explain: 'Posisjonering handler om å differensiere seg og eie en klar, attraktiv plass i målgruppens bevissthet. «Hva assosierer kunden med oss, og er det annerledes enn konkurrentene?»'
@@ -146,10 +146,10 @@ const QUESTIONS = [
     cat: 'strategi', catLabel: 'Markedsstrategi',
     q: 'Hvilke fire faser inngår i produktlivssyklusen?',
     opts: [
-      'Produksjon, Distribusjon, Salg, Kassering',
-      'Design, Lansering, Vekst, Modning',
+      'Produksjon, Distribusjon, Salg og Kassering av produktet',
+      'Design og utvikling, Lansering, Vekstfase og Modningsfase',
       'Introduksjon, Vekst, Modenhet, Tilbakegang',
-      'Lansering, Konkurranse, Rabatt, Avvikling'
+      'Lansering i markedet, Konkurranse med rivaler, Rabattkrig og endelig Avvikling'
     ],
     correct: 2,
     img: `<svg viewBox="0 0 280 162" xmlns="http://www.w3.org/2000/svg"><rect width="280" height="162" fill="#161927" rx="8"/><line x1="22" y1="10" x2="22" y2="138" stroke="#2a2f4a" stroke-width="1.5"/><line x1="22" y1="138" x2="268" y2="138" stroke="#2a2f4a" stroke-width="1.5"/><text x="145" y="155" fill="#7b82a8" font-size="9" text-anchor="middle" font-family="system-ui,sans-serif">Tid</text><path d="M22,133 C38,133 48,122 63,98 C78,73 98,38 128,26 C158,14 182,30 206,64 C224,90 240,118 268,133" fill="none" stroke="#5c7cfa" stroke-width="2.5" stroke-linecap="round"/><line x1="70" y1="14" x2="70" y2="138" stroke="#2a2f4a" stroke-width="1" stroke-dasharray="4,3"/><line x1="138" y1="14" x2="138" y2="138" stroke="#2a2f4a" stroke-width="1" stroke-dasharray="4,3"/><line x1="206" y1="14" x2="206" y2="138" stroke="#2a2f4a" stroke-width="1" stroke-dasharray="4,3"/><text x="46" y="12" fill="#7b82a8" font-size="9" text-anchor="middle" font-family="system-ui,sans-serif">Intro</text><text x="104" y="12" fill="#5c7cfa" font-size="9" text-anchor="middle" font-family="system-ui,sans-serif">Vekst</text><text x="172" y="12" fill="#10b981" font-size="9" text-anchor="middle" font-family="system-ui,sans-serif">Modenhet</text><text x="237" y="12" fill="#f59e0b" font-size="9" text-anchor="middle" font-family="system-ui,sans-serif">Tilbakegang</text></svg>`,
@@ -159,10 +159,10 @@ const QUESTIONS = [
     cat: 'grunnlag', catLabel: 'Markedsgrunnlag',
     q: 'Hva er forskjellen mellom B2B og B2C?',
     opts: [
-      'B2B er norsk markedsføring, B2C er internasjonal markedsføring',
+      'B2B er markedsføring rettet mot norske bedrifter, B2C er internasjonal markedsføring mot konsumenter',
       'B2B = bedrift selger til bedrift; B2C = bedrift selger til forbruker',
-      'B2B er for billige produkter, B2C er for dyre produkter',
-      'B2B = netthandel, B2C = fysisk butikk'
+      'B2B brukes kun for billige masseprodukte, B2C brukes for dyre og eksklusive produkter',
+      'B2B foregår utelukkende via netthandel og digitale kanaler, B2C kun i fysiske butikklokaler'
     ],
     correct: 1,
     explain: 'B2B (Business-to-Business) og B2C (Business-to-Consumer) har svært ulik kjøpsatferd: B2B-kjøp er gjerne mer rasjonelle, langsiktige og basert på relasjoner, mens B2C-kjøp ofte er mer impulsive og følelsesdrevne. Elektroinstallasjons-bedrifter jobber primært B2B: kunder er utbyggere, eiendomsforvaltere, industri og offentlige etater. Anbud og relasjoner er de viktigste salgskanalene.'
@@ -171,10 +171,10 @@ const QUESTIONS = [
     cat: 'grunnlag', catLabel: 'Markedsgrunnlag',
     q: 'Hva er et kjennetegn ved rasjonell kjøpsatferd?',
     opts: [
-      'Kjøpet skjer spontant, drevet av følelser og inntrykk',
+      'Kjøpet skjer spontant og impulsivt, drevet av øyeblikkets følelser og inntrykk',
       'Kjøpet er planlagt og basert på systematisk vurdering av pris, kvalitet og alternativer',
-      'Kjøpet skjer som følge av sosialt press fra omgangskrets',
-      'Kjøpet er vanedrevet og skjer uten bevisst tanke'
+      'Kjøpet skjer som et direkte resultat av sosialt press og påvirkning fra omgangskrets',
+      'Kjøpet er vanedrevet og skjer automatisk uten noen form for bevisst tanke eller overveielse'
     ],
     correct: 1,
     explain: 'Rasjonell kjøpsatferd innebærer grundig informasjonssøk og evaluering – typisk for dyre, viktige kjøp. Impulsatferd = kjøp uten planlegging, styrt av følelser eller situasjonen.'
@@ -183,10 +183,10 @@ const QUESTIONS = [
     cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva er en markedsplan?',
     opts: [
-      'En plan for å etablere en ny butikk',
-      'En oversikt over bedriftens finansielle mål og budsjetter',
+      'En detaljert plan for å etablere og åpne en ny butikk eller salgspunkt',
+      'En finansiell oversikt over bedriftens mål, budsjetter og resultatforventninger',
       'Et styringsdokument med mål, målgrupper, strategi og tiltak for markedsarbeidet',
-      'En juridisk kontrakt med reklamebyråer og leverandører'
+      'En juridisk bindende kontrakt som inngås mellom bedriften, reklamebyråer og leverandører'
     ],
     correct: 2,
     explain: 'Markedsplanen inneholder typisk: situasjonsanalyse (SWOT/PESTEL), markedsmål, målgruppe, posisjonering, markedsmiks (4P) og handlingsplan med budsjett og tidsplan.'
@@ -195,10 +195,10 @@ const QUESTIONS = [
     cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva er forskjellen mellom en markedsplan og en forretningsplan?',
     opts: [
-      'Det er ingen praktisk forskjell',
+      'Det er ingen praktisk forskjell – begge dekker nøyaktig de samme temaene og formålene',
       'Markedsplanen dekker markedsaktivitetene i en periode; forretningsplanen dekker hele bedriftens utvikling og lages ofte i etableringsfasen',
-      'Forretningsplanen lages månedlig, markedsplanen årlig',
-      'Markedsplanen er juridisk bindende, forretningsplanen ikke'
+      'Forretningsplanen lages og oppdateres månedlig, mens markedsplanen alltid er et årsdokument',
+      'Markedsplanen er juridisk bindende og kan brukes i rettssaker, forretningsplanen er ikke det'
     ],
     correct: 1,
     explain: 'Forretningsplanen gir helhetsbildet (forretningsidé, kapital, organisasjon, marked, strategi) og brukes ofte ved oppstart eller store veivalg. Markedsplanen er snevrere og rullerer, gjerne årlig.'
@@ -207,10 +207,10 @@ const QUESTIONS = [
     cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva er hensikten med en markedsundersøkelse?',
     opts: [
-      'Å kontrollere at bedriften overholder markedsføringsloven',
-      'Å sjekke konkurrentenes priser én gang i måneden',
+      'Å kontrollere og dokumentere at bedriften til enhver tid overholder markedsføringsloven',
+      'Å overvåke og sjekke konkurrentenes priser og tilbud jevnlig, minst én gang i måneden',
       'Å samle og analysere informasjon om markedet, kundene og konkurrentene for å ta bedre beslutninger',
-      'Å lage reklamemateriell til en ny produktlansering'
+      'Å produsere og utarbeide reklamemateriell og kampanjemateriell til en ny produktlansering'
     ],
     correct: 2,
     explain: 'Markedsundersøkelse gir innsikt som reduserer usikkerhet. Man skiller mellom primærdata (innsamlet selv, f.eks. spørreundersøkelse) og sekundærdata (eksisterende data, f.eks. statistikk).'
@@ -219,10 +219,10 @@ const QUESTIONS = [
     cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva er forskjellen mellom primærdata og sekundærdata?',
     opts: [
-      'Primærdata er gratis, sekundærdata koster penger',
+      'Primærdata er alltid gratis å skaffe, mens sekundærdata alltid koster penger å kjøpe',
       'Primærdata samles inn spesifikt for et formål (f.eks. egen spørreundersøkelse); sekundærdata finnes fra før (f.eks. SSB-statistikk)',
-      'Primærdata er alltid kvalitativ, sekundærdata er alltid kvantitativ',
-      'Primærdata er gamle data, sekundærdata er nye data'
+      'Primærdata er alltid av kvalitativ natur, mens sekundærdata alltid er kvantitativ og tallfestet',
+      'Primærdata er alltid gamle og utdaterte data, mens sekundærdata alltid er nye og ferske data'
     ],
     correct: 1,
     explain: 'Primærdata er «ferskvare» samlet for din undersøkelse – mer relevant, men dyrere. Sekundærdata finnes allerede (SSB, bransjerapporter, forskning) – raskere og billigere, men ikke alltid helt relevant.'
@@ -231,10 +231,10 @@ const QUESTIONS = [
     cat: 'grunnlag', catLabel: 'Markedsgrunnlag',
     q: 'Hva betyr huskeregelen BOMOF om hovedmarkedene?',
     opts: [
-      'Bedrift, Organisasjon, Marked, Offentlig, Forbruker',
+      'Bedrift, Organisasjon, Marked, Offentlig sektor og Forbruker',
       'Bedriftsmarkedet, Offentlige marked, Mellomhandlermarkedet, Organisasjonsmarkedet, Forbrukermarkedet',
-      'Bygg, Olje, Mat, Offshore, Finans',
-      'Business, Online, Mobile, Offline, Field'
+      'Bygg og anlegg, Olje og gass, Matproduksjon, Offshore og Finansnæringen',
+      'Business, Online handel, Mobile tjenester, Offline salg og Field service'
     ],
     correct: 1,
     explain: 'BOMOF er en huskeregel for de fem hovedmarkedene: Bedrifts-, Offentlige, Mellomhandler-, Organisasjons- og Forbrukermarkedet. Bedrifts- og mellomhandlermarkedet kalles ofte «de profesjonelle markedene».'
@@ -267,10 +267,10 @@ const QUESTIONS = [
     cat: 'strategi', catLabel: 'Markedsstrategi',
     q: 'Hva kjennetegner en markedsorientert bedrift?',
     opts: [
-      'Den fokuserer mest på å produsere billig',
+      'Den fokuserer mest på å produsere så billig og effektivt som mulig, uansett hva kundene vil ha',
       'Den finner ut hva kundene trenger og ønsker, og tilbyr løsninger basert på dette',
-      'Den forsøker å selge det den allerede produserer, uansett etterspørsel',
-      'Den bruker alt av ressurser på reklame'
+      'Den forsøker aggressivt å selge det den allerede produserer, uavhengig av faktisk etterspørsel',
+      'Den bruker nær sagt alle tilgjengelige ressurser og budsjetter på reklame og synlighet'
     ],
     correct: 1,
     explain: 'Markedsorientering = utgangspunkt i kundens behov. Motsatser: produksjonsorientert (fokus på effektiv produksjon), produktorientert (fokus på kvalitet på produktet) og salgsorientert (fokus på aggressivt salg).'
@@ -279,10 +279,10 @@ const QUESTIONS = [
     cat: 'strategi', catLabel: 'Markedsstrategi',
     q: 'Hva er samfunnsorientert markedsføring?',
     opts: [
-      'Markedsføring som kun retter seg mot offentlig sektor',
+      'Markedsføring som utelukkende retter seg mot offentlig sektor og statlige etater',
       'Markedsføring som tar hensyn til samfunnets langsiktige beste, f.eks. miljø og etikk – ikke bare bedriftens og kundens kortsiktige interesser',
-      'Gratis markedsføring i lokale aviser',
-      'Kun veldedige organisasjoners markedsføring'
+      'Gratis eller svært rimelig markedsføring i lokale aviser og gratisblader',
+      'Markedsføring som kun utøves av veldedige organisasjoner og ideelle stiftelser'
     ],
     correct: 1,
     explain: 'Samfunnsorientert markedsføring balanserer bedriftens profitt, kundens behov og samfunnets velferd (bærekraft, etikk, miljø). Stadig viktigere i en tid med klimakrise og økt forbrukerbevissthet.'
@@ -291,10 +291,10 @@ const QUESTIONS = [
     cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva står SMART for når man formulerer mål?',
     opts: [
-      'Stor, Massiv, Ambisiøs, Reell, Tøff',
+      'Stor, Massiv, Ambisiøs, Reell og Tøff – mål som strekker seg maksimalt',
       'Spesifikk, Målbar, Akseptert, Realistisk, Tidsbestemt',
-      'Salg, Markedsføring, Administrasjon, Regnskap, Teknologi',
-      'Strategisk, Moderat, Aktuelt, Riktig, Trygt'
+      'Salg, Markedsføring, Administrasjon, Regnskap og Teknologibruk i virksomheten',
+      'Strategisk, Moderat, Aktuelt, Riktig formulert og Trygt å gjennomføre'
     ],
     correct: 1,
     explain: 'SMART-mål: Spesifikke (konkrete), Målbare (tellbare), Aksepterte (avtalte), Realistiske (oppnåelige) og Tidsbestemte (med frist). Gode styringsmål skal være kvantitative.'
@@ -303,10 +303,10 @@ const QUESTIONS = [
     cat: 'strategi', catLabel: 'Markedsstrategi',
     q: 'Hva er en visjon?',
     opts: [
-      'En detaljert plan for neste kvartal',
+      'En svært detaljert og konkret handlingsplan som styrer aktivitetene for neste kvartal',
       'Et drømmesyn som sier hvor bedriften ønsker å være i framtiden, gjerne i et lengre perspektiv',
-      'Bedriftens årsregnskap',
-      'En konkret arbeidsoppgave'
+      'Bedriftens årsregnskap med inntekter, kostnader og resultat for siste regnskapsår',
+      'En konkret og avgrenset arbeidsoppgave som skal utføres innen en gitt frist'
     ],
     correct: 1,
     explain: 'Visjonen er ofte svevende og inspirerende – den peker retning langt fram. Eksempel: Posten Norges visjon «Verdens mest framtidsrettede post- og logistikkonsern». Kjerneverdier og forretningsidé er mer konkrete.'
@@ -315,10 +315,10 @@ const QUESTIONS = [
     cat: 'strategi', catLabel: 'Markedsstrategi',
     q: 'Hva skal en forretningsidé fokusere på?',
     opts: [
-      'Kun teknologien bedriften bruker',
+      'Utelukkende den teknologien og de systemene bedriften benytter i sin produksjon',
       'Behov, med et konkurransefortrinn som kan bevares over tid, formulert enkelt og klart',
-      'Kun lønnsomhet',
-      'Hva eierne selv liker å jobbe med'
+      'Kun lønnsomhet og avkastning på investert kapital for eierne',
+      'Hva de nåværende eierne og gründerne selv liker å jobbe med og har interesse for'
     ],
     correct: 1,
     explain: 'En god forretningsidé svarer på: Hvilke behov skal vi dekke? Hvilke produkter/tjenester? Hvem er kunden? Hvor opererer vi? Hvorfor velge oss? Hvordan tjener vi penger? Skal virke som ledestjerne for alle medarbeidere.'
@@ -363,10 +363,10 @@ const QUESTIONS = [
     cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva er Porters fem konkurransekrefter?',
     opts: [
-      'Pris, Produkt, Plass, Påvirkning, Personell',
+      'Pris, Produkt, Plass, Påvirkning og Personell – de fem P-ene i markedsmiksen',
       'Etableringstrussel, Konkurranseintensitet, Substitutter, Kjøpermakt, Leverandørmakt',
-      'Styrker, Svakheter, Muligheter, Trusler, Strategier',
-      'Segmenter, Target, Posisjon, Pris, Produkt'
+      'Styrker, Svakheter, Muligheter, Trusler og Strategier fra SWOT-analysen',
+      'Segmentering, Targeting, Posisjonering, Prissetting og Produktutvikling'
     ],
     correct: 1,
     explain: 'Porters 5 krefter analyserer bransjens attraktivitet: 1) trussel fra nye aktører, 2) rivalisering mellom eksisterende, 3) trussel fra substitutter, 4) kunders forhandlingsmakt, 5) leverandørers forhandlingsmakt.'
@@ -375,10 +375,10 @@ const QUESTIONS = [
     cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva viser Porters verdikjede?',
     opts: [
-      'Bare bedriftens fysiske varelevering',
+      'Bare bedriftens fysiske varelevering fra lager til sluttkunde',
       'Alle primær- og støtteaktiviteter bedriften gjør for å skape verdi – hjelper å finne konkurransefortrinn',
-      'En liste over leverandører',
-      'Bedriftens finansielle resultater'
+      'En komplett liste over alle bedriftens godkjente leverandører og innkjøpskilder',
+      'Bedriftens finansielle resultater, nøkkeltall og lønnsomhetsutvikling over tid'
     ],
     correct: 1,
     explain: 'Porters verdikjede: 5 primæraktiviteter (inngående logistikk, produksjon, utgående logistikk, markedsføring/salg, service) og 4 støtteaktiviteter (innkjøp, teknologi, HR, infrastruktur). Brukes for å finne hvor bedriften skaper mest verdi.'
@@ -387,10 +387,10 @@ const QUESTIONS = [
     cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva står bokstavene i SOFT/SWOT-analyse for?',
     opts: [
-      'Sales, Opportunities, Finance, Tactics',
+      'Sales performance, Opportunities pipeline, Finance review og Tactical planning',
       'Styrker (Strengths), Svakheter (Faults/Weaknesses), Muligheter (Opportunities), Trusler (Threats)',
-      'Strategi, Organisasjon, Funksjon, Teknologi',
-      'Segmenter, Oppdag, Fokuser, Test'
+      'Strategi, Organisasjonsstruktur, Funksjonell inndeling og Teknologibruk',
+      'Segmenter markedet, Oppdag behov, Fokuser innsatsen og Test tilnærmingen'
     ],
     correct: 1,
     img: `<svg viewBox="0 0 280 182" xmlns="http://www.w3.org/2000/svg"><rect width="280" height="182" fill="#161927" rx="8"/><text x="140" y="14" fill="#7b82a8" font-size="9" text-anchor="middle" font-family="system-ui,sans-serif">← Internt →</text><text x="140" y="104" fill="#7b82a8" font-size="9" text-anchor="middle" font-family="system-ui,sans-serif">← Eksternt →</text><rect x="8" y="18" width="120" height="74" rx="6" fill="#10b981" opacity="0.18"/><rect x="152" y="18" width="120" height="74" rx="6" fill="#e74c3c" opacity="0.18"/><rect x="8" y="106" width="120" height="72" rx="6" fill="#5c7cfa" opacity="0.18"/><rect x="152" y="106" width="120" height="72" rx="6" fill="#f59e0b" opacity="0.18"/><text x="68" y="62" fill="#10b981" font-size="34" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700">S</text><text x="212" y="62" fill="#e74c3c" font-size="34" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700">W</text><text x="68" y="149" fill="#5c7cfa" font-size="34" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700">O</text><text x="212" y="149" fill="#f59e0b" font-size="34" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700">T</text><text x="68" y="82" fill="#7b82a8" font-size="9" text-anchor="middle" font-family="system-ui,sans-serif">Styrker</text><text x="212" y="82" fill="#7b82a8" font-size="9" text-anchor="middle" font-family="system-ui,sans-serif">Svakheter</text><text x="68" y="168" fill="#7b82a8" font-size="9" text-anchor="middle" font-family="system-ui,sans-serif">Muligheter</text><text x="212" y="168" fill="#7b82a8" font-size="9" text-anchor="middle" font-family="system-ui,sans-serif">Trusler</text></svg>`,
@@ -400,10 +400,10 @@ const QUESTIONS = [
     cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva er forskjellen på interne og eksterne arbeidsbetingelser?',
     opts: [
-      'Interne er alltid viktigere enn eksterne',
+      'Interne arbeidsbetingelser er alltid viktigere og mer avgjørende enn de eksterne',
       'Interne er forhold bedriften kan gjøre noe med selv; eksterne er forhold bedriften må tilpasse seg (kan prøve å påvirke, men vanskelig)',
-      'Interne er finansielle, eksterne er operasjonelle',
-      'Interne finnes kun i store bedrifter'
+      'Interne betingelser er alltid finansielle og tallbaserte, eksterne er alltid operasjonelle og praktiske',
+      'Interne arbeidsbetingelser eksisterer og er relevante kun i store og komplekse bedrifter'
     ],
     correct: 1,
     explain: 'Interne: personalet, ledelse, økonomi, konkurransemidler, teknologi – vi kan endre disse. Eksterne: marked, konkurrenter, leverandører, distributører, samfunn – disse må bedriften tilpasse seg.'
@@ -412,10 +412,10 @@ const QUESTIONS = [
     cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hvordan beregnes markedsandel i prosent?',
     opts: [
-      'Egen omsetning × totalt salg i markedet',
+      'Egen omsetning multiplisert med totalt salg i markedet i perioden',
       '(Egen omsetning / totalt salg i markedet) × 100',
-      'Totalt salg i markedet / egen omsetning',
-      'Egen omsetning − totalt salg'
+      'Totalt salg i hele markedet dividert på bedriftens egen omsetning',
+      'Bedriftens egen omsetning trukket fra det totale salget i markedet'
     ],
     correct: 1,
     explain: 'Markedsandel = (eget salg / totalt salg i markedet) × 100. Kan måles i kroner, antall enheter eller antall kunder. Eksempel: 10 955 Teslaer av 67 718 totalt personbilsalg = 16,2 %.'
@@ -424,10 +424,10 @@ const QUESTIONS = [
     cat: 'strategi', catLabel: 'Markedsstrategi',
     q: 'Hva er et konkurransefortrinn?',
     opts: [
-      'En fordel ethvert selskap har automatisk',
+      'En strategisk fordel ethvert selskap automatisk innehar i sitt marked',
       'Den effekten bedriften får ved å ha og bruke en ressurs eller kompetanse som gir fordeler i konkurransen',
-      'En lovpålagt rettighet',
-      'En kortsiktig kampanje'
+      'En lovpålagt rettighet som myndighetene tildeler til spesifikke virksomheter',
+      'En kortsiktig reklamekampanje som midlertidig øker salget i en begrenset periode'
     ],
     correct: 1,
     explain: 'Konkurransefortrinn skal være varig og vanskelig å kopiere – f.eks. sterkt merkenavn, unik teknologi, stordriftsfordeler, spesialkompetanse eller eksklusive distribusjonskanaler.'
@@ -437,10 +437,10 @@ const QUESTIONS = [
     cat: 'elbransjen', catLabel: 'El-bransjen',
     q: 'Hva er en anbudskonkurranse, og hvorfor er den sentral i elektrobransjen?',
     opts: [
-      'En intern konkurranse mellom avdelinger om hvem som selger mest',
+      'En intern konkurranse mellom avdelinger eller montørlag om hvem som selger mest i en periode',
       'En prosess der oppdragsgiver inviterer leverandører til å levere tilbud, og velger leverandør basert på pris, kompetanse og kvalitet',
-      'En messe der elektrobedrifter markedsfører seg',
-      'En offentlig prisstatistikk for elektrotjenester'
+      'En fagmesse eller bransjemesse der elektrobedrifter markedsfører og viser frem sine tjenester',
+      'En offentlig og offisiell prisstatistikk for elektrotjenester utgitt av bransjeorganisasjoner'
     ],
     correct: 1,
     explain: 'I elektrobransjen skjer salg til store kunder (offentlig sektor, utbyggere, industri) ofte gjennom anbud. Elektrobedriften leverer et tilbud med kalkulert pris basert på mengdeuttak (material + timer). Vinner man anbudet, sikrer man oppdrag. Å kalkulere riktig er avgjørende – for lav pris gir tap, for høy pris gir tapt anbud.'
@@ -450,10 +450,10 @@ const QUESTIONS = [
     cat: 'elbransjen', catLabel: 'El-bransjen',
     q: 'Hva menes med relasjonsmarkedsføring, og hvorfor er det viktig for elektrobedrifter?',
     opts: [
-      'Markedsføring som kun bruker sosiale medier',
+      'Markedsføring som utelukkende gjennomføres via sosiale medier og digitale plattformer',
       'Å bygge og vedlikeholde langsiktige, lønnsomme relasjoner med kunder og samarbeidspartnere',
-      'Å selge til lavest mulig pris for å beholde kunder',
-      'Massemarkedsføring mot privatpersoner'
+      'Å alltid selge til lavest mulig pris for å sikre kundelojalitet og hindre at kunder går til konkurrenter',
+      'Anonym massemarkedsføring rettet mot alle privatpersoner uten segmentering eller personalisering'
     ],
     correct: 1,
     explain: 'Relasjonsmarkedsføring handler om tillit og langsiktighet fremfor enkeltransaksjon. For elektrobedrifter er dette svært viktig: en fornøyd utbygger gir gjentatte oppdrag og anbefaler bedriften videre. Referanser og rykte er de sterkeste salgsinstrumentene i bransjen.'

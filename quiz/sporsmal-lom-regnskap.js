@@ -22,10 +22,10 @@ const QUESTIONS = [
     cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva er formålet med regnskapsanalyse?',
     opts: [
-      'Å registrere alle bilag og bokføre transaksjoner',
-      'Å beregne skatt for skattemyndighetene',
+      'Å manuelt registrere alle bilag og bokføre samtlige transaksjoner i regnskapssystemet',
+      'Å beregne og rapportere skattepliktig inntekt og formue for skattemyndighetene',
       'Å tolke regnskapstall gjennom nøkkeltall for å vurdere bedriftens lønnsomhet, likviditet og soliditet',
-      'Å lage neste års budsjett automatisk'
+      'Å automatisk generere neste års budsjett basert på historiske regnskapstall'
     ],
     correct: 2,
     explain: 'Regnskapsanalyse bruker nøkkeltall (resultatgrad, TKR, likviditetsgrader, egenkapitalandel osv.) til å vurdere bedriftens finansielle helse og identifisere forbedringsområder.'
@@ -46,8 +46,8 @@ const QUESTIONS = [
     cat: 'likviditet', catLabel: 'Likviditet & soliditet',
     q: 'Hva er formelen for Likviditetsgrad 1, og hva er kravet for god likviditet?',
     opts: [
-      'Omløpsmidler / Langsiktig gjeld – kravet er over 1',
-      'Totalkapital / Kortsiktig gjeld – kravet er over 1,5',
+      'Omløpsmidler delt på langsiktig gjeld – kravet er at forholdstallet er over 1',
+      'Totalkapital delt på kortsiktig gjeld – kravet er at forholdstallet er over 1,5',
       'Omløpsmidler / Kortsiktig gjeld – kravet er over 2',
       '(Omløpsmidler − Varelager) / Kortsiktig gjeld – kravet er over 1'
     ],
@@ -58,10 +58,10 @@ const QUESTIONS = [
     cat: 'likviditet', catLabel: 'Likviditet & soliditet',
     q: 'Hva er formelen for Likviditetsgrad 2, og hvorfor skiller den seg fra Likviditetsgrad 1?',
     opts: [
-      'Omløpsmidler / Kortsiktig gjeld – ingen forskjell fra L1',
-      '(Omløpsmidler + Varelager) / Kortsiktig gjeld – inkluderer mer',
+      'Omløpsmidler delt på kortsiktig gjeld – identisk med L1 og ingen reell forskjell',
+      '(Omløpsmidler + Varelager) / Kortsiktig gjeld – inkluderer varelageret og gir dermed en høyere verdi',
       '(Omløpsmidler − Varelager) / Kortsiktig gjeld – ekskluderer varelager siden det ikke alltid er lett å gjøre om til kontanter',
-      'Egenkapital / Kortsiktig gjeld – viser soliditet'
+      'Egenkapital dividert på kortsiktig gjeld – viser bedriftens soliditet og langsiktige betalingsevne'
     ],
     correct: 2,
     explain: 'L2 = (Omløpsmidler − Varelager) / Kortsiktig gjeld. Kravet er over 1. Varelager trekkes fra fordi det kan ta tid å selge – L2 gir et mer konservativt bilde av betalingsevnen.'
@@ -82,10 +82,10 @@ const QUESTIONS = [
     cat: 'likviditet', catLabel: 'Likviditet & soliditet',
     q: 'Hva er formelen for Egenkapitalandel, og hva viser den?',
     opts: [
-      'Egenkapital / Omsetning × 100 – viser lønnsomhet',
-      'Gjeld / Totalkapital × 100 – viser gjeldsbelastning',
+      'Egenkapital dividert på omsetning × 100 – brukes for å vurdere lønnsomhet',
+      'Total gjeld dividert på totalkapital × 100 – viser bedriftens totale gjeldsbelastning',
       'Egenkapital / Totalkapital × 100 – viser soliditet',
-      'Egenkapital / Langsiktig gjeld × 100 – viser finansieringsstruktur'
+      'Egenkapital dividert på langsiktig gjeld × 100 – viser bedriftens finansieringsstruktur og gearing'
     ],
     correct: 2,
     explain: 'Egenkapitalandel = (Egenkapital / Totalkapital) × 100. Jo høyere andel, desto mer solid er bedriften – den tåler mer tap uten å gå konkurs.'
@@ -94,10 +94,10 @@ const QUESTIONS = [
     cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva måler Totalkapitalrentabilitet (TKR)?',
     opts: [
-      'Avkastningen eierne får på investert egenkapital',
-      'Bedriftens evne til å betale kortsiktig gjeld',
+      'Avkastningen eierne får på den egenkapitalen de har skutt inn i bedriften',
+      'Bedriftens løpende evne til å betale kortsiktig gjeld ved forfall',
       'Avkastningen på all kapital i bedriften, uavhengig av finansieringsform',
-      'Forholdet mellom total gjeld og omsetning'
+      'Det prosentvise forholdet mellom bedriftens totale gjeld og den samlede omsetningen'
     ],
     correct: 2,
     explain: 'TKR = (Ordinært resultat + Finanskostnader) / Gjennomsnittlig totalkapital × 100. Måler hvor effektivt bedriften bruker all kapital (egenkapital + gjeld) til å skape avkastning.'
@@ -106,10 +106,10 @@ const QUESTIONS = [
     cat: 'likviditet', catLabel: 'Likviditet & soliditet',
     q: 'Hva er formelen for Gjeldsgrad 1, og hva er anbefalt nivå for norske bedrifter?',
     opts: [
-      'Langsiktig gjeld / Egenkapital – anbefalt under 1',
+      'Langsiktig gjeld dividert på egenkapital – anbefalt nivå er under 1 for norske bedrifter',
       'Total gjeld / Egenkapital – anbefalt mellom 1 og 2',
-      'Kortsiktig gjeld / Totalkapital – anbefalt under 0,5',
-      'Totalkapital / Egenkapital – anbefalt under 3'
+      'Kortsiktig gjeld dividert på totalkapital – anbefalt at forholdstallet er under 0,5',
+      'Totalkapital dividert på egenkapital – anbefalt at forholdstallet er under 3'
     ],
     correct: 1,
     explain: 'Gjeldsgrad 1 = Total gjeld / Egenkapital. Et nivå mellom 1 og 2 regnes som akseptabelt for norske bedrifter – over 2 indikerer høy gjeldsbelastning og økt risiko.'
@@ -118,10 +118,10 @@ const QUESTIONS = [
     cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva viser Egenkapitalrentabilitet (EKR)?',
     opts: [
-      'Andelen egenkapital av totalkapitalen (soliditet)',
+      'Andelen egenkapital av den totale kapitalen i bedriften – et mål på soliditet',
       'Avkastningen eierne får på investert egenkapital',
-      'Bedriftens evne til å betale kortsiktig gjeld',
-      'Forholdet mellom varekostnad og omsetning'
+      'Bedriftens løpende evne til å innfri og betale kortsiktig gjeld ved forfall',
+      'Det prosentvise forholdet mellom varekostnaden og den totale omsetningen i perioden'
     ],
     correct: 1,
     explain: 'EKR = Ordinært resultat / Gjennomsnittlig egenkapital × 100. Viser avkastningen til eierne. En lav EKR betyr at eierne får dårlig betalt for kapitalen de har skutt inn.'
@@ -130,10 +130,10 @@ const QUESTIONS = [
     cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva viser et resultatregnskap?',
     opts: [
-      'Bedriftens eiendeler og gjeld på et gitt tidspunkt',
+      'Bedriftens samlede eiendeler, egenkapital og gjeld på et bestemt tidspunkt',
       'Hvilke inntekter og kostnader som er registrert i en periode, samt resultatet (overskudd/underskudd)',
-      'Kun bedriftens kontantstrøm',
-      'Kun budsjett for kommende år'
+      'Utelukkende bedriftens historiske og fremtidige kontantstrøm fra drift og finans',
+      'Utelukkende budsjettet og de planlagte tallene for kommende regnskapsår'
     ],
     correct: 1,
     explain: 'Resultatregnskapet dekker en periode (f.eks. et år): Inntekter − Kostnader = Resultat. Balanseregnskapet viser derimot status på et tidspunkt (f.eks. 31.12).'
@@ -155,10 +155,10 @@ const QUESTIONS = [
     cat: 'balanse', catLabel: 'Balanse & eiendeler',
     q: 'Hva er anleggsmidler?',
     opts: [
-      'Kontanter og bankinnskudd',
-      'Varer på lager som selges innen 1 år',
+      'Kontanter, bankinnskudd og andre likvide midler tilgjengelig i dag',
+      'Varer på lager som forventes å bli solgt og omgjort til kontanter innen 1 år',
       'Varige driftsmidler som er tenkt til langvarig bruk (f.eks. bygg, maskiner, biler)',
-      'Kortsiktige fordringer'
+      'Kortsiktige fordringer og krav som forfaller innen de nærmeste månedene'
     ],
     correct: 2,
     explain: 'Anleggsmidler er varige eiendeler ment for langsiktig eie, der det kan ta mer enn 1 år å gjøre dem om til kontanter. Eksempler: bygninger, produksjonsutstyr, biler, patenter.'
@@ -167,10 +167,10 @@ const QUESTIONS = [
     cat: 'balanse', catLabel: 'Balanse & eiendeler',
     q: 'Hva er omløpsmidler?',
     opts: [
-      'Eiendeler tenkt til varig eie',
+      'Eiendeler som er kjøpt inn for varig eie og langsiktig bruk i driften',
       'Eiendeler som kan gjøres om til kontanter innen 1 år (varelager, kundefordringer, bankinnskudd, kontanter)',
-      'Langsiktig gjeld',
-      'Bygninger og maskiner'
+      'Langsiktig gjeld som banklån og obligasjoner med lengre nedbetalingstid',
+      'Bygninger, maskiner og produksjonsutstyr som brukes i den daglige driften'
     ],
     correct: 1,
     explain: 'Omløpsmidler sirkulerer i bedriften: kontanter → varekjøp → varelager → salg på kreditt → kundefordringer → kontanter. De brukes til å dekke løpende drift og kortsiktig gjeld.'
@@ -179,10 +179,10 @@ const QUESTIONS = [
     cat: 'balanse', catLabel: 'Balanse & eiendeler',
     q: 'Hva er egenkapital?',
     opts: [
-      'Sum av alle eiendeler',
+      'Den samlede summen av alle eiendeler bedriften har registrert i balansen',
       'Totale eiendeler minus gjeld – den delen eierne reelt eier',
-      'All gjeld bedriften har',
-      'Total omsetning i året'
+      'All gjeld, både kortsiktig og langsiktig, som bedriften har til kreditorer',
+      'Den totale omsetningen bedriften har hatt gjennom hele regnskapsåret'
     ],
     correct: 1,
     explain: 'EK = Eiendeler − Gjeld. Eksempel: Hus verdt 2 mill. + lån på 1,6 mill. = egenkapital 400 000. I bedrifter består EK av aksjekapital, annen innskutt EK og opptjent EK.'
@@ -191,10 +191,10 @@ const QUESTIONS = [
     cat: 'balanse', catLabel: 'Balanse & eiendeler',
     q: 'Hva er forskjellen på kortsiktig og langsiktig gjeld?',
     opts: [
-      'Kortsiktig gjeld er alltid høyere enn langsiktig',
+      'Kortsiktig gjeld er alltid et høyere beløp enn langsiktig gjeld i norske bedrifter',
       'Kortsiktig gjeld skal betales innen 1 år; langsiktig gjeld har lengre nedbetalingstid (f.eks. huslån)',
-      'Kortsiktig er gratis, langsiktig koster renter',
-      'Det er ingen praktisk forskjell'
+      'Kortsiktig gjeld er alltid rentefri, mens langsiktig gjeld alltid er rentebærende',
+      'Det er ingen praktisk forskjell – begge er bare gjeld som skal betales tilbake til kreditorene'
     ],
     correct: 1,
     explain: 'Kortsiktig gjeld: leverandørgjeld, skyldig mva., skyldig lønn, kassekreditt – forfaller innen 12 mnd. Langsiktig: pantelån, obligasjonslån – går over flere år. Skillet er viktig for likviditetsvurdering.'
@@ -203,10 +203,10 @@ const QUESTIONS = [
     cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva er bruttofortjenesteprosent (BFP)?',
     opts: [
-      'Varekostnad / Salgsinntekter × 100 – viser kostnadsnivå',
+      'Varekostnad dividert på salgsinntekter × 100 – viser bedriftens samlede kostnadsnivå',
       '(Salgsinntekter − Varekostnad) / Salgsinntekter × 100 – viser lønnsomheten på varesalg',
-      'Totalkapital / Egenkapital × 100 – viser gjeldsgrad',
-      'Overskudd / Salgsinntekter × 100 – viser nettofortjeneste'
+      'Totalkapital dividert på egenkapital × 100 – et mål på bedriftens gjeldsgrad',
+      'Netto overskudd dividert på salgsinntekter × 100 – viser nettofortjenesteprosenten'
     ],
     correct: 1,
     explain: 'BFP = Bruttofortjeneste / Salgsinntekter × 100. Brukes mye i varehandel for å vurdere prissetting og innkjøp. Lav BFP kan tyde på feil prissetting eller høye varekostnader.'
@@ -227,10 +227,10 @@ const QUESTIONS = [
     cat: 'balanse', catLabel: 'Balanse & eiendeler',
     q: 'Hva er en avskrivning?',
     opts: [
-      'En utbetaling til banken',
+      'En direkte utbetaling til banken som reduserer gjelden med det avskrevne beløpet',
       'Kostnadsføring av verditap på eiendeler (pga. alder, slitasje) fordelt over levetiden',
-      'Kjøp av nytt utstyr',
-      'Innbetaling fra kunder'
+      'Investering i og kjøp av nytt produksjonsutstyr eller andre driftsmidler',
+      'En innbetaling fra kunder som registreres som inntekt i regnskapet'
     ],
     correct: 1,
     explain: 'Avskrivning sprer kostnaden for et anleggsmiddel over dens levetid. F.eks. en servicebil til 300 000 kr med 6 års levetid gir 50 000 kr/år i avskrivning (lineært). Er en kostnad i resultatregnskapet, men ingen utbetaling — viktig å forstå i prosjektkalkyler.'
@@ -239,10 +239,10 @@ const QUESTIONS = [
     cat: 'balanse', catLabel: 'Balanse & eiendeler',
     q: 'Er avdrag en kostnad?',
     opts: [
-      'Ja, avdrag er alltid en kostnad',
+      'Ja, avdrag er alltid en kostnad som reduserer bedriftens resultat i perioden det betales',
       'Nei – avdrag er en utbetaling og nedbetaling av gjeld, ikke en kostnad. Renten på lånet er derimot en kostnad',
-      'Ja, men bare for banker',
-      'Kun hvis avdraget er over 10 000'
+      'Ja, men kun for finansinstitusjoner og banker som holder gjeld som eiendel',
+      'Kun dersom avdraget overstiger beløpsgrensen på 10 000 kroner per termin'
     ],
     correct: 1,
     explain: 'Viktig skille: Avdrag = nedbetaling av gjeld (påvirker kun balansen og likviditeten). Renter = kostnad (påvirker resultatregnskapet). Mange blander disse sammen.'
@@ -251,10 +251,10 @@ const QUESTIONS = [
     cat: 'likviditet', catLabel: 'Likviditet & soliditet',
     q: 'Hva menes med likviditet?',
     opts: [
-      'Bedriftens langsiktige lønnsomhet',
+      'Bedriftens langsiktige lønnsomhet og evne til å generere overskudd over tid',
       'Bedriftens betalingsevne – evnen til å betale regninger ved forfall',
-      'Antall ansatte',
-      'Mengden varer på lager'
+      'Det totale antallet fast ansatte og midlertidige ansatte i virksomheten',
+      'Mengden varer og materialer bedriften har liggende på lager til enhver tid'
     ],
     correct: 1,
     explain: 'Likviditet = betalingsevne på kort sikt. En bedrift kan være lønnsom (overskudd på sikt) men likevel ha dårlig likviditet hvis betalinger er feil timet. Likviditetsbudsjett brukes for å planlegge.'
@@ -263,10 +263,10 @@ const QUESTIONS = [
     cat: 'likviditet', catLabel: 'Likviditet & soliditet',
     q: 'Hva er soliditet?',
     opts: [
-      'Bedriftens evne til å betale regninger i dag',
+      'Bedriftens kortsiktige evne til å betale alle regninger og krav som forfaller i dag',
       'Bedriftens evne til å tåle tap over tid – avhenger av egenkapitalandelen',
-      'Bedriftens evne til å skape omsetning',
-      'Hvor mange eiere bedriften har'
+      'Bedriftens evne til å vokse og skape tilstrekkelig omsetning i markedet',
+      'Hvor mange eiere og aksjonærer bedriften totalt har i sin eierstruktur'
     ],
     correct: 1,
     explain: 'Soliditet sier hvor robust bedriften er for nedgangstider og tap. Høy egenkapitalandel = høy soliditet. Nøkkeltall: Egenkapitalandel og gjeldsgrad.'
@@ -275,10 +275,10 @@ const QUESTIONS = [
     cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva er rentabilitet?',
     opts: [
-      'Det samme som omsetning',
+      'Det samme som omsetning og driftsinntekter – rentabilitet er bare et annet ord for dette',
       'Avkastning uttrykt i prosent av investert kapital – viser lønnsomhet i forhold til kapitalbruk',
-      'Rente på banklån',
-      'Prosenten gjeld utgjør av totalkapital'
+      'Renten bedriften betaler på banklån og andre rentebærende gjeldsposter',
+      'Den prosenten total gjeld utgjør av bedriftens samlede totalkapital i balansen'
     ],
     correct: 1,
     explain: 'Rentabilitet = avkastning i prosent. Brukes til å sammenligne lønnsomhet mellom bedrifter og bransjer. Eksempler: TKR (totalkapital), EKR (egenkapital), SKR (sysselsatt kapital).'
@@ -287,10 +287,10 @@ const QUESTIONS = [
     cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva er driftsresultat?',
     opts: [
-      'Resultat etter skatt',
+      'Resultatet etter at skatt og alle finansposter er trukket fra årets inntekter',
       'Driftsinntekter minus driftskostnader – resultatet fra selve driften, før finansposter',
-      'Salgsinntekter minus varekostnad',
-      'Summen av alle inntekter'
+      'Salgsinntekter fratrukket varekostnad – det som også kalles bruttofortjeneste',
+      'Den samlede summen av alle typer inntekter bedriften mottar i en regnskapsperiode'
     ],
     correct: 1,
     explain: 'Driftsresultat = Driftsinntekter − Driftskostnader. Deretter trekker man fra finanskostnader (og legger til finansinntekter) for å få ordinært resultat før skatt.'
@@ -299,10 +299,10 @@ const QUESTIONS = [
     cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva er formelen for dekningsgrad (DG)?',
     opts: [
-      'Faste kostnader / Variable kostnader × 100',
+      'Faste kostnader dividert på variable kostnader × 100 – viser kostnadsstrukturen',
       'Dekningsbidrag / Salgspris × 100',
-      'Overskudd / Totalkapital × 100',
-      'Variable kostnader / Salgspris × 100'
+      'Netto overskudd dividert på totalkapital × 100 – tilsvarer totalkapitalrentabiliteten',
+      'Totale variable kostnader dividert på salgspris × 100 – viser kostnadsprosenten'
     ],
     correct: 1,
     explain: 'DG = (DB / Salgspris) × 100. Viser hvor stor prosentandel av salgsprisen som bidrar til å dekke faste kostnader og overskudd. Brukes bl.a. til å beregne nullpunktsomsetning.'
@@ -311,10 +311,10 @@ const QUESTIONS = [
     cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva er inntekt?',
     opts: [
-      'Det bedriften har betalt ut i lønn',
+      'Det totale beløpet bedriften har utbetalt i lønn og godtgjørelser til ansatte',
       'Salgsverdien av det bedriften har solgt i en periode (f.eks. salgsinntekt/driftsinntekt)',
-      'Bedriftens resultat',
-      'Summen av gjeld bedriften har'
+      'Bedriftens netto resultat etter at alle kostnader og skatt er trukket fra inntektene',
+      'Den samlede summen av all gjeld bedriften har til banker, leverandører og andre kreditorer'
     ],
     correct: 1,
     explain: 'Inntekt = salgsverdien av leverte varer/tjenester i en periode. Registreres i resultatregnskapet. Ikke forveksles med innbetaling (som skjer i likviditeten).'
@@ -323,10 +323,10 @@ const QUESTIONS = [
     cat: 'balanse', catLabel: 'Balanse & eiendeler',
     q: 'Hva er totalkapital?',
     opts: [
-      'Egenkapital alene',
-      'Gjeld alene',
+      'Egenkapitalen alene – det eierne har skutt inn og opptjent i bedriften',
+      'All gjeld alene – summen av kortsiktig og langsiktig gjeld til kreditorer',
       'Summen av egenkapital og gjeld (= sum eiendeler)',
-      'Anleggsmidler alene'
+      'Anleggsmidlene alene – varige driftsmidler og immaterielle eiendeler i balansen'
     ],
     correct: 2,
     explain: 'Totalkapital = Egenkapital + Gjeld = Sum eiendeler. Uttrykker hele balansen. Brukes i nøkkeltall som TKR og egenkapitalandel.'
@@ -336,10 +336,10 @@ const QUESTIONS = [
     cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva er driftsmargin, og hva er kravet?',
     opts: [
-      'Driftsinntekter / Totalkapital × 100 – kravet er over 10 %',
+      'Driftsinntekter dividert på totalkapital × 100 – kravet er at marginen er over 10 %',
       'Driftsresultat / Driftsinntekter × 100 – kravet er ca. 10 % og bør ha positiv utvikling',
-      'Resultat etter skatt / Egenkapital × 100 – kravet er over 5 %',
-      'Omsetning / Antall ansatte – kravet er over 1 million kr'
+      'Resultat etter skatt dividert på egenkapital × 100 – kravet er minst over 5 %',
+      'Total omsetning dividert på antall ansatte – kravet er over 1 million kroner per ansatt'
     ],
     correct: 1,
     explain: 'Driftsmargin = Driftsresultat / Driftsinntekter × 100. Viser lønnsomheten av selve driften før finansposter. Krav ca. 10 %. Tiltak ved lav driftsmargin: øke inntekter eller redusere kostnader.'
@@ -360,10 +360,10 @@ const QUESTIONS = [
     cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva er kapitalens omløpshastighet?',
     opts: [
-      'Antall ganger varelageret skiftes ut per år',
+      'Antall ganger det totale varelageret skiftes ut og fornyes i løpet av et år',
       'Driftsinntekter / Gjennomsnittlig totalkapital – viser hvor mange ganger kapitalen «omsettes» til inntekter per år',
-      'Egenkapital / Totalkapital – viser soliditet',
-      'Antall kunder / Antall ansatte'
+      'Egenkapital dividert på totalkapital – et nøkkeltall som viser bedriftens soliditet',
+      'Antall kunder dividert på antall ansatte – viser effektiviteten i kundebehandlingen'
     ],
     correct: 1,
     explain: 'Kapitalens omløpshastighet = Driftsinntekter / Gj.sn. totalkapital. Høyest mulig er best. DuPont: TKR = Resultatgrad × Omløpshastighet. En lavprisbutikk kan ha lav margin men høy omløpshastighet og likevel god TKR.'
@@ -372,10 +372,10 @@ const QUESTIONS = [
     cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva er avanse i prosent, og hvordan skiller den seg fra bruttofortjenesteprosent (BFP)?',
     opts: [
-      'Avanse % og BFP er identiske',
+      'Avanse % og BFP er fullstendig identiske begreper og gir alltid nøyaktig samme prosentsats',
       'Avanse % = (Salgsinntekt − Varekostnad) / Varekostnad × 100. BFP = (Salgsinntekt − Varekostnad) / Salgsinntekt × 100 – avansen regnes av innkjøpsprisen, BFP av salgsprisen',
-      'Avanse % beregnes inkl. mva., BFP ekskl. mva.',
-      'Avanse brukes kun i produksjonsbedrifter, BFP kun i handel'
+      'Avanse % beregnes alltid inkludert mva., mens BFP alltid beregnes ekskludert mva.',
+      'Avanse brukes utelukkende i produksjonsbedrifter, mens BFP kun brukes i varehandelen'
     ],
     correct: 1,
     explain: 'Begge viser bruttofortjenesten, men nevneren er ulik: avansen regner av innkjøpsprisen (f.eks. 20 %), BFP regner av salgsprisen (f.eks. 16,7 %). Avansen er alltid høyere enn BFP. Normtall varierer sterkt etter bransje.'
@@ -384,10 +384,10 @@ const QUESTIONS = [
     cat: 'likviditet', catLabel: 'Likviditet & soliditet',
     q: 'Hva er finansieringsgrad 1, og hva er kravet?',
     opts: [
-      'Omløpsmidler / Kortsiktig gjeld – kravet er over 2',
-      'Gjeld / Egenkapital – kravet er under 2',
+      'Omløpsmidler dividert på kortsiktig gjeld – kravet er at forholdstallet er over 2',
+      'Total gjeld dividert på egenkapital – kravet er at forholdstallet er under 2',
       'Anleggsmidler / (Egenkapital + Langsiktig gjeld) – kravet er under 1 (AM bør finansieres langsiktig)',
-      'Totalkapital / Egenkapital – kravet er under 3'
+      'Totalkapital dividert på egenkapital – kravet er at forholdstallet er under 3'
     ],
     correct: 2,
     explain: 'Finansieringsgrad 1 = Anleggsmidler / (EK + Langsiktig gjeld). Kravet er < 1 – anleggsmidler bør helst være langsiktig finansiert. FG1 > 1 betyr at deler av anleggsmidlene er finansiert med kortsiktig gjeld → svak soliditet.'
