@@ -244,6 +244,7 @@
     }
     .topic-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
+    .start-btns { display: flex; flex-direction: column; gap: 10px; align-items: center; }
     .start-btn {
       background: var(--accent); border: none; border-radius: 10px;
       padding: 14px 44px; color: #fff; font-size: 1rem; font-weight: 700;
@@ -251,6 +252,13 @@
       transition: background 0.15s, transform 0.1s;
     }
     .start-btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .continue-btn {
+      background: var(--surface2); border: 1.5px solid var(--accent); border-radius: 10px;
+      padding: 13px 36px; color: var(--accent); font-size: 0.97rem; font-weight: 600;
+      font-family: inherit; cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .continue-btn:hover { background: rgba(92,124,250,0.15); transform: translateY(-1px); }
 
     /* ── Loading / error ── */
     #loading { color: var(--muted); font-size: 0.95rem; margin-top: 80px; }
@@ -277,7 +285,10 @@
       <h2 id="start-title"></h2>
       <p id="start-desc"></p>
       <div class="topics-grid" id="topics-grid"></div>
-      <button class="start-btn" onclick="startQuiz()">Start Quiz →</button>
+      <div class="start-btns">
+        <button class="continue-btn" id="continue-btn" style="display:none;" onclick="continueQuiz()"></button>
+        <button class="start-btn" id="new-quiz-btn" onclick="startQuiz()">Start Quiz →</button>
+      </div>
     </div>
   </div>
 
@@ -339,6 +350,26 @@
     let answered = false;
     let catScores = {};
 
+    const STORAGE_KEY = `quiz_progress_${tema}`;
+
+    function saveProgress() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        order: questions.map(q => QUESTIONS.indexOf(q)),
+        idx: currentIdx,
+        score,
+        cats: catScores
+      }));
+    }
+
+    function clearProgress() {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+
+    function getSavedProgress() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); }
+      catch { return null; }
+    }
+
     const LETTERS = ['A', 'B', 'C', 'D'];
 
     function initQuiz() {
@@ -364,6 +395,14 @@
         grid.appendChild(div);
       });
 
+      const saved = getSavedProgress();
+      if (saved && saved.idx < saved.order.length) {
+        const continueBtn = document.getElementById('continue-btn');
+        continueBtn.textContent = `Fortsett (spørsmål ${saved.idx + 1} av ${saved.order.length}, ${saved.score} poeng) →`;
+        continueBtn.style.display = 'block';
+        document.getElementById('new-quiz-btn').textContent = 'Start på nytt';
+      }
+
       document.getElementById('start-screen').style.display = 'block';
     }
 
@@ -379,6 +418,7 @@
 
     // ── Quiz flow ────────────────────────────────────────────────
     function startQuiz() {
+      clearProgress();
       questions = shuffle(QUESTIONS);
       currentIdx = 0;
       score = 0;
@@ -388,6 +428,21 @@
         if (!catScores[q.cat]) catScores[q.cat] = { correct: 0, total: 0 };
         catScores[q.cat].total++;
       });
+
+      document.getElementById('start-screen').style.display  = 'none';
+      document.getElementById('quiz-screen').style.display   = 'block';
+      document.getElementById('result-screen').style.display = 'none';
+      renderQuestion();
+    }
+
+    function continueQuiz() {
+      const saved = getSavedProgress();
+      if (!saved) { startQuiz(); return; }
+      questions = saved.order.map(i => QUESTIONS[i]);
+      currentIdx = saved.idx;
+      score = saved.score;
+      catScores = saved.cats;
+      answered = false;
 
       document.getElementById('start-screen').style.display  = 'none';
       document.getElementById('quiz-screen').style.display   = 'block';
@@ -464,8 +519,13 @@
 
     function nextQuestion() {
       currentIdx++;
-      if (currentIdx >= questions.length) showResult();
-      else renderQuestion();
+      if (currentIdx >= questions.length) {
+        clearProgress();
+        showResult();
+      } else {
+        saveProgress();
+        renderQuestion();
+      }
     }
 
     function showResult() {
@@ -504,7 +564,10 @@
     }
 
     function restartQuiz() {
+      clearProgress();
       document.getElementById('result-screen').style.display = 'none';
+      document.getElementById('continue-btn').style.display  = 'none';
+      document.getElementById('new-quiz-btn').textContent    = 'Start Quiz →';
       document.getElementById('start-screen').style.display  = 'block';
     }
   </script>
