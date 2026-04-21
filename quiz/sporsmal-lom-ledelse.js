@@ -10,14 +10,18 @@ const QUIZ_META = {
   subtitle: 'LØM Fagskole',
   description: '28 spørsmål om Ledelse & Organisasjon fra LØM-pensumet på fagskole.',
   cats: {
-    ledelse: { label: 'Ledelse & Organisasjon', color: '#f59e0b' }
+    motivasjon:  { label: 'Motivasjonsteori',     color: '#f59e0b' },
+    lederstil:   { label: 'Lederstil',            color: '#ec4899' },
+    organisasjon:{ label: 'Organisasjonsformer',  color: '#00a8e8' },
+    personal:    { label: 'Personal & utvikling', color: '#8b5cf6' },
+    regelverk:   { label: 'Regelverk & HMS',      color: '#10b981' }
   }
 };
 
 const QUESTIONS = [
 
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'motivasjon', catLabel: 'Motivasjonsteori',
     q: 'Hva er det øverste behovet i Maslows behovspyramide?',
     opts: ['Sikkerhetsbehov', 'Anerkjennelse og status', 'Selvrealisering', 'Sosiale behov'],
     correct: 2,
@@ -25,7 +29,7 @@ const QUESTIONS = [
     explain: 'Maslows pyramide (nedenfra): Fysiologiske behov → Sikkerhetsbehov → Sosiale behov → Anerkjennelse → Selvrealisering. Man må dekke lavere nivåer før høyere motiveres. For en elektriker betyr dette f.eks.: trygg lønn og fast ansettelse (sikkerhet) må være på plass før faglig utvikling og anerkjennelse kan motivere fullt ut.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'motivasjon', catLabel: 'Motivasjonsteori',
     q: 'Hva er det laveste behovet i Maslows behovspyramide?',
     opts: ['Sosiale behov', 'Fysiologiske behov (mat, vann, søvn)', 'Sikkerhetsbehov', 'Anerkjennelse'],
     correct: 1,
@@ -33,7 +37,7 @@ const QUESTIONS = [
     explain: 'Fysiologiske behov ligger nederst i pyramiden – mat, vann, søvn, varme. Disse må dekkes før sikkerhetsbehov og høyere behov blir aktuelle motivasjonsfaktorer.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'motivasjon', catLabel: 'Motivasjonsteori',
     q: 'Hva er hygienefaktorer i Herzbergs to-faktorteori?',
     opts: [
       'Faktorer som skaper sterk motivasjon og trivsel',
@@ -46,7 +50,7 @@ const QUESTIONS = [
     explain: 'Hygienefaktorer (lønn, arbeidsforhold, ledelse, trygghet) forhindrer mistrivsel hvis de er til stede – men de skaper ikke motivasjon alene. For elektrikere: fast lønn, verneutstyr og oversiktlige arbeidstider er hygienefaktorer. Motivasjonsfaktorer gjør det.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'motivasjon', catLabel: 'Motivasjonsteori',
     q: 'Hva er motivasjonsfaktorer i Herzbergs to-faktorteori?',
     opts: [
       'Lønn, arbeidsforhold og kollegaer',
@@ -59,7 +63,7 @@ const QUESTIONS = [
     explain: 'Motivasjonsfaktorer er knyttet til selve arbeidsinnholdet: ansvar, anerkjennelse, læring og mestring. For elektrikere: selvstendige oppdrag, fagbrev/sertifisering, tillit fra leder og det å mestre krevende installasjoner er typiske motivasjonsfaktorer.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'motivasjon', catLabel: 'Motivasjonsteori',
     q: 'Hva kjennetegner Teori X i McGregors X-Y-teori?',
     opts: [
       'Ansatte er selvmotiverte og ønsker ansvar',
@@ -71,7 +75,7 @@ const QUESTIONS = [
     explain: 'Teori X antar at mennesker er grunnleggende late og unngår ansvar – ledelsen må overvåke og kontrollere. Teori Y er det motsatte: ansatte er indre motiverte og søker ansvar.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'motivasjon', catLabel: 'Motivasjonsteori',
     q: 'Hva kjennetegner Teori Y i McGregors X-Y-teori?',
     opts: [
       'Ansatte må kontrolleres og overvåkes',
@@ -83,7 +87,7 @@ const QUESTIONS = [
     explain: 'Teori Y: ansatte er indre motiverte, tar initiativ og ønsker ansvar. Ledere som tror på Teori Y delegerer mer, involverer og gir rom for utvikling. Motstykket er Teori X.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'organisasjon', catLabel: 'Organisasjonsformer',
     q: 'Hva er en linjestabsorganisasjon?',
     opts: [
       'En flat organisasjon uten noen formelle ledernivåer',
@@ -95,7 +99,7 @@ const QUESTIONS = [
     explain: 'Linjestabsorganisasjonen kombinerer linjestrukturen (myndighet går nedover) med stabsenheter (HR, økonomi, IT) som gir faglige råd uten formell beslutningsmyndighet. Mange mellomstor elektrobedrifter bruker denne modellen: montører rapporterer til arbeidsleder, mens HMS-ansvarlig og økonomi fungerer som stabsfunksjoner.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'organisasjon', catLabel: 'Organisasjonsformer',
     q: 'Hva kjennetegner en matriseorganisasjon?',
     opts: [
       'Ansatte har kun én leder med fullt ansvar',
@@ -107,7 +111,7 @@ const QUESTIONS = [
     explain: 'I en matriseorganisasjon har ansatte to rapporteringslinjer (f.eks. faglig leder + prosjektleder). Det gir fleksibilitet, men kan også skape rollekonflikt og uklar myndighet.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'organisasjon', catLabel: 'Organisasjonsformer',
     q: 'Hva er forskjellen mellom formell og uformell organisasjon?',
     opts: [
       'Formell = stor bedrift, uformell = liten bedrift',
@@ -119,7 +123,7 @@ const QUESTIONS = [
     explain: 'Den formelle organisasjonen er det offisielle organisasjonskartet med roller og myndighetslinjer. Den uformelle oppstår naturlig gjennom vennskap, tillit og kollegiale grupperinger.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'lederstil', catLabel: 'Lederstil',
     q: 'Hva kjennetegner en demokratisk lederstil?',
     opts: [
       'Lederen tar alle beslutninger alene og informerer etterpå',
@@ -131,7 +135,7 @@ const QUESTIONS = [
     explain: 'Demokratisk (deltakende) lederstil = involvering og medbestemmelse. Autoritær = lederen bestemmer selv. La-det-skure (laissez-faire) = nesten ingen styring fra lederens side.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'lederstil', catLabel: 'Lederstil',
     q: 'Hva kjennetegner en autoritær lederstil?',
     opts: [
       'Lederen involverer alle i beslutninger',
@@ -143,7 +147,7 @@ const QUESTIONS = [
     explain: 'Autoritær lederstil kjennetegnes av ensidig beslutningstaking og tydelig hierarki. Kan fungere godt i krisesituasjoner eller med uerfarne ansatte, men gir lav medbestemmelse og kan dempe motivasjon.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'lederstil', catLabel: 'Lederstil',
     q: 'Hva betyr laissez-faire-ledelse («la det skure»)?',
     opts: [
       'Lederen gir tett oppfølging og klare direktiver',
@@ -155,7 +159,7 @@ const QUESTIONS = [
     explain: 'Laissez-faire ledelse gir høy autonomi. Kan fungere bra for erfarne, selvgående team, men kan føre til uklarhet, manglende retning og dårlig resultater hvis ansatte trenger støtte.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'lederstil', catLabel: 'Lederstil',
     q: 'Hva er kjernen i Hersey og Blanchards situasjonsledelse?',
     opts: [
       'En god leder bruker alltid samme lederstil overfor alle',
@@ -167,7 +171,7 @@ const QUESTIONS = [
     explain: 'Situasjonsledelse sier at lederen bør tilpasse atferden til medarbeiderens «modenhet» – kombinasjonen av kompetanse og motivasjon. En lærling i første opplæringsår trenger tett instruksjon og oppfølging. En erfaren montør med svennebrev trenger mer autonomi og delegering.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'organisasjon', catLabel: 'Organisasjonsformer',
     q: 'Hva menes med organisasjonskultur?',
     opts: [
       'Bedriftens offisielle regler, rutiner og prosedyrer',
@@ -179,7 +183,7 @@ const QUESTIONS = [
     explain: 'Organisasjonskultur er «slik gjør vi det her» – de uskrevne reglene og verdiene som påvirker beslutninger og atferd. En sterk, positiv kultur kan være et viktig konkurransefortrinn.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'personal', catLabel: 'Personal & utvikling',
     q: 'Hva er kommunikasjonsstøy?',
     opts: [
       'Høy musikk eller lydforstyrrelser på arbeidsplassen',
@@ -191,7 +195,7 @@ const QUESTIONS = [
     explain: 'Støy i kommunikasjonsmodellen er alt som hindrer budskapet i å nå frem uforvrengt: fysisk støy, språkbarrierer, kulturelle misforståelser, stress, forutinntatthet osv.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'personal', catLabel: 'Personal & utvikling',
     q: 'Hva er forskjellen mellom verbal og non-verbal kommunikasjon?',
     opts: [
       'Verbal er skriftlig, non-verbal er muntlig',
@@ -203,7 +207,7 @@ const QUESTIONS = [
     explain: 'Verbal kommunikasjon = selve ordene. Non-verbal = alt annet (kroppsholdning, blikk, tonefall, mimikk). Studier viser at en stor andel av et budskap tolkes gjennom det non-verbale.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'regelverk', catLabel: 'Regelverk & HMS',
     q: 'Hva regulerer Arbeidsmiljøloven (AML)?',
     opts: [
       'Kun regler for oppsigelse og permisjon',
@@ -215,7 +219,7 @@ const QUESTIONS = [
     explain: 'AML setter rammer for fullt forsvarlig arbeidsmiljø: fysisk og psykososialt miljø, arbeidstid, medbestemmelse, HMS-krav, vern mot diskriminering og regler om oppsigelse.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'regelverk', catLabel: 'Regelverk & HMS',
     q: 'Hva betyr HMS?',
     opts: [
       'Helse, Markedsføring og Service',
@@ -227,7 +231,7 @@ const QUESTIONS = [
     explain: 'HMS = Helse, Miljø og Sikkerhet. Alle virksomheter plikter å arbeide systematisk med HMS (internkontroll) for å forebygge skader, sykdom og ulykker – og ivareta det ytre miljø.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'regelverk', catLabel: 'Regelverk & HMS',
     q: 'Hva er verneombudets hovedoppgave?',
     opts: [
       'Å representere arbeidsgiver i lønnsforhandlinger',
@@ -239,7 +243,7 @@ const QUESTIONS = [
     explain: 'Verneombudet velges av de ansatte og skal se til at arbeidsmiljølovens krav følges. Alle virksomheter med minst 5 ansatte skal normalt ha verneombud (kan avtales bort under visse forhold).'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'organisasjon', catLabel: 'Organisasjonsformer',
     q: 'Hva er hovedprinsippet bak LEAN-filosofien?',
     opts: [
       'Å øke antall ansatte slik at mer arbeid kan gjøres parallelt',
@@ -251,7 +255,7 @@ const QUESTIONS = [
     explain: 'LEAN (opprinnelig Toyota Production System) handler om å identifisere og fjerne sløsing (muda): ventetid, overproduksjon, unødvendig transport, feil, overflødig lager m.m.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'personal', catLabel: 'Personal & utvikling',
     q: 'Hva er delegering?',
     opts: [
       'Å overføre en oppgave, men beholde alt ansvar selv',
@@ -263,7 +267,7 @@ const QUESTIONS = [
     explain: 'God delegering innebærer at lederen overfører både oppgave, myndighet og ansvar. Delegering frigjør lederen til viktigere oppgaver, utvikler de ansatte og gir eierskap til resultatet.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'personal', catLabel: 'Personal & utvikling',
     q: 'Hva bør en god medarbeidersamtale handle om?',
     opts: [
       'Kun lønnsforhandling',
@@ -275,7 +279,7 @@ const QUESTIONS = [
     explain: 'Medarbeidersamtalen er en strukturert, planlagt samtale mellom leder og ansatt (gjerne årlig). Tema: arbeidssituasjon, mål, utvikling, samarbeid og eventuelle utfordringer – en toveis dialog.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'lederstil', catLabel: 'Lederstil',
     q: 'Hva er endringsledelse?',
     opts: [
       'Å gjennomføre brå endringer uten informasjon',
@@ -287,7 +291,7 @@ const QUESTIONS = [
     explain: 'Endringsledelse handler om å planlegge, kommunisere og følge opp endringer slik at de blir gjennomført og forankret. Uten god endringsledelse møtes endringer ofte av motstand og dårlige resultater.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'lederstil', catLabel: 'Lederstil',
     q: 'Hva menes med transformasjonsledelse?',
     opts: [
       'En leder som gir detaljerte instruksjoner og kontrollerer utførelsen',
@@ -299,7 +303,7 @@ const QUESTIONS = [
     explain: 'Transformasjonsledelse bygger på karisma, visjon, intellektuell stimulering og individuell hensyn. Motstykket er transaksjonsledelse, som bygger mer på bytteforhold (belønning for prestasjon).'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'personal', catLabel: 'Personal & utvikling',
     q: 'Hva kjennetegner konstruktiv tilbakemelding (feedback)?',
     opts: [
       'Generell og svevende, gitt i plenum',
@@ -311,7 +315,7 @@ const QUESTIONS = [
     explain: 'Konstruktiv feedback er konkret («jeg la merke til at rapporten manglet tallgrunnlag»), knyttet til atferd (ikke person), gitt i tide og framoverrettet. Både positiv og negativ feedback skal være klar og nyttig.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'personal', catLabel: 'Personal & utvikling',
     q: 'Hva er hensikten med en god rekrutteringsprosess?',
     opts: [
       'Å ansette så raskt som mulig uansett kompetanse',
@@ -323,7 +327,7 @@ const QUESTIONS = [
     explain: 'En god rekruttering starter med stillingsanalyse og kravspesifikasjon, fortsetter med utlysning, screening, intervju, tester, referansesjekk og beslutning. Målet er riktig person på riktig plass.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'personal', catLabel: 'Personal & utvikling',
     q: 'Hva er konflikthåndtering på arbeidsplassen?',
     opts: [
       'Å ignorere konflikter i håp om at de løser seg selv',
@@ -335,7 +339,7 @@ const QUESTIONS = [
     explain: 'God konflikthåndtering innebærer tidlig avklaring, aktiv lytting, fokus på sak framfor person, og konkrete løsninger. Uløste konflikter drenerer motivasjon og produktivitet.'
   },
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'lederstil', catLabel: 'Lederstil',
     q: 'Hva er coaching i en ledelsessammenheng?',
     opts: [
       'Å gi direkte ordrer om hvordan en oppgave skal løses',
@@ -348,7 +352,7 @@ const QUESTIONS = [
   },
 
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'organisasjon', catLabel: 'Organisasjonsformer',
     q: 'Hva kjennetegner prosjektbasert arbeid, slik det er vanlig i elektroinstallasjons-bransjen?',
     opts: [
       'Arbeidet er repetitivt og identisk fra dag til dag',
@@ -361,7 +365,7 @@ const QUESTIONS = [
   },
 
   {
-    cat: 'ledelse', catLabel: 'Ledelse & Organisasjon',
+    cat: 'regelverk', catLabel: 'Regelverk & HMS',
     q: 'Hva er arbeidsgiversiden i elektrobransjen organisert som?',
     opts: [
       'EL & IT Forbundet',

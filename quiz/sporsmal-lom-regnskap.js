@@ -10,14 +10,16 @@ const QUIZ_META = {
   subtitle: 'LØM Fagskole',
   description: '27 spørsmål om Regnskapsanalyse fra LØM-pensumet på fagskole.',
   cats: {
-    regnskap: { label: 'Regnskapsanalyse', color: '#00a8e8' }
+    nøkkeltall:{ label: 'Nøkkeltall & lønnsomhet', color: '#10b981' },
+    balanse:   { label: 'Balanse & eiendeler',      color: '#5c7cfa' },
+    likviditet:{ label: 'Likviditet & soliditet',   color: '#f59e0b' }
   }
 };
 
 const QUESTIONS = [
 
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva er formålet med regnskapsanalyse?',
     opts: [
       'Å registrere alle bilag og bokføre transaksjoner',
@@ -29,7 +31,7 @@ const QUESTIONS = [
     explain: 'Regnskapsanalyse bruker nøkkeltall (resultatgrad, TKR, likviditetsgrader, egenkapitalandel osv.) til å vurdere bedriftens finansielle helse og identifisere forbedringsområder.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva er formelen for Resultatgrad?',
     opts: [
       'Omsetning / Totalkapital × 100',
@@ -41,7 +43,7 @@ const QUESTIONS = [
     explain: 'Resultatgrad = (Ordinært resultat / Driftsinntekter) × 100. Den viser hvor stor prosentandel av omsetningen som er igjen som overskudd etter alle kostnader.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'likviditet', catLabel: 'Likviditet & soliditet',
     q: 'Hva er formelen for Likviditetsgrad 1, og hva er kravet for god likviditet?',
     opts: [
       'Omløpsmidler / Langsiktig gjeld – kravet er over 1',
@@ -53,7 +55,7 @@ const QUESTIONS = [
     explain: 'L1 = Omløpsmidler / Kortsiktig gjeld. Kravet er over 2 (men noe lavere kan godtas). Viser om bedriften har nok kortsiktige eiendeler til å betale sin kortsiktige gjeld.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'likviditet', catLabel: 'Likviditet & soliditet',
     q: 'Hva er formelen for Likviditetsgrad 2, og hvorfor skiller den seg fra Likviditetsgrad 1?',
     opts: [
       'Omløpsmidler / Kortsiktig gjeld – ingen forskjell fra L1',
@@ -65,7 +67,7 @@ const QUESTIONS = [
     explain: 'L2 = (Omløpsmidler − Varelager) / Kortsiktig gjeld. Kravet er over 1. Varelager trekkes fra fordi det kan ta tid å selge – L2 gir et mer konservativt bilde av betalingsevnen.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'likviditet', catLabel: 'Likviditet & soliditet',
     q: 'Hva er arbeidskapital?',
     opts: [
       'Totalkapital minus egenkapital',
@@ -77,7 +79,7 @@ const QUESTIONS = [
     explain: 'Arbeidskapital = Omløpsmidler − Kortsiktig gjeld. Positiv arbeidskapital betyr at langsiktig finansiering dekker anleggsmidlene og en del av omløpsmidlene – en viktig likviditetsindikator.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'likviditet', catLabel: 'Likviditet & soliditet',
     q: 'Hva er formelen for Egenkapitalandel, og hva viser den?',
     opts: [
       'Egenkapital / Omsetning × 100 – viser lønnsomhet',
@@ -89,7 +91,7 @@ const QUESTIONS = [
     explain: 'Egenkapitalandel = (Egenkapital / Totalkapital) × 100. Jo høyere andel, desto mer solid er bedriften – den tåler mer tap uten å gå konkurs.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva måler Totalkapitalrentabilitet (TKR)?',
     opts: [
       'Avkastningen eierne får på investert egenkapital',
@@ -101,7 +103,7 @@ const QUESTIONS = [
     explain: 'TKR = (Ordinært resultat + Finanskostnader) / Gjennomsnittlig totalkapital × 100. Måler hvor effektivt bedriften bruker all kapital (egenkapital + gjeld) til å skape avkastning.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'likviditet', catLabel: 'Likviditet & soliditet',
     q: 'Hva er formelen for Gjeldsgrad 1, og hva er anbefalt nivå for norske bedrifter?',
     opts: [
       'Langsiktig gjeld / Egenkapital – anbefalt under 1',
@@ -113,7 +115,7 @@ const QUESTIONS = [
     explain: 'Gjeldsgrad 1 = Total gjeld / Egenkapital. Et nivå mellom 1 og 2 regnes som akseptabelt for norske bedrifter – over 2 indikerer høy gjeldsbelastning og økt risiko.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva viser Egenkapitalrentabilitet (EKR)?',
     opts: [
       'Andelen egenkapital av totalkapitalen (soliditet)',
@@ -125,7 +127,7 @@ const QUESTIONS = [
     explain: 'EKR = Ordinært resultat / Gjennomsnittlig egenkapital × 100. Viser avkastningen til eierne. En lav EKR betyr at eierne får dårlig betalt for kapitalen de har skutt inn.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva viser et resultatregnskap?',
     opts: [
       'Bedriftens eiendeler og gjeld på et gitt tidspunkt',
@@ -137,7 +139,7 @@ const QUESTIONS = [
     explain: 'Resultatregnskapet dekker en periode (f.eks. et år): Inntekter − Kostnader = Resultat. Balanseregnskapet viser derimot status på et tidspunkt (f.eks. 31.12).'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'balanse', catLabel: 'Balanse & eiendeler',
     q: 'Hva viser et balanseregnskap?',
     opts: [
       'Inntekter og kostnader i en periode',
@@ -150,7 +152,7 @@ const QUESTIONS = [
     explain: 'Balansen = øyeblikksbilde per dato (ofte 31.12). Venstresiden: eiendeler (anlegg + omløpsmidler). Høyresiden: egenkapital + gjeld. Sum eiendeler = sum EK+gjeld alltid. For en elektrobedrift er typiske anleggsmidler: firmabiler, spesialverktøy og EK-målere.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'balanse', catLabel: 'Balanse & eiendeler',
     q: 'Hva er anleggsmidler?',
     opts: [
       'Kontanter og bankinnskudd',
@@ -162,7 +164,7 @@ const QUESTIONS = [
     explain: 'Anleggsmidler er varige eiendeler ment for langsiktig eie, der det kan ta mer enn 1 år å gjøre dem om til kontanter. Eksempler: bygninger, produksjonsutstyr, biler, patenter.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'balanse', catLabel: 'Balanse & eiendeler',
     q: 'Hva er omløpsmidler?',
     opts: [
       'Eiendeler tenkt til varig eie',
@@ -174,7 +176,7 @@ const QUESTIONS = [
     explain: 'Omløpsmidler sirkulerer i bedriften: kontanter → varekjøp → varelager → salg på kreditt → kundefordringer → kontanter. De brukes til å dekke løpende drift og kortsiktig gjeld.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'balanse', catLabel: 'Balanse & eiendeler',
     q: 'Hva er egenkapital?',
     opts: [
       'Sum av alle eiendeler',
@@ -186,7 +188,7 @@ const QUESTIONS = [
     explain: 'EK = Eiendeler − Gjeld. Eksempel: Hus verdt 2 mill. + lån på 1,6 mill. = egenkapital 400 000. I bedrifter består EK av aksjekapital, annen innskutt EK og opptjent EK.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'balanse', catLabel: 'Balanse & eiendeler',
     q: 'Hva er forskjellen på kortsiktig og langsiktig gjeld?',
     opts: [
       'Kortsiktig gjeld er alltid høyere enn langsiktig',
@@ -198,7 +200,7 @@ const QUESTIONS = [
     explain: 'Kortsiktig gjeld: leverandørgjeld, skyldig mva., skyldig lønn, kassekreditt – forfaller innen 12 mnd. Langsiktig: pantelån, obligasjonslån – går over flere år. Skillet er viktig for likviditetsvurdering.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva er bruttofortjenesteprosent (BFP)?',
     opts: [
       'Varekostnad / Salgsinntekter × 100 – viser kostnadsnivå',
@@ -210,7 +212,7 @@ const QUESTIONS = [
     explain: 'BFP = Bruttofortjeneste / Salgsinntekter × 100. Brukes mye i varehandel for å vurdere prissetting og innkjøp. Lav BFP kan tyde på feil prissetting eller høye varekostnader.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva er varekostnad?',
     opts: [
       'Det butikken betaler i lønn',
@@ -222,7 +224,7 @@ const QUESTIONS = [
     explain: 'Varekostnad = IB varelager + Varekjøp i perioden − UB varelager. Viser faktisk forbruk av varer i perioden, ikke bare det som er kjøpt inn.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'balanse', catLabel: 'Balanse & eiendeler',
     q: 'Hva er en avskrivning?',
     opts: [
       'En utbetaling til banken',
@@ -234,7 +236,7 @@ const QUESTIONS = [
     explain: 'Avskrivning sprer kostnaden for et anleggsmiddel over dens levetid. F.eks. en servicebil til 300 000 kr med 6 års levetid gir 50 000 kr/år i avskrivning (lineært). Er en kostnad i resultatregnskapet, men ingen utbetaling — viktig å forstå i prosjektkalkyler.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'balanse', catLabel: 'Balanse & eiendeler',
     q: 'Er avdrag en kostnad?',
     opts: [
       'Ja, avdrag er alltid en kostnad',
@@ -246,7 +248,7 @@ const QUESTIONS = [
     explain: 'Viktig skille: Avdrag = nedbetaling av gjeld (påvirker kun balansen og likviditeten). Renter = kostnad (påvirker resultatregnskapet). Mange blander disse sammen.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'likviditet', catLabel: 'Likviditet & soliditet',
     q: 'Hva menes med likviditet?',
     opts: [
       'Bedriftens langsiktige lønnsomhet',
@@ -258,7 +260,7 @@ const QUESTIONS = [
     explain: 'Likviditet = betalingsevne på kort sikt. En bedrift kan være lønnsom (overskudd på sikt) men likevel ha dårlig likviditet hvis betalinger er feil timet. Likviditetsbudsjett brukes for å planlegge.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'likviditet', catLabel: 'Likviditet & soliditet',
     q: 'Hva er soliditet?',
     opts: [
       'Bedriftens evne til å betale regninger i dag',
@@ -270,7 +272,7 @@ const QUESTIONS = [
     explain: 'Soliditet sier hvor robust bedriften er for nedgangstider og tap. Høy egenkapitalandel = høy soliditet. Nøkkeltall: Egenkapitalandel og gjeldsgrad.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva er rentabilitet?',
     opts: [
       'Det samme som omsetning',
@@ -282,7 +284,7 @@ const QUESTIONS = [
     explain: 'Rentabilitet = avkastning i prosent. Brukes til å sammenligne lønnsomhet mellom bedrifter og bransjer. Eksempler: TKR (totalkapital), EKR (egenkapital), SKR (sysselsatt kapital).'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva er driftsresultat?',
     opts: [
       'Resultat etter skatt',
@@ -294,7 +296,7 @@ const QUESTIONS = [
     explain: 'Driftsresultat = Driftsinntekter − Driftskostnader. Deretter trekker man fra finanskostnader (og legger til finansinntekter) for å få ordinært resultat før skatt.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva er formelen for dekningsgrad (DG)?',
     opts: [
       'Faste kostnader / Variable kostnader × 100',
@@ -306,7 +308,7 @@ const QUESTIONS = [
     explain: 'DG = (DB / Salgspris) × 100. Viser hvor stor prosentandel av salgsprisen som bidrar til å dekke faste kostnader og overskudd. Brukes bl.a. til å beregne nullpunktsomsetning.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva er inntekt?',
     opts: [
       'Det bedriften har betalt ut i lønn',
@@ -318,7 +320,7 @@ const QUESTIONS = [
     explain: 'Inntekt = salgsverdien av leverte varer/tjenester i en periode. Registreres i resultatregnskapet. Ikke forveksles med innbetaling (som skjer i likviditeten).'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'balanse', catLabel: 'Balanse & eiendeler',
     q: 'Hva er totalkapital?',
     opts: [
       'Egenkapital alene',
@@ -330,7 +332,7 @@ const QUESTIONS = [
     explain: 'Totalkapital = Egenkapital + Gjeld = Sum eiendeler. Uttrykker hele balansen. Brukes i nøkkeltall som TKR og egenkapitalandel.'
   },
   {
-    cat: 'regnskap', catLabel: 'Regnskapsanalyse',
+    cat: 'nøkkeltall', catLabel: 'Nøkkeltall & lønnsomhet',
     q: 'Hva kan en lav resultatgrad kombinert med høy kapitalomløpshastighet tyde på?',
     opts: [
       'At bedriften tjener lite per krone solgt, men veksler kapitalen mange ganger (typisk dagligvare/lavprismodell)',

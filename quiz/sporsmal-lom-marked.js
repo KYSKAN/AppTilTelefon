@@ -10,14 +10,18 @@ const QUIZ_META = {
   subtitle: 'LØM Fagskole',
   description: '35 spørsmål om Markedsføringsledelse fra LØM-pensumet på fagskole.',
   cats: {
-    marked: { label: 'Markedsføringsledelse', color: '#ec4899' }
+    grunnlag:  { label: 'Markedsgrunnlag',      color: '#ec4899' },
+    miks:      { label: 'Markedsmiks & STP',     color: '#8b5cf6' },
+    strategi:  { label: 'Markedsstrategi',       color: '#f59e0b' },
+    analyse:   { label: 'Analyse & planlegging', color: '#10b981' },
+    elbransjen:{ label: 'El-bransjen',           color: '#00a8e8' }
   }
 };
 
 const QUESTIONS = [
 
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'grunnlag', catLabel: 'Markedsgrunnlag',
     q: 'Hva er definisjonen på et marked ifølge Kotler?',
     opts: [
       'Et fysisk sted hvor varer selges',
@@ -29,7 +33,7 @@ const QUESTIONS = [
     explain: 'Kotler definerer et marked som «summen av alle nåværende og potensielle kjøpere av et produkt». Markedet omfatter altså både dem som kjøper nå og dem som kan tenkes å kjøpe i framtiden.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'grunnlag', catLabel: 'Markedsgrunnlag',
     q: 'Hva er forskjellen mellom primærmarked og sekundærmarked?',
     opts: [
       'Primær er det største markedet i antall, sekundær er det minste',
@@ -41,7 +45,7 @@ const QUESTIONS = [
     explain: 'Eksempel: En varebil som Caddy er laget primært for bedrifter (primærmarked), men selges også til privatpersoner (sekundærmarked). Begge er viktige å forstå i markedsføringen.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'grunnlag', catLabel: 'Markedsgrunnlag',
     q: 'Hva er markedsføring?',
     opts: [
       'Bare reklame og annonsering',
@@ -53,7 +57,7 @@ const QUESTIONS = [
     explain: 'Markedsføring er bred: markedsundersøkelse, produktutvikling, prissetting, distribusjon, kommunikasjon og kundeoppfølging – alt for å avdekke og tilfredsstille kundens behov lønnsomt.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'miks', catLabel: 'Markedsmiks & STP',
     q: 'Hva er de fire P-ene i markedsmiksen?',
     opts: [
       'Produkt, Profitt, Plass, Promotering',
@@ -66,7 +70,7 @@ const QUESTIONS = [
     explain: '4P = Produkt (hva tilbyr vi?), Pris (hva koster det?), Plass/Distribusjon (hvordan når vi kunden?), Påvirkning/Promosjon (hvordan kommuniserer vi?). For en elektrobedrift: Produkt = installasjonstjenester, Pris = timepris/fastpris, Plass = lokalt/regionalt, Påvirkning = referanser og nettverksmarkedsføring.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'miks', catLabel: 'Markedsmiks & STP',
     q: 'Hva er den femte P-en som ofte tas med for tjenestebedrifter?',
     opts: [
       'Planlegging',
@@ -78,7 +82,7 @@ const QUESTIONS = [
     explain: 'I tjenestemarkedsføring brukes ofte 5P: Produkt, Pris, Plass, Påvirkning og Personell. De ansatte er en del av tjenesten, derfor blir de et konkurransemiddel. Noen inkluderer også Prosess og Physical evidence (7P).'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'miks', catLabel: 'Markedsmiks & STP',
     q: 'Hvorfor kalles virkemidlene i markedsmiksen «konkurransemidler»?',
     opts: [
       'Fordi de brukes i konkurranse om kundene',
@@ -90,7 +94,7 @@ const QUESTIONS = [
     explain: 'Konkurransemidlene (5P) er nettopp virkemidler bedriften bruker for å vinne i konkurransen om kundene. Riktig miks og bruk gir konkurransefortrinn.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'miks', catLabel: 'Markedsmiks & STP',
     q: 'Hva er STP-prosessen i markedsføring?',
     opts: [
       'Salg, Tilbud og Pris',
@@ -102,7 +106,7 @@ const QUESTIONS = [
     explain: 'STP er kjernen i markedsstrategien: Segmenter markedet → Velg målsegment (Target) → Posisjoner tilbudet slik at det skiller seg ut i kundens bevissthet.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'miks', catLabel: 'Markedsmiks & STP',
     q: 'Hva er markedssegmentering?',
     opts: [
       'Å bygge ett produkt som passer alle',
@@ -114,7 +118,7 @@ const QUESTIONS = [
     explain: 'Segmentering deler markedet inn etter f.eks. demografi (alder, kjønn), geografi, livsstil, atferd eller fordeler kunden søker. Poenget er å finne grupper man kan betjene best mulig.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'miks', catLabel: 'Markedsmiks & STP',
     q: 'Hva beskriver AIDA-modellen?',
     opts: [
       'En regnskapsmodell for analyse av markedsinntekter',
@@ -127,7 +131,7 @@ const QUESTIONS = [
     explain: 'AIDA beskriver kommunikasjons- og kjøpsprosessen: vekke oppmerksomhet (Attention), skape interesse (Interest), bygge ønske (Desire), utløse kjøp/handling (Action). For en elektrobedrift: annonse → referanseprosjekter → pristilbud → signert kontrakt.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'miks', catLabel: 'Markedsmiks & STP',
     q: 'Hva menes med posisjonering i markedsføring?',
     opts: [
       'Plassering av varer i butikkhyllen',
@@ -139,7 +143,7 @@ const QUESTIONS = [
     explain: 'Posisjonering handler om å differensiere seg og eie en klar, attraktiv plass i målgruppens bevissthet. «Hva assosierer kunden med oss, og er det annerledes enn konkurrentene?»'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'strategi', catLabel: 'Markedsstrategi',
     q: 'Hvilke fire faser inngår i produktlivssyklusen?',
     opts: [
       'Produksjon, Distribusjon, Salg, Kassering',
@@ -152,7 +156,7 @@ const QUESTIONS = [
     explain: 'Produktlivssyklusen: Introduksjon (lav omsetning, høye lanserings-kostnader) → Vekst (raskt stigende salg) → Modenhet (stagnasjon, hard konkurranse) → Tilbakegang (fallende salg). Gjelder også tjenester — f.eks. er tradisjonell installasjon av oljefyr i tilbakegangsfase, mens lading for elbil er i vekstfasen.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'grunnlag', catLabel: 'Markedsgrunnlag',
     q: 'Hva er forskjellen mellom B2B og B2C?',
     opts: [
       'B2B er norsk markedsføring, B2C er internasjonal markedsføring',
@@ -164,7 +168,7 @@ const QUESTIONS = [
     explain: 'B2B (Business-to-Business) og B2C (Business-to-Consumer) har svært ulik kjøpsatferd: B2B-kjøp er gjerne mer rasjonelle, langsiktige og basert på relasjoner, mens B2C-kjøp ofte er mer impulsive og følelsesdrevne. Elektroinstallasjons-bedrifter jobber primært B2B: kunder er utbyggere, eiendomsforvaltere, industri og offentlige etater. Anbud og relasjoner er de viktigste salgskanalene.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'grunnlag', catLabel: 'Markedsgrunnlag',
     q: 'Hva er et kjennetegn ved rasjonell kjøpsatferd?',
     opts: [
       'Kjøpet skjer spontant, drevet av følelser og inntrykk',
@@ -176,7 +180,7 @@ const QUESTIONS = [
     explain: 'Rasjonell kjøpsatferd innebærer grundig informasjonssøk og evaluering – typisk for dyre, viktige kjøp. Impulsatferd = kjøp uten planlegging, styrt av følelser eller situasjonen.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva er en markedsplan?',
     opts: [
       'En plan for å etablere en ny butikk',
@@ -188,7 +192,7 @@ const QUESTIONS = [
     explain: 'Markedsplanen inneholder typisk: situasjonsanalyse (SWOT/PESTEL), markedsmål, målgruppe, posisjonering, markedsmiks (4P) og handlingsplan med budsjett og tidsplan.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva er forskjellen mellom en markedsplan og en forretningsplan?',
     opts: [
       'Det er ingen praktisk forskjell',
@@ -200,7 +204,7 @@ const QUESTIONS = [
     explain: 'Forretningsplanen gir helhetsbildet (forretningsidé, kapital, organisasjon, marked, strategi) og brukes ofte ved oppstart eller store veivalg. Markedsplanen er snevrere og rullerer, gjerne årlig.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva er hensikten med en markedsundersøkelse?',
     opts: [
       'Å kontrollere at bedriften overholder markedsføringsloven',
@@ -212,7 +216,7 @@ const QUESTIONS = [
     explain: 'Markedsundersøkelse gir innsikt som reduserer usikkerhet. Man skiller mellom primærdata (innsamlet selv, f.eks. spørreundersøkelse) og sekundærdata (eksisterende data, f.eks. statistikk).'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva er forskjellen mellom primærdata og sekundærdata?',
     opts: [
       'Primærdata er gratis, sekundærdata koster penger',
@@ -224,7 +228,7 @@ const QUESTIONS = [
     explain: 'Primærdata er «ferskvare» samlet for din undersøkelse – mer relevant, men dyrere. Sekundærdata finnes allerede (SSB, bransjerapporter, forskning) – raskere og billigere, men ikke alltid helt relevant.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'grunnlag', catLabel: 'Markedsgrunnlag',
     q: 'Hva betyr huskeregelen BOMOF om hovedmarkedene?',
     opts: [
       'Bedrift, Organisasjon, Marked, Offentlig, Forbruker',
@@ -236,7 +240,7 @@ const QUESTIONS = [
     explain: 'BOMOF er en huskeregel for de fem hovedmarkedene: Bedrifts-, Offentlige, Mellomhandler-, Organisasjons- og Forbrukermarkedet. Bedrifts- og mellomhandlermarkedet kalles ofte «de profesjonelle markedene».'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'grunnlag', catLabel: 'Markedsgrunnlag',
     q: 'Hva kjennetegner mellomhandlermarkedet?',
     opts: [
       'Sluttbrukere som kjøper varer til eget forbruk',
@@ -248,7 +252,7 @@ const QUESTIONS = [
     explain: 'Mellomhandlere (grossister, detaljister) kjøper for å videreselge. Deres «produksjon» er å transportere, lagre og sette sammen vareutvalg. Hører til de profesjonelle markedene.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'grunnlag', catLabel: 'Markedsgrunnlag',
     q: 'Hva kjennetegner forbrukermarkedet?',
     opts: [
       'Summen av enkeltmennesker som kjøper til eget bruk, ofte drevet av følelser i kjøpsprosessen',
@@ -260,7 +264,7 @@ const QUESTIONS = [
     explain: 'Forbrukermarkedet består av enkeltpersoner og husholdninger som kjøper til eget forbruk. Kjøpet skjer ofte alene eller med familie/venner, og er mer utsatt for følelsesmessige og sosiale påvirkninger enn B2B.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'strategi', catLabel: 'Markedsstrategi',
     q: 'Hva kjennetegner en markedsorientert bedrift?',
     opts: [
       'Den fokuserer mest på å produsere billig',
@@ -272,7 +276,7 @@ const QUESTIONS = [
     explain: 'Markedsorientering = utgangspunkt i kundens behov. Motsatser: produksjonsorientert (fokus på effektiv produksjon), produktorientert (fokus på kvalitet på produktet) og salgsorientert (fokus på aggressivt salg).'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'strategi', catLabel: 'Markedsstrategi',
     q: 'Hva er samfunnsorientert markedsføring?',
     opts: [
       'Markedsføring som kun retter seg mot offentlig sektor',
@@ -284,7 +288,7 @@ const QUESTIONS = [
     explain: 'Samfunnsorientert markedsføring balanserer bedriftens profitt, kundens behov og samfunnets velferd (bærekraft, etikk, miljø). Stadig viktigere i en tid med klimakrise og økt forbrukerbevissthet.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva står SMART for når man formulerer mål?',
     opts: [
       'Stor, Massiv, Ambisiøs, Reell, Tøff',
@@ -296,7 +300,7 @@ const QUESTIONS = [
     explain: 'SMART-mål: Spesifikke (konkrete), Målbare (tellbare), Aksepterte (avtalte), Realistiske (oppnåelige) og Tidsbestemte (med frist). Gode styringsmål skal være kvantitative.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'strategi', catLabel: 'Markedsstrategi',
     q: 'Hva er en visjon?',
     opts: [
       'En detaljert plan for neste kvartal',
@@ -308,7 +312,7 @@ const QUESTIONS = [
     explain: 'Visjonen er ofte svevende og inspirerende – den peker retning langt fram. Eksempel: Posten Norges visjon «Verdens mest framtidsrettede post- og logistikkonsern». Kjerneverdier og forretningsidé er mer konkrete.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'strategi', catLabel: 'Markedsstrategi',
     q: 'Hva skal en forretningsidé fokusere på?',
     opts: [
       'Kun teknologien bedriften bruker',
@@ -320,7 +324,7 @@ const QUESTIONS = [
     explain: 'En god forretningsidé svarer på: Hvilke behov skal vi dekke? Hvilke produkter/tjenester? Hvem er kunden? Hvor opererer vi? Hvorfor velge oss? Hvordan tjener vi penger? Skal virke som ledestjerne for alle medarbeidere.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'strategi', catLabel: 'Markedsstrategi',
     q: 'Hvilke fire vekststrategier finnes i Ansoffs matrise?',
     opts: [
       'Markedspenetrering, Markedsutvikling, Produktutvikling, Diversifisering',
@@ -332,7 +336,7 @@ const QUESTIONS = [
     explain: 'Ansoffs matrise: Markedspenetrering (eksisterende produkt/marked), Markedsutvikling (eksisterende produkt, nytt marked), Produktutvikling (nytt produkt, eksisterende marked), Diversifisering (nytt/nytt – høyest risiko).'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'strategi', catLabel: 'Markedsstrategi',
     q: 'Hva er Porters generiske konkurransestrategier?',
     opts: [
       '4P, 5C, 7S og STP',
@@ -344,7 +348,7 @@ const QUESTIONS = [
     explain: 'Porter: Kostnadslederskap (være billigst i bred markedsføring), Differensiering (skille seg ut med unik verdi) og Fokus (snevert segment – enten med lave kostnader eller differensiering). Ikke bli stuck in the middle.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'strategi', catLabel: 'Markedsstrategi',
     q: 'Hva kjennetegner en nisjestrategi (Kotler)?',
     opts: [
       'Man retter seg mot hele massemarkedet',
@@ -356,7 +360,7 @@ const QUESTIONS = [
     explain: 'Nisjebedrifter overlever ved å være best for noen få. Typer: produktspesialist, kundespesialist, geografisk spesialist, servicespesialist m.fl. Gir høy lønnsomhet i små volum.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva er Porters fem konkurransekrefter?',
     opts: [
       'Pris, Produkt, Plass, Påvirkning, Personell',
@@ -368,7 +372,7 @@ const QUESTIONS = [
     explain: 'Porters 5 krefter analyserer bransjens attraktivitet: 1) trussel fra nye aktører, 2) rivalisering mellom eksisterende, 3) trussel fra substitutter, 4) kunders forhandlingsmakt, 5) leverandørers forhandlingsmakt.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva viser Porters verdikjede?',
     opts: [
       'Bare bedriftens fysiske varelevering',
@@ -380,7 +384,7 @@ const QUESTIONS = [
     explain: 'Porters verdikjede: 5 primæraktiviteter (inngående logistikk, produksjon, utgående logistikk, markedsføring/salg, service) og 4 støtteaktiviteter (innkjøp, teknologi, HR, infrastruktur). Brukes for å finne hvor bedriften skaper mest verdi.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva står bokstavene i SOFT/SWOT-analyse for?',
     opts: [
       'Sales, Opportunities, Finance, Tactics',
@@ -393,7 +397,7 @@ const QUESTIONS = [
     explain: 'SOFT/SWOT ser på Styrker og Svakheter (internt) samt Muligheter og Trusler (eksternt). Eksempel for elektrobedrift: Styrke = sertifiserte fagarbeidere, Svakhet = liten markedsavdeling, Mulighet = elbil-ladeinstallasjoner, Trussel = prispress fra lavkostkonkurrenter.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva er forskjellen på interne og eksterne arbeidsbetingelser?',
     opts: [
       'Interne er alltid viktigere enn eksterne',
@@ -405,7 +409,7 @@ const QUESTIONS = [
     explain: 'Interne: personalet, ledelse, økonomi, konkurransemidler, teknologi – vi kan endre disse. Eksterne: marked, konkurrenter, leverandører, distributører, samfunn – disse må bedriften tilpasse seg.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hvordan beregnes markedsandel i prosent?',
     opts: [
       'Egen omsetning × totalt salg i markedet',
@@ -417,7 +421,7 @@ const QUESTIONS = [
     explain: 'Markedsandel = (eget salg / totalt salg i markedet) × 100. Kan måles i kroner, antall enheter eller antall kunder. Eksempel: 10 955 Teslaer av 67 718 totalt personbilsalg = 16,2 %.'
   },
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'strategi', catLabel: 'Markedsstrategi',
     q: 'Hva er et konkurransefortrinn?',
     opts: [
       'En fordel ethvert selskap har automatisk',
@@ -430,7 +434,7 @@ const QUESTIONS = [
   },
 
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'elbransjen', catLabel: 'El-bransjen',
     q: 'Hva er en anbudskonkurranse, og hvorfor er den sentral i elektrobransjen?',
     opts: [
       'En intern konkurranse mellom avdelinger om hvem som selger mest',
@@ -443,7 +447,7 @@ const QUESTIONS = [
   },
 
   {
-    cat: 'marked', catLabel: 'Markedsføringsledelse',
+    cat: 'elbransjen', catLabel: 'El-bransjen',
     q: 'Hva menes med relasjonsmarkedsføring, og hvorfor er det viktig for elektrobedrifter?',
     opts: [
       'Markedsføring som kun bruker sosiale medier',
