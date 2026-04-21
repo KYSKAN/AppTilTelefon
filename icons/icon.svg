@@ -1,26 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <!-- Bakgrunn -->
-  <rect width="512" height="512" rx="80" fill="#16213e"/>
+  <rect width="512" height="512" rx="96" fill="#0d0f1a"/>
 
-  <!-- Skjerm -->
-  <rect x="80" y="80" width="352" height="100" rx="16" fill="#0f3460"/>
-  <text x="412" y="158" font-family="monospace" font-size="64" fill="#e2e8f0" text-anchor="end">0</text>
+  <!-- Glow-lag bak lynet -->
+  <polygon points="296,60 180,280 248,280 216,452 332,232 264,232"
+    fill="#f59e0b" opacity="0.18"/>
 
-  <!-- Knapper rad 1 -->
-  <rect x="80" y="208" width="72" height="64" rx="12" fill="#2d3748"/>
-  <rect x="172" y="208" width="72" height="64" rx="12" fill="#2d3748"/>
-  <rect x="264" y="208" width="72" height="64" rx="12" fill="#2d3748"/>
-  <rect x="356" y="208" width="76" height="64" rx="12" fill="#0f3460"/>
+  <!-- Lyn-form -->
+  <polygon points="296,60 180,280 248,280 216,452 332,232 264,232"
+    fill="#f59e0b"/>
 
-  <!-- Knapper rad 2 -->
-  <rect x="80" y="292" width="72" height="64" rx="12" fill="#1a3a5c"/>
-  <rect x="172" y="292" width="72" height="64" rx="12" fill="#1a3a5c"/>
-  <rect x="264" y="292" width="72" height="64" rx="12" fill="#1a3a5c"/>
-  <rect x="356" y="292" width="76" height="64" rx="12" fill="#0f3460"/>
-
-  <!-- Knapper rad 3 -->
-  <rect x="80" y="376" width="72" height="64" rx="12" fill="#1a3a5c"/>
-  <rect x="172" y="376" width="72" height="64" rx="12" fill="#1a3a5c"/>
-  <rect x="264" y="376" width="72" height="64" rx="12" fill="#1a3a5c"/>
-  <rect x="356" y="376" width="76" height="64" rx="12" fill="#e94560"/>
+  <!-- Lyse spiss på lynet for dybde -->
+  <polygon points="296,60 264,232 295,232 295,60"
+    fill="#fde68a" opacity="0.5"/>
 </svg>
