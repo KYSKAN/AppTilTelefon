@@ -1,11 +1,10 @@
-const CACHE = 'kalkulator-v66';
+const CACHE = 'kalkulator-v67';
 
 const FILES = [
   './',
   './index.html',
   './manifest.json',
   './icons/icon.svg',
-  './icons/icon-192.png',
   './kalkulator/',
   './kalkulator/index.html',
   './kalkulator/css/style.css',
