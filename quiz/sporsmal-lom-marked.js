@@ -388,7 +388,7 @@ const QUESTIONS = [
     q: 'Hva står bokstavene i SOFT/SWOT-analyse for?',
     opts: [
       'Sales performance, Opportunities pipeline, Finance review og Tactical planning',
-      'Styrker (Strengths), Svakheter (Faults/Weaknesses), Muligheter (Opportunities), Trusler (Threats)',
+      'Styrker, Svakheter, Muligheter, Trusler – de fire feltene i analysen',
       'Strategi, Organisasjonsstruktur, Funksjonell inndeling og Teknologibruk',
       'Segmenter markedet, Oppdag behov, Fokuser innsatsen og Test tilnærmingen'
     ],
