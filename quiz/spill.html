@@ -164,27 +164,32 @@
     .explanation.show { display: block; }
     .explanation strong { color: var(--text); }
 
-    /* ── Next button ── */
-    .next-btn {
-      margin-top: 20px; width: 100%; padding: 14px;
-      background: var(--accent); border: none; border-radius: 10px;
-      color: #fff; font-size: 0.97rem; font-weight: 600;
-      font-family: inherit; cursor: pointer;
-      transition: background 0.15s, transform 0.1s; display: none;
+    /* ── Navigation row ── */
+    .nav-row {
+      margin-top: 16px;
+      display: flex;
+      gap: 10px;
     }
-    .next-btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
-    .next-btn.show { display: block; }
-
-    /* ── Prev button ── */
+    .prev-btn, .next-btn {
+      flex: 1; padding: 13px;
+      border-radius: 10px;
+      font-size: 0.95rem; font-weight: 600;
+      font-family: inherit; cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
+    }
     .prev-btn {
-      margin-top: 10px; width: 100%; padding: 12px;
-      background: transparent; border: 1.5px solid var(--border); border-radius: 10px;
-      color: var(--muted); font-size: 0.9rem; font-weight: 600;
-      font-family: inherit; cursor: pointer;
-      transition: border-color 0.15s, color 0.15s; display: none;
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--muted);
     }
-    .prev-btn:hover { border-color: var(--accent); color: var(--text); }
-    .prev-btn.show { display: block; }
+    .prev-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--text); }
+    .prev-btn:disabled { opacity: 0.3; cursor: default; }
+    .next-btn {
+      background: var(--accent); border: none;
+      color: #fff;
+    }
+    .next-btn:hover:not(:disabled) { background: var(--accent-hover); transform: translateY(-1px); }
+    .next-btn:disabled { opacity: 0.4; cursor: default; }
 
     /* ── Result screen ── */
     #result-screen { max-width: 700px; width: 100%; display: none; animation: fadeIn 0.3s ease; }
@@ -463,8 +468,10 @@
       <div class="question-text" id="question-text"></div>
       <div class="options" id="options-container"></div>
       <div class="explanation" id="explanation"></div>
-      <button class="next-btn" id="next-btn" onclick="nextQuestion()">Neste spørsmål →</button>
-      <button class="prev-btn" id="prev-btn" onclick="prevQuestion()">← Forrige spørsmål</button>
+      <div class="nav-row">
+        <button class="prev-btn" id="prev-btn" onclick="prevQuestion()">← Forrige</button>
+        <button class="next-btn" id="next-btn" onclick="nextQuestion()">Neste →</button>
+      </div>
     </div>
   </div>
 
@@ -780,8 +787,11 @@
       expl.innerHTML = '';
 
       const nextBtn = document.getElementById('next-btn');
-      nextBtn.className   = 'next-btn';
-      nextBtn.textContent = currentIdx === questions.length - 1 ? 'Se resultat →' : 'Neste spørsmål →';
+      nextBtn.textContent = currentIdx === questions.length - 1 ? 'Se resultat →' : 'Neste →';
+      nextBtn.disabled = false;
+
+      const prevBtn2 = document.getElementById('prev-btn');
+      prevBtn2.disabled = currentIdx === 0;
 
       const stored       = answers[currentIdx];
       currentIndices     = stored ? stored.indices : shuffle([0, 1, 2, 3]);
@@ -798,9 +808,6 @@
         container.appendChild(btn);
       });
 
-      const prevBtn = document.getElementById('prev-btn');
-      prevBtn.className = currentIdx > 0 ? 'prev-btn show' : 'prev-btn';
-
       if (stored) {
         answered = true;
         document.querySelectorAll('.option-btn').forEach((btn, i) => {
@@ -810,7 +817,6 @@
         });
         expl.innerHTML = `<strong>${stored.chosen === correctIdx ? '✓ Riktig!' : '✗ Feil.'}</strong> ${q.explain}`;
         expl.classList.add('show');
-        nextBtn.classList.add('show');
       }
     }
 
@@ -841,7 +847,6 @@
       const expl = document.getElementById('explanation');
       expl.innerHTML = `<strong>${chosen === correctIdx ? '✓ Riktig!' : '✗ Feil.'}</strong> ${q.explain}`;
       expl.classList.add('show');
-      document.getElementById('next-btn').classList.add('show');
     }
 
     function nextQuestion() {
