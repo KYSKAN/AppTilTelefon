@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0d0f1a">
+  <title>Quiz Elektro – Elektriker-app</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0f1a;
+      --surface: #161927;
+      --surface2: #1e2235;
+      --border: #2a2f4a;
+      --text: #e8eaf6;
+      --muted: #7b82a8;
+      --accent: #5c7cfa;
+    }
+
+    body {
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      padding: 16px 16px 48px;
+      color: var(--text);
+    }
+
+    /* ── Top bar ── */
+    .topbar {
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 28px;
+      padding-top: 4px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 14px;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .back-btn .arrow { color: var(--accent); }
+    .back-btn:active { background: var(--surface2); border-color: var(--accent); }
+    .topbar-title {
+      flex: 1;
+      text-align: center;
+      color: var(--text);
+      font-size: 17px;
+      font-weight: 600;
+      margin-right: 48px;
+    }
+
+    /* ── Heading ── */
+    .page-title {
+      color: var(--text);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      width: 100%;
+      max-width: 440px;
+    }
+    .page-sub {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 24px;
+      width: 100%;
+      max-width: 440px;
+    }
+
+    /* ── Quiz cards ── */
+    .quiz-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 440px;
+    }
+
+    .quiz-card {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 20px 18px;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.15s, border-color 0.15s;
+      animation: fadeIn 0.25s ease both;
+    }
+    .quiz-card:nth-child(2) { animation-delay: 0.06s; }
+    .quiz-card:nth-child(3) { animation-delay: 0.12s; }
+    .quiz-card:active { background: var(--surface2); border-color: var(--accent); }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .quiz-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .quiz-card-title {
+      color: var(--text);
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .quiz-card-subtitle {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .quiz-card-arrow {
+      color: var(--accent);
+      font-size: 20px;
+      line-height: 1;
+      margin-left: 8px;
+      flex-shrink: 0;
+    }
+
+    .quiz-card-desc {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+
+    .quiz-card-cats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .cat-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 99px;
+    }
+
+    /* ── Progress & history badges ── */
+    .quiz-card-status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .status-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 99px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .status-badge.progress {
+      background: rgba(245,158,11,0.13);
+      color: #f59e0b;
+      border: 1px solid rgba(245,158,11,0.3);
+    }
+    .status-badge.best-score {
+      background: rgba(92,124,250,0.12);
+      color: #818cf8;
+      border: 1px solid rgba(92,124,250,0.25);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a class="back-btn" href="../"><span class="arrow">←</span> Hjem</a>
+    <div class="topbar-title">Quiz Elektro</div>
+  </div>
+
+  <div class="page-title">Quiz Elektro</div>
+  <p class="page-sub">Elektroteori – velg et tema og test kunnskapene dine</p>
+
+  <div class="quiz-list">
+
+    <a class="quiz-card" href="spill.html?tema=rlc" data-tema="rlc">
+      <div class="quiz-card-header">
+        <div>
+          <div class="quiz-card-title">RLC-kretser</div>
+          <div class="quiz-card-subtitle">Elektroteori · 28 spørsmål</div>
+        </div>
+        <span class="quiz-card-arrow">›</span>
+      </div>
+      <div class="quiz-card-desc">Grunnleggende teori, resistans, kondensatorer, spoler og RLC-kretser.</div>
+      <div class="quiz-card-cats">
+        <span class="cat-tag" style="background:rgba(245,158,11,0.15); color:#f59e0b">Grunnlag</span>
+        <span class="cat-tag" style="background:rgba(236,72,153,0.15); color:#ec4899">Resistans</span>
+        <span class="cat-tag" style="background:rgba(0,168,232,0.15);  color:#00a8e8">Kondensator</span>
+        <span class="cat-tag" style="background:rgba(16,185,129,0.15); color:#10b981">Spoler</span>
+        <span class="cat-tag" style="background:rgba(139,92,246,0.15); color:#8b5cf6">RLC</span>
+      </div>
+    </a>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.quiz-card[data-tema]').forEach(function (card) {
+        var tema   = card.dataset.tema;
+        var badges = [];
+
+        try {
+          var prog = JSON.parse(localStorage.getItem('quiz_progress_' + tema));
+          if (prog && prog.idx > 0 && prog.idx < prog.order.length) {
+            badges.push(
+              '<span class="status-badge progress">' +
+                '▶ Pågår: spørsmål ' + (prog.idx + 1) + ' av ' + prog.order.length +
+              '</span>'
+            );
+          }
+        } catch (e) {}
+
+        try {
+          var hist = JSON.parse(localStorage.getItem('quiz_history_' + tema));
+          if (hist && hist.length > 0) {
+            badges.push(
+              '<span class="status-badge best-score">' +
+                '★ Beste: ' + hist[0].pct + '% (' + hist[0].score + '/' + hist[0].total + ')' +
+              '</span>'
+            );
+          }
+        } catch (e) {}
+
+        if (badges.length > 0) {
+          var statusDiv = document.createElement('div');
+          statusDiv.className = 'quiz-card-status';
+          statusDiv.innerHTML = badges.join('');
+          var cats = card.querySelector('.quiz-card-cats');
+          if (cats) cats.before(statusDiv);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
