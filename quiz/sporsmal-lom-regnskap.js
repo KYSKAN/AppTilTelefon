@@ -246,7 +246,7 @@ const QUESTIONS = [
       'Ja, avdrag er alltid en kostnad som reduserer bedriftens resultat i perioden det betales',
       'Nei – avdrag er en utbetaling og nedbetaling av gjeld, ikke en kostnad. Renten på lånet er derimot en kostnad',
       'Ja, men kun for finansinstitusjoner og banker som holder gjeld som eiendel',
-      'Kun dersom avdraget overstiger beløpsgrensen på 10 000 kroner per termin'
+      'Dersom avdraget overstiger en viss beløpsgrense per termin'
     ],
     correct: 1,
     explain: 'Viktig skille: Avdrag = nedbetaling av gjeld (påvirker kun balansen og likviditeten). Renter = kostnad (påvirker resultatregnskapet). Mange blander disse sammen.'

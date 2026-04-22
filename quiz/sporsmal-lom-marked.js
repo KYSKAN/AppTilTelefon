@@ -36,7 +36,7 @@ const QUESTIONS = [
     cat: 'grunnlag', catLabel: 'Markedsgrunnlag',
     q: 'Hva er forskjellen mellom primærmarked og sekundærmarked?',
     opts: [
-      'Primærmarked er det største markedet målt i antall kjøpere, sekundærmarked er det minste',
+      'Primærmarked er det største markedet målt i antall kjøpere; sekundærmarked er det minste',
       'Primærmarkedet er det markedet produktet først og fremst er ment for; sekundærmarkedet er et tilleggsmarked som også kan ha behov for produktet',
       'Primærmarked er innenlandsk omsetning, sekundærmarked er eksport til utlandet',
       'Primærmarked er salg av nye produkter, sekundærmarked er handel med brukte produkter'
@@ -161,8 +161,8 @@ const QUESTIONS = [
     opts: [
       'B2B er markedsføring rettet mot norske bedrifter, B2C er internasjonal markedsføring mot konsumenter',
       'B2B = bedrift selger til bedrift; B2C = bedrift selger til forbruker',
-      'B2B brukes kun for billige masseprodukte, B2C brukes for dyre og eksklusive produkter',
-      'B2B foregår utelukkende via netthandel og digitale kanaler, B2C kun i fysiske butikklokaler'
+      'B2B brukes for billige masseprodukter, B2C brukes for dyre og eksklusive produkter',
+      'B2B foregår primært via netthandel og digitale kanaler, B2C i fysiske butikklokaler'
     ],
     correct: 1,
     explain: 'B2B (Business-to-Business) og B2C (Business-to-Consumer) har svært ulik kjøpsatferd: B2B-kjøp er gjerne mer rasjonelle, langsiktige og basert på relasjoner, mens B2C-kjøp ofte er mer impulsive og følelsesdrevne. Elektroinstallasjons-bedrifter jobber primært B2B: kunder er utbyggere, eiendomsforvaltere, industri og offentlige etater. Anbud og relasjoner er de viktigste salgskanalene.'
@@ -197,7 +197,7 @@ const QUESTIONS = [
     opts: [
       'Det er ingen praktisk forskjell – begge dekker nøyaktig de samme temaene og formålene',
       'Markedsplanen dekker markedsaktivitetene i en periode; forretningsplanen dekker hele bedriftens utvikling og lages ofte i etableringsfasen',
-      'Forretningsplanen lages og oppdateres månedlig, mens markedsplanen alltid er et årsdokument',
+      'Forretningsplanen lages og oppdateres månedlig, mens markedsplanen er et statisk dokument',
       'Markedsplanen er juridisk bindende og kan brukes i rettssaker, forretningsplanen er ikke det'
     ],
     correct: 1,
@@ -219,10 +219,10 @@ const QUESTIONS = [
     cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva er forskjellen mellom primærdata og sekundærdata?',
     opts: [
-      'Primærdata er alltid gratis å skaffe, mens sekundærdata alltid koster penger å kjøpe',
+      'Primærdata er gratis å skaffe; sekundærdata koster penger å kjøpe',
       'Primærdata samles inn spesifikt for et formål (f.eks. egen spørreundersøkelse); sekundærdata finnes fra før (f.eks. SSB-statistikk)',
-      'Primærdata er alltid av kvalitativ natur, mens sekundærdata alltid er kvantitativ og tallfestet',
-      'Primærdata er alltid gamle og utdaterte data, mens sekundærdata alltid er nye og ferske data'
+      'Primærdata er av kvalitativ natur; sekundærdata er kvantitativ og tallfestet',
+      'Primærdata er eldre historiske data; sekundærdata er nyere og ferskere'
     ],
     correct: 1,
     explain: 'Primærdata er «ferskvare» samlet for din undersøkelse – mer relevant, men dyrere. Sekundærdata finnes allerede (SSB, bransjerapporter, forskning) – raskere og billigere, men ikke alltid helt relevant.'
@@ -243,7 +243,7 @@ const QUESTIONS = [
     cat: 'grunnlag', catLabel: 'Markedsgrunnlag',
     q: 'Hva kjennetegner mellomhandlermarkedet?',
     opts: [
-      'Sluttbrukere som kjøper varer til eget forbruk',
+      'Sluttbrukere som kjøper varer til eget forbruk – ikke for videresalg',
       'Aktører som kjøper varer for videresalg – ikke sluttbrukere',
       'Frivillige organisasjoner',
       'Statlige etater'
@@ -279,10 +279,10 @@ const QUESTIONS = [
     cat: 'strategi', catLabel: 'Markedsstrategi',
     q: 'Hva er samfunnsorientert markedsføring?',
     opts: [
-      'Markedsføring som utelukkende retter seg mot offentlig sektor og statlige etater',
+      'Markedsføring som primært retter seg mot offentlig sektor og statlige etater',
       'Markedsføring som tar hensyn til samfunnets langsiktige beste, f.eks. miljø og etikk – ikke bare bedriftens og kundens kortsiktige interesser',
       'Gratis eller svært rimelig markedsføring i lokale aviser og gratisblader',
-      'Markedsføring som kun utøves av veldedige organisasjoner og ideelle stiftelser'
+      'Markedsføring som utøves av veldedige organisasjoner og ideelle stiftelser'
     ],
     correct: 1,
     explain: 'Samfunnsorientert markedsføring balanserer bedriftens profitt, kundens behov og samfunnets velferd (bærekraft, etikk, miljø). Stadig viktigere i en tid med klimakrise og økt forbrukerbevissthet.'
@@ -315,9 +315,9 @@ const QUESTIONS = [
     cat: 'strategi', catLabel: 'Markedsstrategi',
     q: 'Hva skal en forretningsidé fokusere på?',
     opts: [
-      'Utelukkende den teknologien og de systemene bedriften benytter i sin produksjon',
+      'Den teknologien og de systemene bedriften benytter i sin produksjon',
       'Behov, med et konkurransefortrinn som kan bevares over tid, formulert enkelt og klart',
-      'Kun lønnsomhet og avkastning på investert kapital for eierne',
+      'Lønnsomhet og avkastning på investert kapital for eierne',
       'Hva de nåværende eierne og gründerne selv liker å jobbe med og har interesse for'
     ],
     correct: 1,
@@ -375,7 +375,7 @@ const QUESTIONS = [
     cat: 'analyse', catLabel: 'Analyse & planlegging',
     q: 'Hva viser Porters verdikjede?',
     opts: [
-      'Bare bedriftens fysiske varelevering fra lager til sluttkunde',
+      'Bedriftens fysiske varelevering fra lager til sluttkunde',
       'Alle primær- og støtteaktiviteter bedriften gjør for å skape verdi – hjelper å finne konkurransefortrinn',
       'En komplett liste over alle bedriftens godkjente leverandører og innkjøpskilder',
       'Bedriftens finansielle resultater, nøkkeltall og lønnsomhetsutvikling over tid'
@@ -450,9 +450,9 @@ const QUESTIONS = [
     cat: 'elbransjen', catLabel: 'El-bransjen',
     q: 'Hva menes med relasjonsmarkedsføring, og hvorfor er det viktig for elektrobedrifter?',
     opts: [
-      'Markedsføring som utelukkende gjennomføres via sosiale medier og digitale plattformer',
+      'Markedsføring som gjennomføres via sosiale medier og digitale plattformer',
       'Å bygge og vedlikeholde langsiktige, lønnsomme relasjoner med kunder og samarbeidspartnere',
-      'Å alltid selge til lavest mulig pris for å sikre kundelojalitet og hindre at kunder går til konkurrenter',
+      'Å selge til lavest mulig pris for å sikre kundelojalitet og hindre at kunder går til konkurrenter',
       'Anonym massemarkedsføring rettet mot alle privatpersoner uten segmentering eller personalisering'
     ],
     correct: 1,

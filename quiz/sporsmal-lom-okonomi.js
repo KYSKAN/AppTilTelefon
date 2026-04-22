@@ -53,7 +53,7 @@ const QUESTIONS = [
       'Kostnader som alltid er helt identiske og like store fra måned til måned uansett aktivitet',
       'Kostnader som varierer med produksjonsmengden (f.eks. materialer, emballasje)',
       'Kostnader som utelukkende er knyttet til ledelse og administrasjon i toppen av organisasjonen',
-      'Bare og kun lønnskostnader for ansatte – ingen andre kostnadstyper inngår her'
+      'Lønnskostnader for ansatte – ingen andre kostnadstyper inngår her'
     ],
     img: `<svg viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg"><rect width="280" height="140" fill="#161927" rx="8"/><text x="140" y="14" fill="#7b82a8" font-size="10" text-anchor="middle" font-family="system-ui,sans-serif">Kostnad i forhold til produksjonsmengde</text><line x1="30" y1="18" x2="30" y2="116" stroke="#2a2f4a" stroke-width="1.5"/><line x1="30" y1="116" x2="265" y2="116" stroke="#2a2f4a" stroke-width="1.5"/><text x="9" y="72" fill="#7b82a8" font-size="8" text-anchor="middle" font-family="system-ui,sans-serif" transform="rotate(-90 9 72)">Kostnad (kr)</text><text x="148" y="130" fill="#7b82a8" font-size="8" text-anchor="middle" font-family="system-ui,sans-serif">Produksjonsmengde →</text><line x1="30" y1="116" x2="255" y2="22" stroke="#10b981" stroke-width="2.5"/><text x="220" y="18" fill="#10b981" font-size="9" font-family="system-ui,sans-serif" font-weight="600">Kostnadslinje</text></svg>`,
     correct: 1,
@@ -100,7 +100,7 @@ const QUESTIONS = [
     cat: 'kalkyler', catLabel: 'Kalkyler & kostnader',
     q: 'Hva er selvkostmetoden (selvkostkalkylen)?',
     opts: [
-      'En kalkylemetode der kun variable og direkte kostnader knyttes til det enkelte produkt',
+      'En kalkylemetode der variable og direkte kostnader knyttes til det enkelte produkt',
       'En metode som utelukkende brukes for å beregne dekningsbidraget per produkt eller ordre',
       'En kalkylemetode der alle kostnader (faste og variable) fordeles på produktet for å finne totalkostnad per enhet',
       'En markedsbasert metode for å fastsette pris ut fra hva markedet maksimalt er villig til å betale'
@@ -112,7 +112,7 @@ const QUESTIONS = [
     cat: 'kalkyler', catLabel: 'Kalkyler & kostnader',
     q: 'Hva er forskjellen mellom bidragsmetoden og selvkostmetoden?',
     opts: [
-      'Bidragsmetoden brukes utelukkende i produksjonsbedrifter, selvkostmetoden kun i varehandelen',
+      'Bidragsmetoden brukes primært i produksjonsbedrifter, selvkostmetoden i varehandelen',
       'Bidragsmetoden henfører kun variable kostnader til produktet; selvkostmetoden fordeler alle kostnader',
       'Det er ingen reell forskjell – begge metoder gir alltid nøyaktig det samme sluttresultatet',
       'Bidragsmetoden egner seg for langsiktige beslutninger, selvkostmetoden for kortsiktige vurderinger'
@@ -198,8 +198,8 @@ const QUESTIONS = [
     opts: [
       'Ingen praktisk forskjell – begge selskapsformer er underlagt identiske regler og krav',
       'ENK: eier har personlig og ubegrenset ansvar for gjeld, enkel etablering. AS: egen juridisk enhet, begrenset ansvar, krever aksjekapital og mer formaliteter',
-      'ENK kan ikke lovlig drive næringsvirksomhet og er kun egnet for hobbyer og fritid',
-      'AS kan kun ha én enkelt eier og aksjonær – fler eierparter er ikke tillatt i et AS'
+      'ENK og AS er underlagt identiske regler for regnskap, skatt og revisjon',
+      'AS og ENK er begge underlagt personlig og ubegrenset ansvar for selskapets gjeld'
     ],
     correct: 1,
     explain: 'ENK: billig å starte, én eier, men fullt personlig ansvar. AS: krever aksjekapital (i dag 30 000 kr i Norge), egen juridisk enhet, begrenset ansvar, dyrere regnskap og krav om styre/generalforsamling.'
@@ -556,8 +556,8 @@ const QUESTIONS = [
     opts: [
       'Det er ingen praktisk forskjell – begge typer vurderes identisk med nøyaktig samme metode',
       'Uavhengige: alle lønnsomme prosjekter kan gjennomføres. Gjensidig utelukkende: kun ett kan velges (f.eks. tre tilbud på samme maskin) – velg det med høyest positiv NNV',
-      'Uavhengige prosjekter er en beslutningsform som utelukkende benyttes i offentlig sektor og statlige etater',
-      'Gjensidig utelukkende prosjekter vurderes alltid og utelukkende med internrentemetoden (IRR)'
+      'Uavhengige prosjekter er en beslutningsform som primært benyttes i offentlig sektor og statlige etater',
+      'Gjensidig utelukkende prosjekter vurderes fortrinnsvis med internrentemetoden (IRR)'
     ],
     correct: 1,
     explain: 'Uavhengige prosjekter: godta alle med positiv NNV. Gjensidig utelukkende: kun ett alternativ kan velges (samme formål/ressurs) → velg høyest NNV, ikke høyest IR. IR kan rangere feil når prosjektene har ulik størrelse eller kontantstrømprofil.'
@@ -584,7 +584,7 @@ const QUESTIONS = [
       'En analyse der alle varer, kunder og leverandører behandles med lik prioritet og oppmerksomhet',
       'En analyse basert på at ~20 % av varene/kundene/leverandørene står for ~80 % av verdien/omsetningen – disse prioriteres (A) fremfor de minst viktige (C)',
       'En kvantitativ metode for å beregne den optimale bestillingsmengden som minimerer lagerkostnader',
-      'En porteføljeanalyse som utelukkende gjelder for finansinvesteringer og verdipapirer'
+      'En porteføljeanalyse som primært gjelder for finansinvesteringer og verdipapirer'
     ],
     img: `<svg viewBox="0 0 280 150" xmlns="http://www.w3.org/2000/svg"><rect width="280" height="150" fill="#161927" rx="8"/><text x="140" y="14" fill="#7b82a8" font-size="10" text-anchor="middle" font-family="system-ui,sans-serif">Lagervarer sortert etter verdi</text><line x1="28" y1="20" x2="28" y2="118" stroke="#2a2f4a" stroke-width="1.5"/><line x1="28" y1="118" x2="268" y2="118" stroke="#2a2f4a" stroke-width="1.5"/><text x="9" y="72" fill="#7b82a8" font-size="8" text-anchor="middle" font-family="system-ui,sans-serif" transform="rotate(-90 9 72)">Verdi</text><rect x="34" y="28" width="36" height="90" fill="#5c7cfa" rx="3" opacity="0.9"/><rect x="76" y="40" width="36" height="78" fill="#5c7cfa" rx="3" opacity="0.7"/><rect x="118" y="72" width="22" height="46" fill="#f59e0b" rx="3" opacity="0.85"/><rect x="144" y="76" width="22" height="42" fill="#f59e0b" rx="3" opacity="0.7"/><rect x="170" y="86" width="14" height="32" fill="#10b981" rx="3" opacity="0.7"/><rect x="188" y="90" width="14" height="28" fill="#10b981" rx="3" opacity="0.6"/><rect x="206" y="94" width="14" height="24" fill="#10b981" rx="3" opacity="0.5"/><rect x="224" y="98" width="14" height="20" fill="#10b981" rx="3" opacity="0.4"/><rect x="242" y="102" width="14" height="16" fill="#10b981" rx="3" opacity="0.35"/><text x="52" y="132" fill="#5c7cfa" font-size="13" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700">A</text><text x="130" y="132" fill="#f59e0b" font-size="13" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700">B</text><text x="210" y="132" fill="#10b981" font-size="13" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700">C</text><text x="52" y="144" fill="#7b82a8" font-size="8" text-anchor="middle" font-family="system-ui,sans-serif">få varer</text><text x="130" y="144" fill="#7b82a8" font-size="8" text-anchor="middle" font-family="system-ui,sans-serif">medium</text><text x="210" y="144" fill="#7b82a8" font-size="8" text-anchor="middle" font-family="system-ui,sans-serif">mange varer</text></svg>`,
     correct: 1,
@@ -618,10 +618,10 @@ const QUESTIONS = [
     cat: 'kapitalbinding', catLabel: 'Kapitalbinding & lagerstyring',
     q: 'Hvordan påvirker økt kapitalbinding i varelager lønnsomheten?',
     opts: [
-      'Økt varelager øker alltid lønnsomheten fordi man aldri mangler varer og kan levere umiddelbart',
+      'Økt varelager øker lønnsomheten fordi man sjeldnere mangler varer og kan levere umiddelbart',
       'Økt kapitalbinding øker totalkapitalen → øker kostnader (tapte renter/alternativkostnad) → reduserer resultatet → reduserer rentabiliteten',
-      'Kapitalbinding i varelager har absolutt ingen effekt eller innvirkning på bedriftens lønnsomhet',
-      'Økt varelager fører alltid og direkte til at bedriften må redusere salgsprisen for å selge det'
+      'Kapitalbinding i varelager har liten effekt på lønnsomheten når rentekostnadene er lave',
+      'Økt varelager fører ofte til at bedriften må redusere salgsprisen for å selge det'
     ],
     correct: 1,
     explain: 'Rentabilitet = Resultat / Totalkapital. Større varelager → høyere totalkapital → høyere rentekostnader (tapte renteinntekter) → lavere resultat → lavere rentabilitet. Tiltak: ABC-analyse, JIT/Lean, kortere bestillingsintervall.'
