@@ -1,4 +1,4 @@
-const CACHE = 'kalkulator-v93';
+const CACHE = 'kalkulator-v94';
 
 const FILES = [
   './',
@@ -24,6 +24,8 @@ const FILES = [
   './quiz/sporsmal-lom-okonomi.js',
   './quiz/sporsmal-lom-lovavtale.js',
   './quiz/sporsmal-rlc.js',
+  './quiz/sporsmal-boolsk.js',
+  './quiz/index-bjrons.html',
 ];
 
 self.addEventListener('install', event => {
