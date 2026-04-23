@@ -101,10 +101,10 @@ const QUESTIONS = [
     cat: 'grunnlag',
     q: 'Hva er spesielt med NAND- og NOR-portene?',
     opts: [
-      'De har tre innganger i stedet for to',
+      'De har alltid tre eller flere innganger for å håndtere komplekse uttrykk',
       'De er universalporter — alle logiske funksjoner kan bygges med kun én av dem',
-      'De bruker mindre strøm enn andre porter',
-      'De er kun tilgjengelige i TTL-teknologi'
+      'De bruker vesentlig mindre strøm enn tilsvarende AND- og OR-porter',
+      'De er kun tilgjengelige i TTL og finnes ikke i moderne CMOS-kretser'
     ],
     correct: 1,
     explain: 'NAND og NOR er universalporter: ethvert logisk uttrykk kan realiseres utelukkende med NAND-porter (eller kun NOR-porter). AND, OR og NOT alene gir ikke denne egenskapen.'
