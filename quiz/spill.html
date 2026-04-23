@@ -119,6 +119,7 @@
 
     /* ── Question & options ── */
     .question-text { font-size: 1.1rem; font-weight: 600; line-height: 1.55; margin-bottom: 22px; color: #fff; }
+    .not { text-decoration: overline; }
 
     .options { display: flex; flex-direction: column; gap: 10px; }
 
@@ -627,16 +628,16 @@
         div.className = 'review-item';
         div.innerHTML =
           `<div class="review-item-num">Feil ${i + 1} av ${wrongAnswers.length}</div>` +
-          `<div class="review-item-q">${esc(item.q.q)}</div>` +
+          `<div class="review-item-q">${item.q.q}</div>` +
           `<div class="review-answer-row wrong-ans">` +
             `<span class="review-answer-icon">✗</span>` +
-            `<span><strong>Ditt svar:</strong> ${esc(item.chosenText)}</span>` +
+            `<span><strong>Ditt svar:</strong> ${item.chosenText}</span>` +
           `</div>` +
           `<div class="review-answer-row correct-ans">` +
             `<span class="review-answer-icon">✓</span>` +
-            `<span><strong>Riktig svar:</strong> ${esc(item.correctText)}</span>` +
+            `<span><strong>Riktig svar:</strong> ${item.correctText}</span>` +
           `</div>` +
-          `<div class="review-explain">${esc(item.q.explain)}</div>`;
+          `<div class="review-explain">${item.q.explain}</div>`;
         list.appendChild(div);
       });
     }
@@ -784,7 +785,7 @@
       if (q.img) { imgDiv.innerHTML = q.img; imgDiv.style.display = 'block'; }
       else        { imgDiv.innerHTML = '';    imgDiv.style.display = 'none';  }
 
-      document.getElementById('question-text').textContent = q.q;
+      document.getElementById('question-text').innerHTML = q.q;
 
       const expl = document.getElementById('explanation');
       expl.className = 'explanation';
