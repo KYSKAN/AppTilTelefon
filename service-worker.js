@@ -1,4 +1,4 @@
-const CACHE = 'kalkulator-v107';
+const CACHE = 'kalkulator-v108';
 
 const FILES = [
   './',
@@ -28,6 +28,7 @@ const FILES = [
   './quiz/sporsmal-mikrokontroller.js',
   './quiz/sporsmal-minne.js',
   './quiz/sporsmal-tallsystemer.js',
+  './quiz/sporsmal-vipper.js',
   './quiz/index-bjrons.html',
 ];
 
