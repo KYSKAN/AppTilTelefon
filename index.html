@@ -218,6 +218,46 @@
       transition: background 0.15s;
     }
     .settings-btn-danger:active { background: rgba(239,68,68,0.25); }
+    .settings-btn-danger:disabled { opacity: 0.5; cursor: default; }
+
+    .settings-select-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+    }
+    .settings-select-row strong {
+      display: block;
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .settings-select-row span {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 2px;
+      display: block;
+    }
+    .settings-select-inner {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    #quiz-select {
+      flex: 1;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 13px;
+      padding: 8px 12px;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      outline: none;
+    }
+    #quiz-select:focus { border-color: var(--accent); }
   </style>
 </head>
 <body>
@@ -240,6 +280,34 @@
           <span>Sletter all quiz-historikk og fremgang</span>
         </div>
         <button class="settings-btn-danger" id="reset-scores-btn">Nullstill</button>
+      </div>
+
+      <div class="settings-select-row">
+        <strong>Nullstill én quiz</strong>
+        <span>Velg quiz og slett kun den scoreen</span>
+        <div class="settings-select-inner">
+          <select id="quiz-select">
+            <optgroup label="LØM Fagskole">
+              <option value="lom-ledelse">Ledelse &amp; Organisasjon</option>
+              <option value="lom-marked">Markedsføringsledelse</option>
+              <option value="lom-regnskap">Regnskapsanalyse</option>
+              <option value="lom-okonomi">Økonomistyring</option>
+              <option value="lom-lovavtale">Lover &amp; Avtaler</option>
+            </optgroup>
+            <optgroup label="Quiz Elektro">
+              <option value="rlc">RLC-kretser</option>
+            </optgroup>
+            <optgroup label="Quiz Elektroniske (Bjørns)">
+              <option value="mikrokontroller">Mikrokontroller</option>
+              <option value="minne">Dataminne</option>
+              <option value="boolsk">Boolsk algebra</option>
+              <option value="porter">Logiske porter</option>
+              <option value="tallsystemer">Tallsystemer</option>
+              <option value="vipper">Vipper (Flip-flops)</option>
+            </optgroup>
+          </select>
+          <button class="settings-btn-danger" id="reset-one-btn">Slett</button>
+        </div>
       </div>
 
     </div>
@@ -317,6 +385,8 @@
     const settingsBtn     = document.getElementById('settings-btn');
     const settingsOverlay = document.getElementById('settings-overlay');
     const resetBtn        = document.getElementById('reset-scores-btn');
+    const resetOneBtn     = document.getElementById('reset-one-btn');
+    const quizSelect      = document.getElementById('quiz-select');
 
     settingsBtn.addEventListener('click', () => settingsOverlay.classList.add('open'));
     settingsOverlay.addEventListener('click', e => {
@@ -334,6 +404,18 @@
         resetBtn.textContent = 'Nullstill';
         resetBtn.disabled = false;
         settingsOverlay.classList.remove('open');
+      }, 1500);
+    });
+
+    resetOneBtn.addEventListener('click', () => {
+      const tema = quizSelect.value;
+      localStorage.removeItem('quiz_history_'  + tema);
+      localStorage.removeItem('quiz_progress_' + tema);
+      resetOneBtn.textContent = 'Slettet ✓';
+      resetOneBtn.disabled = true;
+      setTimeout(() => {
+        resetOneBtn.textContent = 'Slett';
+        resetOneBtn.disabled = false;
       }, 1500);
     });
 
