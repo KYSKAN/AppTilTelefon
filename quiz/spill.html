@@ -490,7 +490,7 @@
       <div class="cat-breakdown"   id="cat-breakdown"></div>
       <div class="result-btns">
         <button class="restart-btn" onclick="restartQuiz()">Ta quizen på nytt</button>
-        <a class="home-link" href="./"><span class="arrow">←</span> Velg en annen quiz</a>
+        <a class="home-link" id="home-link" href="./"><span class="arrow">←</span> Velg en annen quiz</a>
       </div>
     </div>
   </div>
@@ -512,9 +512,12 @@
     const tema = new URLSearchParams(location.search).get('tema') || '';
     if (!tema) { location.href = './'; }
 
-    const backBtn = document.getElementById('back-btn');
-    const bjrons = ['boolsk', 'mikrokontroller', 'minne', 'tallsystemer'];
-    backBtn.href = tema.startsWith('lom-') ? './' : bjrons.includes(tema) ? './index-bjrons.html' : './index-elektro.html';
+    const backBtn  = document.getElementById('back-btn');
+    const homeLink = document.getElementById('home-link');
+    const bjrons   = ['boolsk', 'mikrokontroller', 'minne', 'tallsystemer'];
+    const indexHref = tema.startsWith('lom-') ? './' : bjrons.includes(tema) ? './index-bjrons.html' : './index-elektro.html';
+    backBtn.href  = indexHref;
+    homeLink.href = indexHref;
 
     const script = document.createElement('script');
     script.src = `sporsmal-${tema}.js`;
