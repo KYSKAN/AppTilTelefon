@@ -15,7 +15,7 @@ const QUESTIONS = [
 
   {
     cat: 'boolsk',
-    q: 'Hva er resultatet av dobbel negasjon — <span class="not">(<span class="not">A</span>)</span>? (regel 1)',
+    q: 'Hva er resultatet av dobbel negasjon — <span class="dbl-not">A</span>? (regel 1)',
     opts: [
       '<span class="not">A</span> — signalet forblir invertert',
       'A — to inverteringer opphever hverandre',
@@ -23,7 +23,7 @@ const QUESTIONS = [
       '1 — signalet settes til høy'
     ],
     correct: 1,
-    explain: 'Dobbel negasjon (regel 1): <span class="not">(<span class="not">A</span>)</span> = A. Inverteres et signal to ganger kommer du tilbake til det originale signalet.'
+    explain: 'Dobbel negasjon (regel 1): <span class="dbl-not">A</span> = A. Inverteres et signal to ganger kommer du tilbake til det originale signalet.'
   },
 
   {
