@@ -28,7 +28,7 @@ const QUESTIONS = [
 
   {
     cat: 'lover',
-    q: 'Hva er 0 + A? (identitetslov for OR)',
+    q: 'Hva er 0 + A?',
     opts: ['0', '1', 'A', '<span class="not">A</span>'],
     correct: 2,
     explain: 'Identitetslov for OR: 0 + A = A. OR med 0 endrer ikke signalet — 0 er identitetselementet for OR.'
@@ -36,7 +36,7 @@ const QUESTIONS = [
 
   {
     cat: 'lover',
-    q: 'Hva er 1 + A? (dominerende element for OR)',
+    q: 'Hva er 1 + A?',
     opts: ['A', '0', '<span class="not">A</span>', '1'],
     correct: 3,
     explain: 'Dominerende element for OR: 1 + A = 1. Siden minst én inngang alltid er høy, vil utgangen alltid være 1 uavhengig av A.'
@@ -44,7 +44,7 @@ const QUESTIONS = [
 
   {
     cat: 'lover',
-    q: 'Hva er A + <span class="not">A</span>? (komplementlov for OR)',
+    q: 'Hva er A + <span class="not">A</span>?',
     opts: ['0', '<span class="not">A</span>', 'A', '1'],
     correct: 3,
     explain: 'Komplementlov for OR: A + <span class="not">A</span> = 1. En variabel OR-et med sin komplement gir alltid 1 — én av dem er alltid sann.'
@@ -52,7 +52,7 @@ const QUESTIONS = [
 
   {
     cat: 'lover',
-    q: 'Hva er A + A? (idempotentlov for OR)',
+    q: 'Hva er A + A?',
     opts: ['2A', '0', 'A', 'A²'],
     correct: 2,
     explain: 'Idempotentlov for OR: A + A = A. I boolsk algebra gjelder ikke vanlig aritmetikk — en variabel OR-et med seg selv gir den samme variabelen.'
@@ -60,7 +60,7 @@ const QUESTIONS = [
 
   {
     cat: 'lover',
-    q: 'Hva er 1·A? (identitetslov for AND)',
+    q: 'Hva er 1·A?',
     opts: ['1', '<span class="not">A</span>', '0', 'A'],
     correct: 3,
     explain: 'Identitetslov for AND: 1·A = A. AND med 1 endrer ikke signalet — 1 er identitetselementet for AND.'
@@ -68,7 +68,7 @@ const QUESTIONS = [
 
   {
     cat: 'lover',
-    q: 'Hva er 0·A? (dominerende element for AND)',
+    q: 'Hva er 0·A?',
     opts: ['A', '<span class="not">A</span>', '0', '1'],
     correct: 2,
     explain: 'Dominerende element for AND: 0·A = 0. AND med 0 gir alltid 0 uavhengig av A — 0 er det dominerende elementet for AND.'
@@ -76,7 +76,7 @@ const QUESTIONS = [
 
   {
     cat: 'lover',
-    q: 'Hva er A · <span class="not">A</span>? (komplementlov for AND)',
+    q: 'Hva er A · <span class="not">A</span>?',
     opts: ['1', 'A', '<span class="not">A</span>', '0'],
     correct: 3,
     explain: 'Komplementlov for AND: A · <span class="not">A</span> = 0. En variabel AND-et med sin komplement gir alltid 0 — én av dem er alltid lav.'
@@ -84,7 +84,7 @@ const QUESTIONS = [
 
   {
     cat: 'lover',
-    q: 'Hva er A · A? (idempotentlov for AND)',
+    q: 'Hva er A · A?',
     opts: ['A²', '0', 'A', '2A'],
     correct: 2,
     explain: 'Idempotentlov for AND: A · A = A. En variabel AND-et med seg selv gir den samme variabelen.'
@@ -131,7 +131,7 @@ const QUESTIONS = [
 
   {
     cat: 'uttrykk',
-    q: 'Distributiv lov — hva er riktig forenkling av A·B + A·C?',
+    q: 'Hva er riktig forenkling av A·B + A·C?',
     opts: ['A + B·C', 'A + B + C', 'A·B·C', 'A·(B+C)'],
     correct: 3,
     explain: 'Distributiv lov: A·B + A·C = A·(B+C). A faktoriseres ut, akkurat som i vanlig algebra. Nyttig for å forenkle logiske kretser.'
@@ -139,7 +139,7 @@ const QUESTIONS = [
 
   {
     cat: 'uttrykk',
-    q: 'Distributiv lov 2 — hva er riktig forenkling av (A+B)·(A+C)?',
+    q: 'Hva er riktig forenkling av (A+B)·(A+C)?',
     opts: ['A·(B+C)', 'A·B + B·C', 'A + B + C', 'A + B·C'],
     correct: 3,
     explain: 'Distributiv lov 2: (A+B)·(A+C) = A + B·C. En viktig boolsk identitet uten direkte parallell i vanlig algebra.'
@@ -147,7 +147,7 @@ const QUESTIONS = [
 
   {
     cat: 'uttrykk',
-    q: 'Absorpsjonslov — hva er A + A·B forenklet?',
+    q: 'Hva er A + A·B forenklet?',
     opts: ['A·B', 'A + B', 'B', 'A'],
     correct: 3,
     explain: 'Absorpsjonslov: A + A·B = A. Bevis: A + A·B = A·(1+B) = A·1 = A. Det sammensatte leddet absorberes av det enkle.'
@@ -155,7 +155,7 @@ const QUESTIONS = [
 
   {
     cat: 'uttrykk',
-    q: 'Absorpsjonslov — hva er A·(A+B) forenklet?',
+    q: 'Hva er A·(A+B) forenklet?',
     opts: ['A + B', 'B', 'A·B', 'A'],
     correct: 3,
     explain: 'Absorpsjonslov: A·(A+B) = A. Bevis: A·A + A·B = A + A·B = A (første absorpsjonslov). A dominerer det større OR-uttrykket.'
@@ -195,7 +195,7 @@ const QUESTIONS = [
 
   {
     cat: 'uttrykk',
-    q: 'De Morgans første lov — hva er <span class="not">A·B</span>?',
+    q: 'Hva er <span class="not">A·B</span> forenklet?',
     opts: [
       '<span class="not">A</span> · <span class="not">B</span>',
       'A + B',
@@ -209,7 +209,7 @@ const QUESTIONS = [
 
   {
     cat: 'uttrykk',
-    q: 'De Morgans andre lov — hva er <span class="not">A+B</span>?',
+    q: 'Hva er <span class="not">A+B</span> forenklet?',
     opts: [
       '<span class="not">A</span> + <span class="not">B</span>',
       '<span class="not">A</span> · <span class="not">B</span>',
