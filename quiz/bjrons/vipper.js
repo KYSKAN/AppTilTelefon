@@ -19,9 +19,9 @@ const QUESTIONS = [
     q: 'Hva er en vippe (flip-flop)?',
     opts: [
       'En kombinatorisk krets uten hukommelse',
-      'En sekvensielt krets som lagrer én bit',
-      'En analog forsterker',
-      'En type logisk port'
+      'En sekvenslogisk krets som lagrer én bit',
+      'En analog forsterker for digitale signaler',
+      'En type logisk port med to innganger'
     ],
     correct: 1,
     explain: 'En vippe er en sekvenslogisk krets med to stabile tilstander (0 og 1). Den kan lagre én bit informasjon og beholder tilstanden inntil den aktivt endres — grunnsteinen i digitalt minne.'
@@ -31,10 +31,10 @@ const QUESTIONS = [
     cat: 'grunnlag',
     q: 'Hva betyr det at en vippe er bistabil?',
     opts: [
-      'Den svinger mellom to tilstander automatisk',
+      'Den oscillerer automatisk mellom 0 og 1 med jevn frekvens',
       'Den har to stabile hviletilstander og holder én av dem',
-      'Den trenger to klokker',
-      'Den har to utganger med samme verdi'
+      'Den krever to separate klokkeinnganger for å fungere stabilt',
+      'Den har to komplementære utganger der begge alltid er like'
     ],
     correct: 1,
     explain: 'Bistabil betyr at kretsen har nøyaktig to stabile likevektstilstander (Q=0 og Q=1) og forblir i den siste satte tilstanden uten å trenge kontinuerlig inngangssignal.'
@@ -44,10 +44,10 @@ const QUESTIONS = [
     cat: 'grunnlag',
     q: 'Hva representerer utgangene Q og <span class="not">Q</span> i en vippe?',
     opts: [
-      'To uavhengige biter',
-      'Klokke og data',
+      'To separate, uavhengige databiter',
+      'Klokkeinngangen og datainngangen',
       'Tilstand og komplementær tilstand',
-      'Set og Reset'
+      'Set- og Reset-inngangene'
     ],
     correct: 2,
     explain: 'Q er vippe-utgangen (nåværende tilstand). <span class="not">Q</span> er alltid den logiske inversen av Q — de er komplementære. Hvis Q=1 er <span class="not">Q</span>=0 og omvendt.'
@@ -57,10 +57,10 @@ const QUESTIONS = [
     cat: 'grunnlag',
     q: 'Hva skiller sekvenslogikk fra kombinatorisk logikk?',
     opts: [
-      'Sekvenslogikk bruker kun NAND-porter',
-      'Kombinatorisk logikk er raskere',
+      'Sekvenslogikk er bygget utelukkende av seriekoblede NAND-porter',
+      'Kombinatorisk logikk er raskere fordi den ikke bruker klokkesignal',
       'Sekvenslogikk har hukommelse — utgangen avhenger av tidligere tilstand',
-      'Kombinatorisk logikk krever klokke'
+      'Kombinatorisk logikk krever alltid en klokke, sekvenslogikk ikke'
     ],
     correct: 2,
     explain: 'Kombinatorisk logikk gir utganger basert utelukkende på nåværende innganger. Sekvenslogikk (som vipper) har intern tilstand — utgangen avhenger av både nåværende innganger og tidligere tilstand.'
@@ -70,10 +70,10 @@ const QUESTIONS = [
     cat: 'grunnlag',
     q: 'Hva betyr klokkestyrt (synkron) vippe?',
     opts: [
-      'Vippen endrer seg kontinuerlig',
+      'Vippen oppdaterer utgangen kontinuerlig basert på inngangsverdien',
       'Vippen endrer tilstand kun ved et klokkesignal',
-      'Vippen bruker to klokker',
-      'Vippen har ingen Set/Reset'
+      'Vippen trenger to separate klokker for å synkronisere',
+      'Vippen mangler Set- og Reset-innganger av praktiske årsaker'
     ],
     correct: 1,
     explain: 'En klokkestyrt vippe oppdaterer utgangen sin kun når klokken er aktiv (stigning eller fall på klokkepulsen). Dette gir kontrollert, forutsigbar oppførsel i synkrone digitale systemer.'
@@ -84,9 +84,9 @@ const QUESTIONS = [
     q: 'Hva er forskjellen på stigningskantutløst og fallkantutløst vippe?',
     opts: [
       'Stigningskant reagerer på lav-til-høy overgang, fallkant på høy-til-lav',
-      'De er identiske',
-      'Stigningskant er tregere',
-      'Fallkant brukes kun i SR-vipper'
+      'De reagerer nøyaktig likt, men ved ulike tidspunkter i klokkesyklusen',
+      'Stigningskantutløsning er tregere og brukes i lavhastighetskretser',
+      'Fallkantutløsning er forbeholdt SR-vipper og enkle latch-kretser'
     ],
     correct: 0,
     explain: 'Stigningskantutløst (positive edge-triggered) vippe reagerer når klokken går fra 0→1. Fallkantutløst reagerer på 1→0. Begge lagrer inngangsverdien kun i dette korte øyeblikket.'
@@ -137,10 +137,10 @@ const QUESTIONS = [
     cat: 'typer',
     q: 'Hva skjer i SR-vippen når S=0, R=0?',
     opts: [
-      'Q settes til 0',
-      'Q beholder forrige tilstand',
-      'Q settes til 1',
-      'Vippen nullstilles'
+      'Q settes til 0 — Reset aktiveres',
+      'Q beholder sin siste lagrede verdi',
+      'Q settes til 1 — Set aktiveres',
+      'Q havner i udefinert tilstand'
     ],
     correct: 1,
     explain: 'S=0, R=0 er hukommelsestilstanden: ingen av inngangene er aktive, og vippen beholder sin siste lagrede verdi. Dette er slik vippen fungerer som 1-bit minne.'
@@ -150,10 +150,10 @@ const QUESTIONS = [
     cat: 'typer',
     q: 'Hva gjør D-vippen?',
     opts: [
-      'Toggler utgangen ved hver klokkepuls',
+      'Inverterer utgangen Q ved hver stigende klokkekant',
       'Lagrer verdien på D-inngangen ved klokkekanten',
-      'Har en forbudt tilstand som SR-vippen',
-      'Brukes kun i analoge kretser'
+      'Aktiverer forbudt tilstand når Set og Reset er høye',
+      'Brukes utelukkende i analoge signalbehandlingskretser'
     ],
     correct: 1,
     explain: 'D-vippen (Data/Delay) kopierer verdien på D-inngangen til utgangen Q ved klokkekanten og holder den til neste klokkepuls. Den løser den forbudte tilstanden i SR-vippen ved å ha kun én datainngang.'
@@ -163,10 +163,10 @@ const QUESTIONS = [
     cat: 'typer',
     q: 'Hva er den viktigste fordelen med D-vippen over SR-vippen?',
     opts: [
-      'D-vippen er billigere',
+      'D-vippen er rimeligere og enklere å produsere',
       'D-vippen har ingen forbudt tilstand',
-      'D-vippen er raskere',
-      'D-vippen bruker færre transistorer'
+      'D-vippen er raskere ved høye klokkehastigheter',
+      'D-vippen bruker færre transistorer totalt'
     ],
     correct: 1,
     explain: 'SR-vippen har en udefinert/forbudt tilstand (S=R=1). D-vippen unngår dette ved å ha én enkelt D-inngang — <span class="not">D</span> kobles internt til R, så Set og Reset kan aldri aktiveres samtidig.'
@@ -176,9 +176,9 @@ const QUESTIONS = [
     cat: 'typer',
     q: 'Hva gjør JK-vippen når J=1 og K=1?',
     opts: [
-      'Udefinert tilstand',
-      'Q settes til 1',
-      'Q settes til 0',
+      'Q havner i en udefinert og uforutsigbar tilstand',
+      'Q tvinges permanent til logisk høy (1)',
+      'Q tvinges permanent til logisk lav (0)',
       'Q toggler — bytter til motsatt tilstand'
     ],
     correct: 3,
@@ -189,10 +189,10 @@ const QUESTIONS = [
     cat: 'typer',
     q: 'Hva er T-vippen og hva gjør den?',
     opts: [
-      'En vippe med to Set-innganger',
+      'En vippe med to separate Set-innganger for Q og <span class="not">Q</span>',
       'En vippe som toggler Q ved hver klokkepuls når T=1',
-      'En vippe uten klokkeinnganger',
-      'En vippe som lagrer to biter'
+      'En asynkron vippe som fungerer helt uten klokkesignal',
+      'En vippe som kan holde to separate databiter'
     ],
     correct: 1,
     explain: 'T-vippen (Toggle) har én inngang T. Når T=1 inverteres Q ved hver klokkepuls (toggle). Når T=0 holder vippen tilstanden. T-vippen er i praksis en JK-vippe med J og K koblet sammen.'
@@ -215,10 +215,10 @@ const QUESTIONS = [
     cat: 'typer',
     q: 'Hva skjer i JK-vippen når J=0 og K=0?',
     opts: [
-      'Q toggler',
-      'Q settes til 0',
+      'Q inverteres og bytter verdi ved neste klokkepuls',
+      'Q tvinges til logisk lav (0)',
       'Q beholder forrige tilstand',
-      'Udefinert tilstand'
+      'Q havner i udefinert og uforutsigbar tilstand'
     ],
     correct: 2,
     explain: 'J=0, K=0 i JK-vippen er hukommelsestilstanden — identisk med S=0, R=0 i SR-vippen. Vippen beholder sin nåværende Q-verdi ved neste klokkepuls.'
@@ -230,10 +230,10 @@ const QUESTIONS = [
     cat: 'anvendelse',
     q: 'Hva er et register i digital elektronikk?',
     opts: [
-      'En type logisk port',
+      'En kombinatorisk port med to innganger og én utgang',
       'En gruppe vipper som lagrer flere biter sammen',
-      'Et analogt minneelement',
-      'En oscillator'
+      'Et analogt element som lagrer et kontinuerlig spenningsnivå',
+      'En krets som genererer et repeterende klokkesignal'
     ],
     correct: 1,
     explain: 'Et register er en gruppe D-vipper som jobber sammen og deler klokke. Et 8-bits register består av 8 D-vipper og kan lagre én byte. Registre er grunnlaget for CPU-registre og databuffere.'
@@ -243,10 +243,10 @@ const QUESTIONS = [
     cat: 'anvendelse',
     q: 'Hva er et skiftregister?',
     opts: [
-      'Et register som multipliserer data',
+      'Et register som multipliserer inngangsdata med en fast faktor',
       'Et register der data forskyves én bit per klokkepuls',
-      'Et register uten klokkestyring',
-      'Et register som teller impulser'
+      'Et asynkront register som oppdateres uten klokkesignal',
+      'Et register som akkumulerer og teller antall klokkepulser'
     ],
     correct: 1,
     explain: 'Et skiftregister kobler D-vipper i serie slik at Q fra én vippe kobles til D på neste. Ved hver klokkepuls forskyves (shiftes) alle biter én posisjon. Brukes til seriell/parallell konvertering og tidsforsinkelse.'
@@ -282,10 +282,10 @@ const QUESTIONS = [
     cat: 'anvendelse',
     q: 'Hvor brukes D-vipper mye i prosessorer?',
     opts: [
-      'I strømforsyningen',
+      'I strømforsyning og spenningsregulatorer',
       'I CPU-registre og pipeline-trinn',
-      'I analoge filtre',
-      'I skjermkontrollere'
+      'I analoge lavpassfiltre og ADC-kretser',
+      'I grafikk- og skjermkontrollere'
     ],
     correct: 1,
     explain: 'D-vipper er grunnlaget for alle CPU-registre (program counter, akkumulator, flaggregister). I pipeline-arkitekturer lagrer D-vipper mellomresultater mellom hvert trinn slik at alle trinn kan kjøre parallelt.'
@@ -295,10 +295,10 @@ const QUESTIONS = [
     cat: 'anvendelse',
     q: 'Hva er metastabilitet i en vippe?',
     opts: [
-      'Når vippen toggler for raskt',
+      'Når klokkesignalet svitsjer for raskt og vippen ikke rekker å reagere',
       'Når en inngang endres for nær klokkekanten og utgangen blir uforutsigbar',
-      'Når strømforsyningen er ustabil',
-      'Når to vipper deler samme klokke'
+      'Når strømforsyningen varierer og forårsaker tilfeldige vippeendringer',
+      'Når to vipper deler klokke og et race condition oppstår mellom dem'
     ],
     correct: 1,
     explain: 'Metastabilitet oppstår når D-inngangen endres i setup/hold-tidsvinduet rundt klokkekanten. Vippen havner i en ustabil mellomtilstand og kan ta uforutsigbar tid på å bestemme seg for 0 eller 1. Kritisk å unngå i asynkron kommunikasjon.'
