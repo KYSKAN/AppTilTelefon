@@ -145,7 +145,8 @@
       align-items: center;
       gap: 12px;
     }
-    .option-btn:hover:not(:disabled) { border-color: var(--accent); background: rgba(92,124,250,0.1); transform: translateX(2px); }
+    .option-btn:hover:not(:disabled):not(.selected) { border-color: rgba(92,124,250,0.45); background: rgba(92,124,250,0.07); transform: translateX(2px); }
+    .option-btn.selected:hover:not(:disabled) { background: rgba(92,124,250,0.22); transform: translateX(2px); }
 
     .option-btn .letter {
       min-width: 26px; height: 26px; border-radius: 6px;
