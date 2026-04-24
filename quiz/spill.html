@@ -159,6 +159,18 @@
     .option-btn.wrong   { border-color: var(--red);   background: var(--red-bg); }
     .option-btn.wrong   .letter { background: var(--red);   color: #fff; }
     .option-btn:disabled { cursor: default; }
+    .option-btn.selected { border-color: var(--accent); background: rgba(92,124,250,0.15); }
+    .option-btn.selected .letter { background: var(--accent); color: #fff; }
+
+    /* ── Confirm button (multi-answer) ── */
+    .confirm-btn {
+      width: 100%; margin-top: 10px; padding: 13px;
+      border-radius: 10px; background: var(--accent); border: none;
+      color: #fff; font-size: 0.95rem; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: background 0.15s;
+    }
+    .confirm-btn:disabled { opacity: 0.35; cursor: default; }
+    .confirm-btn:hover:not(:disabled) { background: var(--accent-hover); }
 
     /* ── Explanation ── */
     .explanation {
@@ -475,6 +487,9 @@
       <div class="q-image" id="q-image" style="display:none;"></div>
       <div class="question-text" id="question-text"></div>
       <div class="options" id="options-container"></div>
+      <div id="confirm-wrap" style="display:none;">
+        <button class="confirm-btn" id="confirm-btn" disabled>Bekreft svar</button>
+      </div>
       <div class="explanation" id="explanation"></div>
       <div class="nav-row">
         <button class="prev-btn" id="prev-btn" onclick="prevQuestion()">← Forrige</button>
@@ -854,10 +869,14 @@
       const prevBtn2 = document.getElementById('prev-btn');
       prevBtn2.disabled = currentIdx <= minNavigableIdx;
 
+      const isMulti      = Array.isArray(q.correct);
       const stored       = answers[currentIdx];
       currentIndices     = stored ? stored.indices : shuffle([0, 1, 2, 3]);
       const shuffledOpts = currentIndices.map(i => q.opts[i]);
-      const correctIdx   = currentIndices.indexOf(q.correct);
+
+      // Positions in the shuffled display where correct answers appear
+      const correctOriginals = isMulti ? q.correct : [q.correct];
+      const correctShuffled  = correctOriginals.map(ci => currentIndices.indexOf(ci));
 
       const container = document.getElementById('options-container');
       container.innerHTML = '';
@@ -865,18 +884,37 @@
         const btn = document.createElement('button');
         btn.className = 'option-btn';
         btn.innerHTML = `<span class="letter">${LETTERS[i]}</span><span>${opt}</span>`;
-        btn.addEventListener('click', () => selectAnswer(i, correctIdx, q, shuffledOpts));
+        if (isMulti) {
+          btn.addEventListener('click', () => toggleOption(btn, i));
+        } else {
+          btn.addEventListener('click', () => selectAnswer(i, correctShuffled[0], q, shuffledOpts));
+        }
         container.appendChild(btn);
       });
 
+      // Confirm button – only for unanswered multi-answer questions
+      const confirmWrap = document.getElementById('confirm-wrap');
+      const confirmBtn  = document.getElementById('confirm-btn');
+      if (isMulti && !stored) {
+        confirmWrap.style.display = 'block';
+        confirmBtn.disabled = true;
+        confirmBtn.onclick = () => confirmAnswer(correctShuffled, q, shuffledOpts);
+      } else {
+        confirmWrap.style.display = 'none';
+      }
+
+      // Restore answered state when navigating back
       if (stored) {
         answered = true;
+        const storedChosen = Array.isArray(stored.chosen) ? stored.chosen : [stored.chosen];
         document.querySelectorAll('.option-btn').forEach((btn, i) => {
           btn.disabled = true;
-          if (i === correctIdx)        btn.classList.add('correct');
-          else if (i === stored.chosen) btn.classList.add('wrong');
+          if (correctShuffled.includes(i))   btn.classList.add('correct');
+          else if (storedChosen.includes(i)) btn.classList.add('wrong');
         });
-        expl.innerHTML = `<strong>${stored.chosen === correctIdx ? '✓ Riktig!' : '✗ Feil.'}</strong> ${q.explain}`;
+        const isCorrect = storedChosen.length === correctShuffled.length &&
+          storedChosen.every(c => correctShuffled.includes(c));
+        expl.innerHTML = `<strong>${isCorrect ? '✓ Riktig!' : '✗ Feil.'}</strong> ${q.explain}`;
         expl.classList.add('show');
       }
     }
@@ -907,6 +945,55 @@
 
       const expl = document.getElementById('explanation');
       expl.innerHTML = `<strong>${chosen === correctIdx ? '✓ Riktig!' : '✗ Feil.'}</strong> ${q.explain}`;
+      expl.classList.add('show');
+    }
+
+    function toggleOption(btn, i) {
+      if (answered) return;
+      btn.classList.toggle('selected');
+      const anySelected = document.querySelectorAll('.option-btn.selected').length > 0;
+      document.getElementById('confirm-btn').disabled = !anySelected;
+    }
+
+    function confirmAnswer(correctShuffled, q, shuffledOpts) {
+      if (answered) return;
+      answered = true;
+
+      const btns = [...document.querySelectorAll('.option-btn')];
+      const chosenIndices = btns.reduce((acc, btn, i) => {
+        if (btn.classList.contains('selected')) acc.push(i);
+        return acc;
+      }, []);
+
+      answers[currentIdx] = { indices: currentIndices, chosen: chosenIndices };
+
+      btns.forEach((btn, i) => {
+        btn.disabled = true;
+        btn.classList.remove('selected');
+        if (correctShuffled.includes(i))    btn.classList.add('correct');
+        else if (chosenIndices.includes(i)) btn.classList.add('wrong');
+      });
+
+      document.getElementById('confirm-wrap').style.display = 'none';
+
+      const isCorrect = chosenIndices.length === correctShuffled.length &&
+        chosenIndices.every(c => correctShuffled.includes(c));
+
+      if (isCorrect) {
+        score++;
+        catScores[q.cat].correct++;
+      } else {
+        wrongAnswers.push({
+          q,
+          chosenText:  chosenIndices.length ? chosenIndices.map(i => shuffledOpts[i]).join(' + ') : '(ingen valgt)',
+          correctText: correctShuffled.map(i => shuffledOpts[i]).join(' + ')
+        });
+      }
+
+      document.getElementById('score-live').textContent = `Poeng: ${score}`;
+
+      const expl = document.getElementById('explanation');
+      expl.innerHTML = `<strong>${isCorrect ? '✓ Riktig!' : '✗ Feil.'}</strong> ${q.explain}`;
       expl.classList.add('show');
     }
 
