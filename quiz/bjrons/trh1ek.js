@@ -447,73 +447,68 @@ const QUESTIONS = [
   {
     cat: 'digital',
     q: 'Se figur: krets med klokkeingang, inverter og NAND-porter med Q og Q̄. Hva er dette?',
-    img: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 230" style="display:block;margin:0 auto 8px;max-width:360px;background:#1a1a2e;border-radius:8px;padding:8px;">
-  <style>text{font:13px monospace;fill:#e2e8f0;} .lbl{font:12px monospace;fill:#a0aec0;} .wire{stroke:#63b3ed;stroke-width:1.8;fill:none;} .gate{stroke:#63b3ed;stroke-width:1.8;fill:#16213e;}</style>
-  <!-- Inverter (triangle + bubble) -->
-  <polygon class="gate" points="30,95 30,115 50,105"/>
-  <circle cx="54" cy="105" r="4" class="gate"/>
-  <!-- D input -->
-  <line class="wire" x1="5" y1="105" x2="30" y2="105"/>
-  <text x="0" y="100" class="lbl" style="font:11px monospace;">D</text>
-  <!-- Clock input -->
-  <line class="wire" x1="5" y1="145" x2="80" y2="145"/>
-  <text x="0" y="150" class="lbl" style="font:11px monospace;">CLK</text>
-  <!-- NAND gate 1 (top): D̄ + CLK → S̄ -->
-  <path class="gate" d="M80,70 L80,110 Q115,110 115,90 Q115,70 80,70Z"/>
-  <circle cx="119" cy="90" r="4" class="gate"/>
-  <!-- D̄ wire from inverter to NAND1 top input -->
-  <line class="wire" x1="58" y1="105" x2="70" y2="105"/>
-  <line class="wire" x1="70" y1="105" x2="70" y2="80"/>
-  <line class="wire" x1="70" y1="80" x2="80" y2="80"/>
-  <!-- CLK wire to NAND1 bottom input -->
-  <line class="wire" x1="70" y1="145" x2="70" y2="100"/>
-  <line class="wire" x1="70" y1="100" x2="80" y2="100"/>
-  <!-- NAND gate 2 (bottom): D + CLK → R̄ -->
-  <path class="gate" d="M80,120 L80,160 Q115,160 115,140 Q115,120 80,120Z"/>
-  <circle cx="119" cy="140" r="4" class="gate"/>
-  <!-- D wire direct to NAND2 top input -->
-  <line class="wire" x1="5" y1="105" x2="15" y2="105"/>
-  <line class="wire" x1="15" y1="105" x2="15" y2="130"/>
-  <line class="wire" x1="15" y1="130" x2="80" y2="130"/>
-  <!-- CLK wire to NAND2 bottom input -->
-  <line class="wire" x1="70" y1="145" x2="80" y2="145"/>
-  <!-- NAND gate 3 (top SR): S̄ → Q -->
-  <path class="gate" d="M160,65 L160,105 Q195,105 195,85 Q195,65 160,65Z"/>
-  <circle cx="199" cy="85" r="4" class="gate"/>
-  <!-- NAND gate 4 (bottom SR): R̄ → Q̄ -->
-  <path class="gate" d="M160,115 L160,155 Q195,155 195,135 Q195,115 160,115Z"/>
-  <circle cx="199" cy="135" r="4" class="gate"/>
-  <!-- S̄ wire from NAND1 to NAND3 -->
-  <line class="wire" x1="123" y1="90" x2="145" y2="90"/>
-  <line class="wire" x1="145" y1="90" x2="145" y2="75"/>
-  <line class="wire" x1="145" y1="75" x2="160" y2="75"/>
-  <!-- R̄ wire from NAND2 to NAND4 -->
-  <line class="wire" x1="123" y1="140" x2="145" y2="140"/>
-  <line class="wire" x1="145" y1="140" x2="145" y2="145"/>
-  <line class="wire" x1="145" y1="145" x2="160" y2="145"/>
-  <!-- Q output -->
-  <line class="wire" x1="203" y1="85" x2="280" y2="85"/>
-  <text x="284" y="90">Q</text>
-  <!-- Q̄ output -->
-  <line class="wire" x1="203" y1="135" x2="280" y2="135"/>
-  <text x="284" y="140">Q̄</text>
-  <!-- Feedback Q → NAND4 top -->
-  <line class="wire" x1="255" y1="85" x2="255" y2="60"/>
-  <line class="wire" x1="255" y1="60" x2="152" y2="60"/>
-  <line class="wire" x1="152" y1="60" x2="152" y2="125"/>
-  <line class="wire" x1="152" y1="125" x2="160" y2="125"/>
-  <!-- Feedback Q̄ → NAND3 bottom -->
-  <line class="wire" x1="245" y1="135" x2="245" y2="165"/>
-  <line class="wire" x1="245" y1="165" x2="148" y2="165"/>
-  <line class="wire" x1="148" y1="165" x2="148" y2="95"/>
-  <line class="wire" x1="148" y1="95" x2="160" y2="95"/>
-  <!-- Junctions -->
-  <circle cx="255" cy="85" r="3" fill="#63b3ed"/>
-  <circle cx="245" cy="135" r="3" fill="#63b3ed"/>
-  <circle cx="70" cy="145" r="3" fill="#63b3ed"/>
-  <circle cx="15" cy="105" r="3" fill="#63b3ed"/>
-  <!-- Label -->
-  <text x="90" y="18" style="font:11px monospace;fill:#f6ad55;">D-vippe (NAND)</text>
+    img: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 395 210" style="display:block;margin:0 auto 8px;max-width:395px;background:#1a1a2e;border-radius:8px;padding:8px;">
+<style>.w{stroke:#63b3ed;stroke-width:1.8;fill:none;} .g{stroke:#63b3ed;stroke-width:1.8;fill:#16213e;} .lbl{font:12px monospace;fill:#a0aec0;} .out{font:bold 14px monospace;fill:#e2e8f0;} .dot{fill:#63b3ed;}</style>
+<!-- D input -->
+<text class="lbl" x="3" y="97">D</text>
+<line class="w" x1="8" y1="100" x2="22" y2="100"/>
+<!-- Inverter: triangle + bubble -->
+<polygon class="g" points="22,88 22,112 50,100"/>
+<circle class="g" cx="55" cy="100" r="5"/>
+<!-- D̄ wire: inverter output → up → NAND1 top input (y=72) -->
+<line class="w" x1="60" y1="100" x2="72" y2="100"/>
+<line class="w" x1="72" y1="72" x2="72" y2="100"/>
+<line class="w" x1="72" y1="72" x2="85" y2="72"/>
+<!-- D branch: junction on D wire → down → NAND2 top input (y=138) -->
+<line class="w" x1="18" y1="100" x2="18" y2="138"/>
+<line class="w" x1="18" y1="138" x2="85" y2="138"/>
+<circle class="dot" cx="18" cy="100" r="3"/>
+<!-- CLK input -->
+<text class="lbl" x="3" y="196">CLK</text>
+<line class="w" x1="8" y1="180" x2="77" y2="180"/>
+<!-- CLK vertical: up to NAND1 bottom (y=92), junction branch to NAND2 bottom (y=158) -->
+<line class="w" x1="77" y1="92" x2="77" y2="180"/>
+<line class="w" x1="77" y1="92" x2="85" y2="92"/>
+<line class="w" x1="77" y1="158" x2="85" y2="158"/>
+<circle class="dot" cx="77" cy="158" r="3"/>
+<!-- NAND1: D̄+CLK → S̄ (inputs: top y=72, bottom y=92; center y=82) -->
+<path class="g" d="M85,62 L85,102 Q130,102 130,82 Q130,62 85,62Z"/>
+<circle class="g" cx="134" cy="82" r="4.5"/>
+<!-- NAND2: D+CLK → R̄ (inputs: top y=138, bottom y=158; center y=148) -->
+<path class="g" d="M85,128 L85,168 Q130,168 130,148 Q130,128 85,128Z"/>
+<circle class="g" cx="134" cy="148" r="4.5"/>
+<!-- S̄ wire: NAND1 out → jog up → NAND3 top input (y=68) -->
+<line class="w" x1="138" y1="82" x2="178" y2="82"/>
+<line class="w" x1="178" y1="68" x2="178" y2="82"/>
+<line class="w" x1="178" y1="68" x2="203" y2="68"/>
+<!-- R̄ wire: NAND2 out → jog down → NAND4 bottom input (y=158) -->
+<line class="w" x1="138" y1="148" x2="178" y2="148"/>
+<line class="w" x1="178" y1="148" x2="178" y2="158"/>
+<line class="w" x1="178" y1="158" x2="203" y2="158"/>
+<!-- NAND3: S̄+Q̄_fb → Q (inputs: top y=68, bottom y=88; center y=78) -->
+<path class="g" d="M203,58 L203,98 Q248,98 248,78 Q248,58 203,58Z"/>
+<circle class="g" cx="252" cy="78" r="4.5"/>
+<!-- NAND4: Q_fb+R̄ → Q̄ (inputs: top y=138, bottom y=158; center y=148) -->
+<path class="g" d="M203,128 L203,168 Q248,168 248,148 Q248,128 203,128Z"/>
+<circle class="g" cx="252" cy="148" r="4.5"/>
+<!-- Q output -->
+<line class="w" x1="256" y1="78" x2="362" y2="78"/>
+<text class="out" x="366" y="83">Q</text>
+<!-- Q̄ output -->
+<line class="w" x1="256" y1="148" x2="362" y2="148"/>
+<text class="out" x="366" y="153">Q̄</text>
+<!-- Feedback Q → NAND4 top input (y=138): loop above -->
+<line class="w" x1="325" y1="78" x2="325" y2="35"/>
+<line class="w" x1="325" y1="35" x2="198" y2="35"/>
+<line class="w" x1="198" y1="35" x2="198" y2="138"/>
+<line class="w" x1="198" y1="138" x2="203" y2="138"/>
+<circle class="dot" cx="325" cy="78" r="3"/>
+<!-- Feedback Q̄ → NAND3 bottom input (y=88): loop below -->
+<line class="w" x1="313" y1="148" x2="313" y2="192"/>
+<line class="w" x1="313" y1="192" x2="188" y2="192"/>
+<line class="w" x1="188" y1="192" x2="188" y2="88"/>
+<line class="w" x1="188" y1="88" x2="203" y2="88"/>
+<circle class="dot" cx="313" cy="148" r="3"/>
 </svg>`,
     opts: [
       'T-vippe (flipflop)',
