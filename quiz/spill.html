@@ -699,7 +699,7 @@
         div.className = 'review-item';
         div.innerHTML =
           `<div class="review-item-num">Feil ${i + 1} av ${wrongAnswers.length}</div>` +
-          `<div class="review-item-q">${item.q.q}</div>` +
+          `<div class="review-item-q">${item.q.q.replace(/\n/g, '<br>')}</div>` +
           `<div class="review-answer-row wrong-ans">` +
             `<span class="review-answer-icon">✗</span>` +
             `<span><strong>Ditt svar:</strong> ${item.chosenText}</span>` +
@@ -856,7 +856,7 @@
       if (q.img) { imgDiv.innerHTML = q.img; imgDiv.style.display = 'block'; }
       else        { imgDiv.innerHTML = '';    imgDiv.style.display = 'none';  }
 
-      document.getElementById('question-text').innerHTML = q.q;
+      document.getElementById('question-text').innerHTML = q.q.replace(/\n/g, '<br>');
 
       const expl = document.getElementById('explanation');
       expl.className = 'explanation';
