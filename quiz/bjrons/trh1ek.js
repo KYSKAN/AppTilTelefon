@@ -369,7 +369,7 @@ const QUESTIONS = [
   },
   {
     cat: 'analog',
-    q: 'Velg passende seriemotstand for en zenerregulator:\nV_in = 8,5 V, V_z = 5,1 V, I_last = 10 mA, I_z_min = 3 mA\nR = (V_in − V_z) / (I_last + I_z_min)',
+    q: 'Velg passende seriemotstand for en zenerregulator:\nV<sub>in</sub> = 8,5 V, V<sub>z</sub> = 5,1 V, I<sub>last</sub> = 10 mA, I<sub>z,min</sub> = 3 mA\nR = (V<sub>in</sub> − V<sub>z</sub>) / (I<sub>last</sub> + I<sub>z,min</sub>)',
     opts: [
       '≈ 262 Ω',
       '≈ 237 Ω',
