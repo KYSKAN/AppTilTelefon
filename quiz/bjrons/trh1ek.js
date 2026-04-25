@@ -17,7 +17,7 @@ const QUESTIONS = [
   // ── Dataminne ──────────────────────────────────────────────────
   {
     cat: 'minne',
-    q: 'Hva kjennetegner primærminne (RAM)? (velg alle riktige)',
+    q: 'Hva kjennetegner primærminne (RAM)?',
     opts: [
       'Flyktig minne som mister data uten strøm',
       'Permanent lagring',
@@ -29,7 +29,7 @@ const QUESTIONS = [
   },
   {
     cat: 'minne',
-    q: 'Hva skiller DRAM fra SRAM? (velg alle riktige)',
+    q: 'Hva skiller DRAM fra SRAM?',
     opts: [
       'DRAM må oppfriskes jevnlig',
       'SRAM er tregere enn DRAM',
@@ -65,7 +65,7 @@ const QUESTIONS = [
   },
   {
     cat: 'minne',
-    q: 'Hva kjennetegner EEPROM? (velg alle riktige)',
+    q: 'Hva kjennetegner EEPROM?',
     opts: [
       'Slettes elektronisk',
       'Kan kun skrives én gang',
@@ -77,7 +77,7 @@ const QUESTIONS = [
   },
   {
     cat: 'minne',
-    q: 'Hva skiller SSD fra HDD? (velg alle riktige)',
+    q: 'Hva skiller SSD fra HDD?',
     opts: [
       'Ingen bevegelige deler',
       'Tregere enn HDD',
@@ -89,7 +89,7 @@ const QUESTIONS = [
   },
   {
     cat: 'minne',
-    q: 'Hva er ulemper med SSD? (velg alle riktige)',
+    q: 'Hva er ulemper med SSD?',
     opts: [
       'Begrenset antall skrive-/slettesykluser',
       'Treg tilgangstid',
@@ -101,7 +101,7 @@ const QUESTIONS = [
   },
   {
     cat: 'minne',
-    q: 'Hva brukes cache til? (velg alle riktige)',
+    q: 'Hva brukes cache til?',
     opts: [
       'Lagre ofte brukte data nær CPU',
       'Permanent lagring av filer',
@@ -163,7 +163,7 @@ const QUESTIONS = [
   // ── Tallsystemer ───────────────────────────────────────────────
   {
     cat: 'tallsystemer',
-    q: 'Konverter 1106₇ – hvilke av disse er korrekte svar? (velg alle riktige)',
+    q: 'Konverter 1106₇ – hvilke av disse er korrekte svar?',
     opts: [
       '398₁₀',
       '100111110₂',
@@ -175,7 +175,7 @@ const QUESTIONS = [
   },
   {
     cat: 'tallsystemer',
-    q: 'Konverter 10101011₂ – hvilke av disse er korrekte svar? (velg alle riktige)',
+    q: 'Konverter 10101011₂ – hvilke av disse er korrekte svar?',
     opts: [
       '171₁₀',
       'AB₁₆',
@@ -187,7 +187,7 @@ const QUESTIONS = [
   },
   {
     cat: 'tallsystemer',
-    q: 'Konverter AB₁₆ – hvilke av disse er korrekte svar? (velg alle riktige)',
+    q: 'Konverter AB₁₆ – hvilke av disse er korrekte svar?',
     opts: [
       '171₁₀',
       '10101011₂',
@@ -199,7 +199,7 @@ const QUESTIONS = [
   },
   {
     cat: 'tallsystemer',
-    q: 'Konverter 1C4₁₆ – hvilke av disse er korrekte svar? (velg alle riktige)',
+    q: 'Konverter 1C4₁₆ – hvilke av disse er korrekte svar?',
     opts: [
       '452₁₀',
       '111000100₂',
@@ -211,7 +211,7 @@ const QUESTIONS = [
   },
   {
     cat: 'tallsystemer',
-    q: 'Konverter 165₇ – hvilke av disse er korrekte svar? (velg alle riktige)',
+    q: 'Konverter 165₇ – hvilke av disse er korrekte svar?',
     opts: [
       '96₁₀',
       '60₁₆',
@@ -223,7 +223,7 @@ const QUESTIONS = [
   },
   {
     cat: 'tallsystemer',
-    q: 'Konverter 297₁₀ – hvilke av disse er korrekte svar? (velg alle riktige)',
+    q: 'Konverter 297₁₀ – hvilke av disse er korrekte svar?',
     opts: [
       '100101001₂',
       '431₈',
@@ -235,7 +235,7 @@ const QUESTIONS = [
   },
   {
     cat: 'tallsystemer',
-    q: 'Konverter 1E6₁₆ – hvilke av disse er korrekte svar? (velg alle riktige)',
+    q: 'Konverter 1E6₁₆ – hvilke av disse er korrekte svar?',
     opts: [
       '486₁₀',
       '111100110₂',
@@ -247,7 +247,7 @@ const QUESTIONS = [
   },
   {
     cat: 'tallsystemer',
-    q: 'Konverter 202₁₀ – hvilke av disse er korrekte svar? (velg alle riktige)',
+    q: 'Konverter 202₁₀ – hvilke av disse er korrekte svar?',
     opts: [
       '1302₅',
       '244₉',
@@ -357,7 +357,7 @@ const QUESTIONS = [
   // ── Analog elektronikk ─────────────────────────────────────────
   {
     cat: 'analog',
-    q: 'Hvilke konfigurasjoner gir to strøm-topper per nettperiode? (velg alle riktige)',
+    q: 'Hvilke konfigurasjoner gir to strøm-topper per nettperiode?',
     opts: [
       'Helbølgelikeretter med senter-tapp',
       'Bro-likeretter',
@@ -381,7 +381,7 @@ const QUESTIONS = [
   },
   {
     cat: 'analog',
-    q: 'Hva er typiske ripple-frekvenser fra ulike likerettertyper ved 50 Hz nett? (velg alle riktige)',
+    q: 'Hva er typiske ripple-frekvenser fra ulike likerettertyper ved 50 Hz nett?',
     opts: [
       'Halvbølgelikeretter: 50 Hz',
       'Helbølgelikeretter med senter-tapp: 100 Hz',
@@ -432,7 +432,7 @@ const QUESTIONS = [
   },
   {
     cat: 'digital',
-    q: 'Hva er korrekt om T- og JK-vipper? (velg alle riktige)',
+    q: 'Hva er korrekt om T- og JK-vipper?',
     opts: [
       'T-vippe lages ved å sette J = K i en JK-vippe',
       'JK-vippe har ugyldig tilstand ved J=K=1',
@@ -456,7 +456,7 @@ const QUESTIONS = [
   },
   {
     cat: 'digital',
-    q: 'Hvilke utsagn om F = A + B er riktige? (velg alle riktige)',
+    q: 'Hvilke utsagn om F = A + B er riktige?',
     opts: [
       'Det er en OR-operasjon',
       'F = 0 kun når A = B = 0',
@@ -468,7 +468,7 @@ const QUESTIONS = [
   },
   {
     cat: 'digital',
-    q: 'Gitt F = A̅B̅ + AB̅ + A̅B + AB. Hvilke påstander stemmer? (velg alle riktige)',
+    q: 'Gitt F = A̅B̅ + AB̅ + A̅B + AB. Hvilke påstander stemmer?',
     opts: [
       'F = 1 (alltid sann)',
       '4 enere i Karnaugh-diagrammet',
@@ -480,7 +480,7 @@ const QUESTIONS = [
   },
   {
     cat: 'digital',
-    q: 'Hvilke påstander gjelder for en asynkron MOD-5-teller? (velg alle riktige)',
+    q: 'Hvilke påstander gjelder for en asynkron MOD-5-teller?',
     opts: [
       'Krever 3 flip-flopper',
       'Resetter når telleverdien når 5',
@@ -492,7 +492,7 @@ const QUESTIONS = [
   },
   {
     cat: 'digital',
-    q: 'Hvilke utsagn gjelder for en synkron MOD-5-nedteller? (velg alle riktige)',
+    q: 'Hvilke utsagn gjelder for en synkron MOD-5-nedteller?',
     opts: [
       'Alle flip-flopper deler felles klokke',
       'Sekvens: 4 → 3 → 2 → 1 → 0 → 4',
@@ -505,7 +505,7 @@ const QUESTIONS = [
   // ── ESD og EMC ─────────────────────────────────────────────────
   {
     cat: 'digital',
-    q: 'Hvilke utsagn om ESD (elektrostatisk utladning) er riktige? (velg alle riktige)',
+    q: 'Hvilke utsagn om ESD (elektrostatisk utladning) er riktige?',
     opts: [
       'ESD-hendelser kan være flere kV og svært raske (ns–µs)',
       'ESD vurderes i både kontakt- og luftutladning',
@@ -517,7 +517,7 @@ const QUESTIONS = [
   },
   {
     cat: 'digital',
-    q: 'Hva beskriver EMC (elektromagnetisk kompatibilitet) best? (velg alle riktige)',
+    q: 'Hva beskriver EMC (elektromagnetisk kompatibilitet) best?',
     opts: [
       'Evnen til å fungere tilfredsstillende i elektromagnetiske omgivelser og ikke forstyrre andre systemer',
       'Kun måling av strålt støy',
@@ -530,7 +530,7 @@ const QUESTIONS = [
   // ── Arduino og programmering ───────────────────────────────────
   {
     cat: 'arduino',
-    q: 'Hvilke av følgende er eksempler på Arduino-kort? (velg alle riktige)',
+    q: 'Hvilke av følgende er eksempler på Arduino-kort?',
     opts: [
       'Arduino UNO',
       'Arduino Mega',
@@ -554,7 +554,7 @@ const QUESTIONS = [
   },
   {
     cat: 'arduino',
-    q: 'Hvilke kommunikasjonsprotokoller støttes av de fleste Arduino-kort? (velg alle riktige)',
+    q: 'Hvilke kommunikasjonsprotokoller støttes av de fleste Arduino-kort?',
     opts: [
       'SPI',
       'I2C',
@@ -566,7 +566,7 @@ const QUESTIONS = [
   },
   {
     cat: 'arduino',
-    q: 'Hvilke av følgende er sensorer eller aktuatorer som brukes med mikrokontrollere? (velg alle riktige)',
+    q: 'Hvilke av følgende er sensorer eller aktuatorer som brukes med mikrokontrollere?',
     opts: [
       'Temperaturføler',
       'Servomotor',
@@ -590,7 +590,7 @@ const QUESTIONS = [
   },
   {
     cat: 'arduino',
-    q: 'Hva kjennetegner en parallell buss? (velg alle riktige)',
+    q: 'Hva kjennetegner en parallell buss?',
     opts: [
       'Sender data ett bit av gangen',
       'Har separate ledere for hver bit',
