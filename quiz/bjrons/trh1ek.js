@@ -395,7 +395,7 @@ const QUESTIONS = [
   {
     cat: 'digital',
     q: 'Se figur: to krysskoblede NOR-porter med Q og Q̄-utganger. Hva er kretsen?',
-    img: SVG_SR_NOR_KRETS,
+    img: '<img src="sr-nor-krets.svg" style="max-width:100%;border-radius:8px;display:block;margin:0 auto 8px;">',
     opts: [
       'JK-vippe (flipflop)',
       'JK-vippe (latch)',
