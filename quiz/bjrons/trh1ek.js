@@ -602,7 +602,7 @@ const QUESTIONS = [
   },
   {
     cat: 'arduino',
-    q: 'Hva vil følgende Arduino-kode gjøre?\n\nsetup(): pinMode(13, OUTPUT)\nloop(): digitalWrite(13, HIGH) → delay(1000) → digitalWrite(13, LOW) → delay(1000)',
+    q: 'Hva vil følgende Arduino-kode gjøre?<code class="code-block">void setup() {\n  pinMode(13, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(13, HIGH);\n  delay(1000);\n  digitalWrite(13, LOW);\n  delay(1000);\n}</code>',
     opts: [
       'Blinke en LED på pin 13 med 1 sekunds intervall (1 sek på, 1 sek av)',
       'Slå på og av hele Arduino-kortet',
