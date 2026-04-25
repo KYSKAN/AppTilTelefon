@@ -444,15 +444,15 @@ const QUESTIONS = [
   },
   {
     cat: 'digital',
-    q: 'Hvilken påstand om tallsystemer er riktig?',
+    q: 'Hvilke påstander om tallsystemer er riktige?',
     opts: [
       '7F₁₆ = 127₁₀',
       '1255₁₀ = 4E7₁₆',
-      '52 = 37₁₀',
+      '5₂ = 37₁₀',
       'Hex bruker 3 biter per siffer',
     ],
-    correct: 0,
-    explain: '7F₁₆ = 7×16 + 15 = 127₁₀ ✓. Hex bruker 4 biter per siffer (nibble). Alternativ C er ugyldig – 5 er ikke et lovlig binært siffer.',
+    correct: [0, 1],
+    explain: '7F₁₆ = 7×16 + 15 = 127₁₀ ✓. 4E7₁₆ = 4×256 + 14×16 + 7 = 1255₁₀ ✓. 5₂ er ugyldig – 5 er ikke et lovlig binært siffer. Hex bruker 4 biter per siffer (nibble).',
   },
   {
     cat: 'digital',
