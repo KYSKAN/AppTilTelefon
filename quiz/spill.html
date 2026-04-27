@@ -437,6 +437,37 @@
       font-weight: 600;
     }
 
+    /* ── Leaderboard ── */
+    .leaderboard-wrap { max-width: 700px; width: 100%; margin-top: 12px; animation: fadeIn 0.3s ease; }
+    .lb-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; }
+    .lb-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 16px; text-align: center; }
+    .lb-form { display: flex; gap: 8px; margin-bottom: 20px; }
+    .lb-form input {
+      flex: 1; background: var(--surface2); border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 11px 14px; font-size: 0.95rem;
+      font-family: inherit; color: var(--text); outline: none; transition: border-color 0.15s;
+    }
+    .lb-form input:focus { border-color: var(--accent); }
+    .lb-form input::placeholder { color: var(--muted); }
+    .lb-submit-btn {
+      background: var(--accent); border: none; border-radius: 10px;
+      padding: 11px 20px; color: #fff; font-size: 0.95rem; font-weight: 600;
+      font-family: inherit; cursor: pointer; white-space: nowrap; transition: background 0.15s;
+    }
+    .lb-submit-btn:hover { background: var(--accent-hover); }
+    .lb-submit-btn:disabled { opacity: 0.5; cursor: default; }
+    .lb-entry {
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+      border-radius: 8px; font-size: 0.9rem; margin-bottom: 6px;
+      background: var(--surface2); border: 1px solid var(--border);
+    }
+    .lb-entry.highlight { border-color: var(--accent); background: rgba(92,124,250,0.1); }
+    .lb-rank { min-width: 28px; font-weight: 700; color: var(--muted); font-size: 0.85rem; }
+    .lb-navn { flex: 1; color: #fff; font-weight: 500; }
+    .lb-score { font-weight: 700; color: var(--accent); }
+    .lb-pct { font-size: 0.8rem; color: var(--muted); margin-left: 4px; }
+    .lb-loading { color: var(--muted); font-size: 0.9rem; text-align: center; padding: 16px 0; }
+
     /* ── Loading / error ── */
     #loading { color: var(--muted); font-size: 0.95rem; margin-top: 80px; }
 
@@ -516,6 +547,18 @@
         <button class="restart-btn" onclick="restartQuiz()">Ta quizen på nytt</button>
         <a class="home-link" id="home-link" href="./"><span class="arrow">←</span> Velg en annen quiz</a>
       </div>
+    </div>
+  </div>
+
+  <!-- LEADERBOARD -->
+  <div id="leaderboard-wrap" class="leaderboard-wrap" style="display:none;">
+    <div class="lb-card">
+      <div class="lb-title">🏆 Toppliste – <span id="lb-tema-label"></span></div>
+      <div id="lb-form-wrap" class="lb-form">
+        <input type="text" id="lb-navn" placeholder="Ditt kallenavn" maxlength="20" autocomplete="off">
+        <button class="lb-submit-btn" id="lb-submit-btn" onclick="handleScoreSubmit()">Lagre</button>
+      </div>
+      <div id="lb-list"><div class="lb-loading">Laster toppliste…</div></div>
     </div>
   </div>
 
@@ -1057,16 +1100,98 @@
       });
 
       renderWrongAnswers();
+      showLeaderboardSection(score, questions.length);
     }
 
     function restartQuiz() {
       clearProgress();
       hideReviewWrap();
+      document.getElementById('leaderboard-wrap').style.display = 'none';
       document.getElementById('result-screen').style.display = 'none';
       document.getElementById('continue-btn').style.display  = 'none';
       document.getElementById('new-quiz-btn').textContent    = 'Start Quiz →';
       renderHistory();
       document.getElementById('start-screen').style.display  = 'block';
+    }
+
+    // ── Supabase leaderboard ──────────────────────────────────────
+    const SB_URL  = 'https://cimobeaszhycobffsjes.supabase.co';
+    const SB_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNpbW9iZWFzemh5Y29iZmZzamVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyODM3MjQsImV4cCI6MjA5Mjg1OTcyNH0.iaivOt6lh0bXwxB9gTutuDhHizOcmK_7da2cE-Iw5vU';
+    const LB_TEMAS = ['rlc'];
+
+    let pendingScore = null;
+
+    function sbHeaders(extra = {}) {
+      return { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', ...extra };
+    }
+
+    async function fetchLeaderboard(t) {
+      const res = await fetch(
+        `${SB_URL}/rest/v1/scores?tema=eq.${t}&order=score.desc,created_at.asc&limit=10`,
+        { headers: sbHeaders() }
+      );
+      return res.ok ? res.json() : [];
+    }
+
+    async function saveScore(navn, sc, tot, t) {
+      await fetch(`${SB_URL}/rest/v1/scores`, {
+        method: 'POST',
+        headers: sbHeaders({ 'Prefer': 'return=minimal' }),
+        body: JSON.stringify({ navn, score: sc, total: tot, tema: t })
+      });
+    }
+
+    async function renderLeaderboard(highlightNavn) {
+      const list = document.getElementById('lb-list');
+      list.innerHTML = '<div class="lb-loading">Laster…</div>';
+      const entries = await fetchLeaderboard(temas[0]);
+      if (!entries.length) {
+        list.innerHTML = '<div class="lb-loading">Ingen scores ennå – vær den første!</div>';
+        return;
+      }
+      const medals = ['🥇', '🥈', '🥉'];
+      list.innerHTML = entries.map((e, i) => {
+        const pct = Math.round(e.score / e.total * 100);
+        const hi  = highlightNavn && e.navn === highlightNavn;
+        return `<div class="lb-entry${hi ? ' highlight' : ''}">` +
+          `<span class="lb-rank">${medals[i] || (i + 1) + '.'}</span>` +
+          `<span class="lb-navn">${esc(e.navn)}</span>` +
+          `<span class="lb-score">${e.score}/${e.total}</span>` +
+          `<span class="lb-pct">${pct}%</span>` +
+        `</div>`;
+      }).join('');
+    }
+
+    async function handleScoreSubmit() {
+      const input = document.getElementById('lb-navn');
+      const navn  = input.value.trim();
+      if (!navn) { input.focus(); return; }
+      const btn = document.getElementById('lb-submit-btn');
+      btn.disabled    = true;
+      btn.textContent = 'Lagrer…';
+      try {
+        localStorage.setItem('quiz_kallenavn', navn);
+        await saveScore(navn, pendingScore.score, pendingScore.total, temas[0]);
+        document.getElementById('lb-form-wrap').style.display = 'none';
+        await renderLeaderboard(navn);
+      } catch(e) {
+        btn.disabled    = false;
+        btn.textContent = 'Lagre';
+        alert('Noe gikk galt. Prøv igjen.');
+      }
+    }
+
+    function showLeaderboardSection(sc, tot) {
+      if (!LB_TEMAS.includes(temas[0]) || temas.length !== 1) return;
+      pendingScore = { score: sc, total: tot };
+      document.getElementById('leaderboard-wrap').style.display = 'block';
+      document.getElementById('lb-tema-label').textContent      = QUIZ_META.title;
+      document.getElementById('lb-form-wrap').style.display     = 'flex';
+      const btn = document.getElementById('lb-submit-btn');
+      btn.disabled    = false;
+      btn.textContent = 'Lagre';
+      document.getElementById('lb-navn').value = localStorage.getItem('quiz_kallenavn') || '';
+      renderLeaderboard(null);
     }
   </script>
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cacaef3101de40808d70354880ca03b0"}'></script><!-- End Cloudflare Web Analytics -->
