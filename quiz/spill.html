@@ -509,6 +509,10 @@
         <button class="continue-btn" id="continue-btn" style="display:none;" onclick="continueQuiz()"></button>
         <button class="start-btn" id="new-quiz-btn" onclick="startQuiz()">Start Quiz →</button>
       </div>
+      <div id="start-lb-section" style="display:none; margin-top:24px; text-align:left;">
+        <div class="history-section-title" style="margin-bottom:10px;">🏆 Toppliste</div>
+        <div id="start-lb-list"><div class="lb-loading">Laster…</div></div>
+      </div>
     </div>
   </div>
 
@@ -825,6 +829,11 @@
       }
 
       document.getElementById('start-screen').style.display = 'block';
+
+      if (LB_TEMAS.includes(temas[0]) && temas.length === 1) {
+        document.getElementById('start-lb-section').style.display = 'block';
+        renderStartLeaderboard();
+      }
     }
 
     // ── Helpers ──────────────────────────────────────────────────
@@ -1178,6 +1187,36 @@
 
     function lbShowAll(btn) {
       document.querySelectorAll('.lb-entry.hidden').forEach(el => el.classList.remove('hidden'));
+      btn.remove();
+    }
+
+    async function renderStartLeaderboard() {
+      const list = document.getElementById('start-lb-list');
+      const entries = await fetchLeaderboard(temas[0]);
+      if (!entries.length) {
+        list.innerHTML = '<div class="lb-loading">Ingen scores ennå – vær den første!</div>';
+        return;
+      }
+      const medals = ['🥇', '🥈', '🥉'];
+      const rows = entries.map((e, i) => {
+        const pct = Math.round(e.score / e.total * 100);
+        const hidden = i >= 3 ? ' hidden' : '';
+        return `<div class="lb-entry${hidden}">` +
+          `<span class="lb-rank">${medals[i] || (i + 1) + '.'}</span>` +
+          `<span class="lb-navn">${esc(e.navn)}</span>` +
+          `<span class="lb-score">${e.score}/${e.total}</span>` +
+          `<span class="lb-pct">${pct}%</span>` +
+        `</div>`;
+      }).join('');
+      const rest = entries.length - 3;
+      const showMoreBtn = rest > 0
+        ? `<button class="lb-show-more" onclick="lbShowAllStart(this)">Vis alle (${entries.length}) ▾</button>`
+        : '';
+      list.innerHTML = rows + showMoreBtn;
+    }
+
+    function lbShowAllStart(btn) {
+      btn.closest('#start-lb-list').querySelectorAll('.lb-entry.hidden').forEach(el => el.classList.remove('hidden'));
       btn.remove();
     }
 
