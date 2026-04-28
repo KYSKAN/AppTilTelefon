@@ -449,27 +449,26 @@
   </div>
 
   <script>
-    // Navn overlay
+    // Navn overlay — vises kun om quiz_kallenavn aldri er satt (null)
     (function () {
       var overlay = document.getElementById('navn-overlay');
       var input   = document.getElementById('navn-input');
-      if (sessionStorage.getItem('lom_navn_spurt')) {
+      if (localStorage.getItem('quiz_kallenavn') !== null) {
         overlay.style.display = 'none';
       } else {
-        input.value = localStorage.getItem('quiz_kallenavn') || '';
+        input.value = '';
         input.focus();
       }
     })();
 
     function bekreftNavn() {
       var navn = document.getElementById('navn-input').value.trim();
-      if (navn) localStorage.setItem('quiz_kallenavn', navn);
-      sessionStorage.setItem('lom_navn_spurt', '1');
+      localStorage.setItem('quiz_kallenavn', navn);
       document.getElementById('navn-overlay').style.display = 'none';
     }
 
     function hoppOverNavn() {
-      sessionStorage.setItem('lom_navn_spurt', '1');
+      localStorage.setItem('quiz_kallenavn', '');
       document.getElementById('navn-overlay').style.display = 'none';
     }
 
@@ -482,13 +481,11 @@
     function lagreNavn() {
       var navn = document.getElementById('navn-endre-input').value.trim();
       localStorage.setItem('quiz_kallenavn', navn);
-      sessionStorage.setItem('lom_navn_spurt', '1');
       oppdaterNavnVisning();
     }
 
     function fjernNavn() {
       localStorage.removeItem('quiz_kallenavn');
-      sessionStorage.removeItem('lom_navn_spurt');
       document.getElementById('navn-endre-input').value = '';
       oppdaterNavnVisning();
     }
