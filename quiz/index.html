@@ -436,8 +436,8 @@
     (function () {
       var overlay = document.getElementById('navn-overlay');
       var input   = document.getElementById('navn-input');
-      var saved   = localStorage.getItem('quiz_kallenavn');
-      if (saved) {
+      var saved = localStorage.getItem('quiz_kallenavn');
+      if (saved !== null) {
         overlay.style.display = 'none';
       } else {
         input.focus();
