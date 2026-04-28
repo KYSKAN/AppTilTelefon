@@ -506,9 +506,10 @@
         maxlength="20" autocomplete="off"
         style="width:100%; padding:14px 16px; border-radius:10px; border:1.5px solid var(--border); background:var(--surface2); color:var(--text); font-size:1.1rem; margin-bottom:12px; outline:none; transition:border-color 0.2s;"
         onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"
-        onkeydown="if(event.key==='Enter') confirmNavn()">
-      <button onclick="confirmNavn()"
-        style="width:100%; padding:14px; border-radius:10px; border:none; background:linear-gradient(135deg,#3b82f6,#6366f1); color:#fff; font-size:1.05rem; font-weight:600; cursor:pointer; margin-bottom:12px;">
+        oninput="var b=document.getElementById('fortsett-btn');b.disabled=!this.value.trim();b.style.opacity=this.value.trim()?'1':'0.4';"
+        onkeydown="if(event.key==='Enter'&&this.value.trim()) confirmNavn()">
+      <button id="fortsett-btn" onclick="confirmNavn()" disabled
+        style="width:100%; padding:14px; border-radius:10px; border:none; background:linear-gradient(135deg,#3b82f6,#6366f1); color:#fff; font-size:1.05rem; font-weight:600; cursor:pointer; margin-bottom:12px; opacity:0.4; transition:opacity 0.2s;">
         Fortsett →
       </button>
       <button onclick="skipNavn()"
@@ -1295,7 +1296,7 @@
       btn.disabled    = true;
       btn.textContent = 'Lagrer…';
       try {
-        localStorage.setItem('quiz_kallenavn', navn);
+        if (input.value.trim()) localStorage.setItem('quiz_kallenavn', input.value.trim());
         await saveScore(navn, pendingScore.score, pendingScore.total, temas[0]);
         document.getElementById('lb-form-wrap').style.display = 'none';
         await renderLeaderboard(navn);
