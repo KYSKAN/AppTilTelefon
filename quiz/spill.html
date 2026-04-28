@@ -1005,6 +1005,7 @@
         });
       }
 
+      saveAnswer(q, chosen === correctIdx);
       document.getElementById('score-live').textContent = `Poeng: ${score}`;
 
       const expl = document.getElementById('explanation');
@@ -1053,6 +1054,8 @@
           correctText: correctShuffled.map(i => shuffledOpts[i]).join(' + ')
         });
       }
+
+      saveAnswer(q, isCorrect);
 
       document.getElementById('score-live').textContent = `Poeng: ${score}`;
 
@@ -1156,6 +1159,14 @@
         headers: sbHeaders({ 'Prefer': 'return=minimal' }),
         body: JSON.stringify({ navn, score: sc, total: tot, tema: t })
       });
+    }
+
+    function saveAnswer(q, isCorrect) {
+      fetch(`${SB_URL}/rest/v1/svar`, {
+        method: 'POST',
+        headers: sbHeaders({ 'Prefer': 'return=minimal' }),
+        body: JSON.stringify({ tema: temas[0], sporsmal_idx: QUESTIONS.indexOf(q), cat: q.cat, riktig: isCorrect })
+      }).catch(() => {});
     }
 
     async function renderLeaderboard(highlightNavn) {
