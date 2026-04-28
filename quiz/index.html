@@ -449,11 +449,11 @@
   </div>
 
   <script>
-    // Navn overlay — vises kun om quiz_kallenavn aldri er satt (null)
+    // Navn overlay — vises om ingen reelt navn er lagret (null eller tom streng)
     (function () {
       var overlay = document.getElementById('navn-overlay');
       var input   = document.getElementById('navn-input');
-      if (localStorage.getItem('quiz_kallenavn') !== null) {
+      if (localStorage.getItem('quiz_kallenavn')) {
         overlay.style.display = 'none';
       } else {
         input.value = '';
@@ -468,7 +468,6 @@
     }
 
     function hoppOverNavn() {
-      localStorage.setItem('quiz_kallenavn', '');
       document.getElementById('navn-overlay').style.display = 'none';
     }
 

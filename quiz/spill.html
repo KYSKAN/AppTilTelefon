@@ -870,7 +870,7 @@
     function confirmNavn() {
       const navn = document.getElementById('start-navn-input').value.trim();
       currentNavn = navn;
-      if (navn) localStorage.setItem('quiz_kallenavn', navn);
+      localStorage.setItem('quiz_kallenavn', navn);
       document.getElementById('navn-screen').style.display = 'none';
       document.getElementById('start-screen').style.display = 'block';
     }
