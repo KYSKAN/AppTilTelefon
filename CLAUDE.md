@@ -102,7 +102,9 @@ LØM-quizzene krever at brukeren skriver inn et kallenavn på startskjermen FØR
 3. Legg til i `bjrons`-array hvis det er en Bjørns-quiz
 4. Legg til i `LB_TEMAS`-array i `spill.html` hvis det skal ha toppliste
 5. Legg til quiz-kort i riktig index-fil
-6. Legg til i `FILES`-listen i `service-worker.js` og bump `CACHE`
+6. Legg til i combine-listen i riktig index-fil (index.html / index-bjrons.html)
+7. Legg til i `#quiz-select` i `index.html` (innstillinger → nullstill én quiz)
+8. Legg til i `FILES`-listen i `service-worker.js` og bump `CACHE`
 
 ## Supabase (backend/database)
 Prosjekt-URL: `https://cimobeaszhycobffsjes.supabase.co`
