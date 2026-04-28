@@ -506,9 +506,11 @@
         <div class="history-list" id="history-list"></div>
       </div>
       <div id="start-navn-section" style="display:none; margin-top:16px;">
-        <input type="text" id="start-navn-input" placeholder="Ditt kallenavn (påkrevd)" maxlength="20" autocomplete="off"
+        <input type="text" id="start-navn-input" placeholder="Kallenavn til topplisten (valgfritt)" maxlength="20" autocomplete="off"
           style="width:100%; padding:10px 14px; border-radius:8px; border:1.5px solid #3b82f6; background:#1a1a2e; color:#fff; font-size:1rem; box-sizing:border-box;">
-        <div id="start-navn-error" style="color:#f87171; font-size:0.85rem; margin-top:4px; display:none;">Skriv inn et kallenavn for å starte.</div>
+        <div style="text-align:right; margin-top:6px;">
+          <button onclick="skipNavn()" style="background:none; border:none; color:#718096; font-size:0.85rem; cursor:pointer; padding:0;">Hopp over →</button>
+        </div>
       </div>
       <div class="start-btns">
         <button class="continue-btn" id="continue-btn" style="display:none;" onclick="continueQuiz()"></button>
@@ -858,18 +860,16 @@
     }
 
     // ── Quiz flow ────────────────────────────────────────────────
+    function skipNavn() {
+      currentNavn = '';
+      startQuiz();
+    }
+
     function startQuiz() {
       if (isLom && temas.length === 1) {
-        const input = document.getElementById('start-navn-input');
-        const navn  = input.value.trim();
-        if (!navn) {
-          document.getElementById('start-navn-error').style.display = 'block';
-          input.focus();
-          return;
-        }
-        document.getElementById('start-navn-error').style.display = 'none';
+        const navn = document.getElementById('start-navn-input').value.trim();
         currentNavn = navn;
-        localStorage.setItem('quiz_kallenavn', navn);
+        if (navn) localStorage.setItem('quiz_kallenavn', navn);
       }
 
       clearProgress();
@@ -1269,8 +1269,7 @@
 
     async function handleScoreSubmit() {
       const input = document.getElementById('lb-navn');
-      const navn  = input.value.trim();
-      if (!navn) { input.focus(); return; }
+      const navn  = input.value.trim() || 'Anonym';
       const btn = document.getElementById('lb-submit-btn');
       btn.disabled    = true;
       btn.textContent = 'Lagrer…';
