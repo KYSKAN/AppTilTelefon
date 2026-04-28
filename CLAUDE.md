@@ -6,26 +6,31 @@ PWA og nettside for elektrikere. Fagkalkulatorer og quiz. Fungerer som installer
 ## Filstruktur
 ```
 AppTilTelefon/
-├── index.html             HTML-skjelett — laster CSS og JS, ingen logikk her
+├── index.html             Rot-redirect eller landingsside
 ├── manifest.json          PWA-konfig: navn, ikon, farger, display-modus
-├── service-worker.js      Offline-caching — HUSK: bump CACHE-versjon ved hver deploy
+├── service-worker.js      Offline-caching (Network-first) — HUSK: bump CACHE ved deploy
+├── .nojekyll              Hindrer GitHub Pages fra å kjøre Jekyll (viktig for rask deploy)
 ├── CLAUDE.md              Denne filen — alltid i kontekst
 ├── DEVELOPMENT.md         Utviklingsplan, backlog og roadmap
-├── css/
-│   └── style.css          All styling, seksjoner kommentert med /* ── Navn ── */
-├── js/
-│   ├── menu.js            Dropdown-navigasjon, switchTo(), toggle-init (delt)
-│   ├── calc-ohm.js        Ohms lov: V/A/Ω/W — fyll inn 2, beregn 2
-│   ├── kabel-data.js      Tabeller og konstanter for kabel og vern (IEC 60364-5-52)
-│   ├── calc-kabel.js      Kabel og vern: NEK 400, IT/TN, logikk og utregning
-│   └── calc-krets.js      RC/RL/RLC: impedans, effekter, fasevinkel
 ├── icons/
 │   └── icon.svg           App-ikon (gult lyn på mørk bakgrunn)
+├── kalkulator/
+│   ├── index.html         Kalkulator-app (hoved-HTML, laster all CSS og JS)
+│   ├── css/
+│   │   └── style.css      All styling, seksjoner kommentert med /* ── Navn ── */
+│   └── js/
+│       ├── menu.js        Dropdown-navigasjon, switchTo(), toggle-init (delt)
+│       ├── calc-ohm.js    Ohms lov: V/A/Ω/W — fyll inn 2, beregn 2
+│       ├── kabel-data.js  Tabeller og konstanter for kabel og vern (IEC 60364-5-52)
+│       ├── calc-kabel.js  Kabel og vern: NEK 400, IT/TN, logikk og utregning
+│       ├── calc-spenning.js  Spenningsfallkalkulator
+│       └── calc-krets.js  RC/RL/RLC: impedans, effekter, fasevinkel
 └── quiz/
     ├── index.html          Quiz LØM — velger, lenker til spill.html?tema=X
     ├── index-elektro.html  Quiz Elektro — velger
     ├── index-bjrons.html   Quiz Elektroniske (Bjørns) — velger
     ├── spill.html          Quiz-motor — laster quiz-fil dynamisk fra temaFil[tema]
+    ├── illustrations.js    SVG-illustrasjoner lastet FØR quiz-fil evalueres
     ├── lom/
     │   ├── ledelse.js      LØM – Ledelse & Organisasjon (30 spørsmål)
     │   ├── marked.js       LØM – Markedsføringsledelse (36 spørsmål)
@@ -33,43 +38,114 @@ AppTilTelefon/
     │   ├── okonomi.js      LØM – Økonomistyring (50 spørsmål)
     │   └── lovavtale.js    LØM – Lover & Avtaler (29 spørsmål)
     ├── elektro/
-    │   └── rlc.js          RLC-kretser (29 spørsmål)
+    │   └── rlc.js          RLC-kretser (28 spørsmål)
     └── bjrons/
-        ├── boolsk.js       Boolsk algebra (25 spørsmål)
-        ├── porter.js       Logiske porter (26 spørsmål)
+        ├── boolsk.js           Boolsk algebra (31 spørsmål)
+        ├── porter.js           Logiske porter (26 spørsmål)
         ├── mikrokontroller.js  Mikrokontroller (25 spørsmål)
-        ├── minne.js        Dataminne (25 spørsmål)
-        ├── tallsystemer.js Tallsystemer (30 spørsmål)
-        └── vipper.js       Vipper/Flip-flops (22 spørsmål)
+        ├── minne.js            Dataminne (25 spørsmål)
+        ├── tallsystemer.js     Tallsystemer (30 spørsmål)
+        ├── vipper.js           Vipper/Flip-flops (22 spørsmål)
+        └── trh1ek.js           TRH-1EK – Avsluttende prøve (50 spørsmål)
 ```
 
 ## Kalkulatorer
-| Meny-ID | JS-fil          | View-ID     | Funksjon                               |
-|---------|-----------------|-------------|----------------------------------------|
-| ohm     | calc-ohm.js     | viewOhm     | Ohms lov med multiplikator             |
-| kabel   | calc-kabel.js   | viewKabel   | Kabeldimensjonering etter NEK 400      |
-| krets   | calc-krets.js   | viewKrets   | RC/RL/RLC: P, Q, S, cos φ, Z, I, φ    |
+Alle kalkulatorer ligger i `kalkulator/`. HTML er i `kalkulator/index.html`, JS i `kalkulator/js/`.
+
+| Meny-ID   | JS-fil           | View-ID      | Funksjon                               |
+|-----------|------------------|--------------|----------------------------------------|
+| ohm       | calc-ohm.js      | viewOhm      | Ohms lov med multiplikator             |
+| kabel     | calc-kabel.js    | viewKabel    | Kabeldimensjonering etter NEK 400      |
+| spenning  | calc-spenning.js | viewSpenning | Spenningsfallkalkulator                |
+| krets     | calc-krets.js    | viewKrets    | RC/RL/RLC: P, Q, S, cos φ, Z, I, φ    |
 
 ## Quiz (quiz/)
-Tre separate quiz-sider lenket fra hoved-appen. Felles quiz-motor i `spill.html`.
-- `spill.html` laster quiz-fil dynamisk via `temaFil[tema]`-oppslag basert på `?tema=X` i URL
-- Tema-slugs (lom-ledelse, rlc, boolsk osv.) brukes i URL, localStorage og `bjrons`-array i spill.html
-- Legg til nytt tema: opprett JS-fil i riktig mappe, legg til i `temaFil`-tabellen i spill.html, legg til kort i riktig index-fil, legg til i service-worker FILES og bump CACHE
-- `bjrons`-array i spill.html styrer hvilken hub-side «Tilbake»-knappen peker til
+Tre separate quiz-velger-sider lenket fra hoved-appen. Felles quiz-motor i `spill.html`.
+
+### Alle quiz-temaer
+| Slug              | Fil                       | Spørsmål | Hub               | Toppliste |
+|-------------------|---------------------------|----------|-------------------|-----------|
+| lom-ledelse       | lom/ledelse.js            | 30       | index.html        | ✓         |
+| lom-marked        | lom/marked.js             | 36       | index.html        | ✓         |
+| lom-regnskap      | lom/regnskap.js           | 33       | index.html        | ✓         |
+| lom-okonomi       | lom/okonomi.js            | 50       | index.html        | ✓         |
+| lom-lovavtale     | lom/lovavtale.js          | 29       | index.html        | ✓         |
+| rlc               | elektro/rlc.js            | 28       | index-elektro.html | ✓        |
+| boolsk            | bjrons/boolsk.js          | 31       | index-bjrons.html  |          |
+| porter            | bjrons/porter.js          | 26       | index-bjrons.html  |          |
+| mikrokontroller   | bjrons/mikrokontroller.js | 25       | index-bjrons.html  | ✓        |
+| minne             | bjrons/minne.js           | 25       | index-bjrons.html  | ✓        |
+| tallsystemer      | bjrons/tallsystemer.js    | 30       | index-bjrons.html  |          |
+| vipper            | bjrons/vipper.js          | 22       | index-bjrons.html  |          |
+| trh1ek            | bjrons/trh1ek.js          | 50       | index-bjrons.html  | ✓        |
+
+**Totalt: 415 spørsmål fordelt på 13 temaer**
+
+### Slik fungerer spill.html
+- Leser `?tema=X` fra URL og slår opp filen i `temaFil`-tabellen
+- Støtter multi-tema: `?tema=tema1,tema2` — slår sammen QUESTIONS og CAT_META
+- `isLom = temas.some(t => t.startsWith('lom-'))` — styrer navigasjon og navn-krav
+- `isBjrons = temas.some(t => bjrons.includes(t))` — styrer «Tilbake»-knapp
+- `bjrons`-array: `['boolsk', 'porter', 'mikrokontroller', 'minne', 'tallsystemer', 'vipper', 'trh1ek']`
+
+### localStorage-nøkler
+- `quiz_progress_{tema}` — Progresjon (order, idx, score, cats, wrongs)
+- `quiz_history_{tema}` — Beste 3 resultater (score, pct, date)
+- `quiz_kallenavn` — Brukerens kallenavn (delt på tvers av alle temaer)
+
+### LØM-quiz: påkrevd navn
+LØM-quizzene krever at brukeren skriver inn et kallenavn på startskjermen FØR quizen starter. Navnet brukes i `svar`-tabellen (per svar) og i `scores`-tabellen (totalresultat). Styres av `isLom`-variabelen og `currentNavn`-state.
+
+### Legg til nytt tema
+1. Opprett JS-fil i riktig mappe med `QUIZ_META` og `QUESTIONS`
+2. Legg til i `temaFil`-tabellen i `spill.html`
+3. Legg til i `bjrons`-array hvis det er en Bjørns-quiz
+4. Legg til i `LB_TEMAS`-array i `spill.html` hvis det skal ha toppliste
+5. Legg til quiz-kort i riktig index-fil
+6. Legg til i `FILES`-listen i `service-worker.js` og bump `CACHE`
+
+## Supabase (backend/database)
+Prosjekt-URL: `https://cimobeaszhycobffsjes.supabase.co`
+Anon-nøkkel ligger i `spill.html` — brukes for INSERT og SELECT fra nettleseren.
+
+### Tabeller
+| Tabell   | Kolonner                                          | Formål                        |
+|----------|---------------------------------------------------|-------------------------------|
+| `scores` | id, navn, score, total, tema, created_at          | Toppliste per tema            |
+| `svar`   | id, tema, sporsmal_idx, cat, riktig, navn, created_at | Hvert enkelt svar loggføres |
+
+### RLS (Row Level Security)
+- `scores`: anon kan INSERT og SELECT
+- `svar`: anon kan INSERT (ikke SELECT — leses kun via Supabase dashboard)
+
+### Supabase-funksjoner i spill.html
+| Funksjon                     | Hva den gjør                                        |
+|------------------------------|-----------------------------------------------------|
+| `sbHeaders(extra)`           | Bygger API-headers med anon-nøkkel                  |
+| `fetchLeaderboard(tema)`     | Henter top 10 scores for tema                       |
+| `saveScore(navn, sc, tot, t)`| Poster totalresultat til `scores`                   |
+| `saveAnswer(q, isCorrect)`   | Logger hvert svar til `svar` (alltid, alle temaer)  |
+| `renderLeaderboard(navn)`    | Viser toppliste på resultat-skjermen                |
+| `renderStartLeaderboard()`   | Viser toppliste på start-skjermen                   |
+| `handleScoreSubmit()`        | Håndterer navn-input og lagrer score                |
+
+`saveAnswer` kalles fra `selectAnswer()` (enkeltvalg) og `confirmAnswer()` (flervalg) for hvert svar.
 
 ## Viktige regler
-- **Service worker:** Bump `CACHE` (v18 → v19 osv.) i `service-worker.js` ved HVER deploy — ellers ser ikke telefonen endringene
-- **Deploy:** `git add . && git commit -m "..." && git push` — GitHub Pages deployer automatisk
-- **Platform:** PWA på Android og iOS, nettside i alle nettlesere på mobil og PC.
+- **Service worker:** Bump `CACHE` (v156 → v157 osv.) i `service-worker.js` linje 1 ved HVER deploy
+- **Deploy:** `git add <filer> && git commit -m "..." && git push` — GitHub Pages deployer automatisk
+- **Legg aldri til `-A` i git add** — legg til spesifikke filer for å unngå å committe .claude/
+- **.nojekyll:** Må alltid ligge i rot — uten den krasjer GitHub Pages-builden etter 15 min
+- **Platform:** PWA på Android og iOS, nettside i alle nettlesere på mobil og PC
 - **Stil:** Mørkt tema — bakgrunn `#1a1a2e`, kort `#16213e`, aksentblå `#63b3ed`
 - **Knapper:** Aktive toggle/beregn-knapper bruker gradient `#3b82f6 → #6366f1`
 
 ## Slik legger du til en ny kalkulator
-1. Opprett `js/calc-ny.js` med logikk og `calcNyClear()`
-2. Legg til HTML-view i `index.html` med `id="viewNy"`
-3. I `js/menu.js`: legg til i `views`, `labels`, `menuIdx`
-4. I `index.html`: legg til `<div class="dropdown-item">` og `<script src="js/calc-ny.js">`
-5. I `service-worker.js`: legg til `'./js/calc-ny.js'` i `FILES` og bump `CACHE`
+1. Opprett `kalkulator/js/calc-ny.js` med logikk og `calcNyClear()`
+2. Legg til HTML-view i `kalkulator/index.html` med `id="viewNy"`
+3. I `kalkulator/js/menu.js`: legg til i `views`, `labels`, `menuIdx`
+4. I `kalkulator/index.html`: legg til `<div class="dropdown-item">` og `<script src="js/calc-ny.js">`
+5. I `service-worker.js`: legg til `'./kalkulator/js/calc-ny.js'` i `FILES` og bump `CACHE`
 
 ## kabel-data.js — tabeller og konstanter
 - `izCuPVC` / `izCuPEX`: strømkapasitetstabeller kobber (IEC 60364-5-52), metoder A1–E
@@ -80,7 +156,7 @@ Tre separate quiz-sider lenket fra hoved-appen. Felles quiz-motor i `spill.html`
 - `crossSections`, `breakerSizes`: tilgjengelige tverrsnitt og vernstørrelser
 
 ## calc-kabel.js — nøkkelpunkter
-- Bruker tabeller fra `kabel-data.js` (lastes før i index.html)
+- Bruker tabeller fra `kabel-data.js` (lastes før i kalkulator/index.html)
 - `updateTempForInstall()`: setter automatisk 20°C ved D1/D2, 30°C ellers
 - IT 230V vs TN 400V styrer `U_I` (lasstrøm) og `U_ref` (spenningsfallreferanse)
 - NEK 400-5-52: maks 4% spenningsfall (bolig), 5% (industri)
