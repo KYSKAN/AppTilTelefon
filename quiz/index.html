@@ -436,10 +436,10 @@
     (function () {
       var overlay = document.getElementById('navn-overlay');
       var input   = document.getElementById('navn-input');
-      var saved = localStorage.getItem('quiz_kallenavn');
-      if (saved !== null) {
+      if (sessionStorage.getItem('lom_navn_spurt')) {
         overlay.style.display = 'none';
       } else {
+        input.value = localStorage.getItem('quiz_kallenavn') || '';
         input.focus();
       }
     })();
@@ -447,11 +447,12 @@
     function bekreftNavn() {
       var navn = document.getElementById('navn-input').value.trim();
       if (navn) localStorage.setItem('quiz_kallenavn', navn);
+      sessionStorage.setItem('lom_navn_spurt', '1');
       document.getElementById('navn-overlay').style.display = 'none';
     }
 
     function hoppOverNavn() {
-      localStorage.setItem('quiz_kallenavn', '');
+      sessionStorage.setItem('lom_navn_spurt', '1');
       document.getElementById('navn-overlay').style.display = 'none';
     }
 
