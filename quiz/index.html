@@ -332,6 +332,23 @@
         <label class="combine-item"><input type="checkbox" value="lom-lovavtale"> Lover &amp; Avtaler</label>
       </div>
       <button class="start-combine-btn" id="start-combine-btn">Start valgte →</button>
+
+      <div style="border-top:1px solid var(--border); margin-top:20px; padding-top:20px;">
+        <div style="font-size:0.8rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:10px;">Kallenavn</div>
+        <div id="navn-visning" style="font-size:0.95rem; color:var(--text); margin-bottom:10px;"></div>
+        <input class="navn-input" id="navn-endre-input" type="text" placeholder="Ditt kallenavn" maxlength="20" autocomplete="off"
+          style="margin-bottom:8px;" onkeydown="if(event.key==='Enter') lagreNavn()">
+        <div style="display:flex; gap:8px;">
+          <button onclick="lagreNavn()"
+            style="flex:1; padding:10px; border-radius:8px; border:none; background:linear-gradient(135deg,#3b82f6,#6366f1); color:#fff; font-size:0.95rem; font-weight:600; cursor:pointer;">
+            Lagre
+          </button>
+          <button onclick="fjernNavn()"
+            style="padding:10px 14px; border-radius:8px; border:1px solid var(--border); background:none; color:var(--muted); font-size:0.95rem; cursor:pointer;">
+            Fjern
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -456,9 +473,30 @@
       document.getElementById('navn-overlay').style.display = 'none';
     }
 
+    function oppdaterNavnVisning() {
+      var navn = localStorage.getItem('quiz_kallenavn');
+      document.getElementById('navn-visning').textContent = navn ? 'Nåværende: ' + navn : 'Ingen navn satt';
+      document.getElementById('navn-endre-input').value = navn || '';
+    }
+
+    function lagreNavn() {
+      var navn = document.getElementById('navn-endre-input').value.trim();
+      localStorage.setItem('quiz_kallenavn', navn);
+      sessionStorage.setItem('lom_navn_spurt', '1');
+      oppdaterNavnVisning();
+    }
+
+    function fjernNavn() {
+      localStorage.removeItem('quiz_kallenavn');
+      sessionStorage.removeItem('lom_navn_spurt');
+      document.getElementById('navn-endre-input').value = '';
+      oppdaterNavnVisning();
+    }
+
     // Combine
     var overlay = document.getElementById('combine-overlay');
     document.getElementById('dots-open').addEventListener('click', function () {
+      oppdaterNavnVisning();
       overlay.classList.add('open');
     });
     overlay.addEventListener('click', function (e) {
