@@ -851,10 +851,12 @@
         document.getElementById('new-quiz-btn').textContent = 'Start på nytt';
       }
 
-      if (isLom && temas.length === 1) {
-        document.getElementById('start-navn-input').value = localStorage.getItem('quiz_kallenavn') || '';
+      if (isLom && temas.length === 1 && localStorage.getItem('quiz_kallenavn') === null) {
+        document.getElementById('start-navn-input').value = '';
         document.getElementById('navn-screen').style.display = 'block';
       } else {
+        currentNavn = localStorage.getItem('quiz_kallenavn') || '';
+        document.getElementById('start-navn-input').value = currentNavn;
         document.getElementById('start-screen').style.display = 'block';
       }
 
