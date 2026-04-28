@@ -239,6 +239,63 @@
       margin-bottom: 2px;
       display: block;
     }
+    .settings-navn-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+    }
+    .settings-navn-row strong {
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .settings-navn-row span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .settings-navn-row .navn-visning-tekst {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .settings-navn-input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background: var(--surface2);
+      color: var(--text);
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: inherit;
+    }
+    .settings-navn-input:focus { border-color: var(--accent); }
+    .settings-navn-actions { display: flex; gap: 8px; }
+    .settings-btn-save {
+      flex: 1;
+      padding: 9px;
+      border-radius: 8px;
+      border: none;
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .settings-btn-remove {
+      padding: 9px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: none;
+      color: var(--muted);
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
     .settings-select-inner {
       display: flex;
       gap: 10px;
@@ -273,6 +330,16 @@
     <div id="settings-sheet">
       <div class="settings-handle"></div>
       <div class="settings-title">Innstillinger</div>
+
+      <div class="settings-navn-row">
+        <strong>Kallenavn (LØM-quiz)</strong>
+        <span id="navn-visning-main" class="navn-visning-tekst"></span>
+        <input class="settings-navn-input" id="navn-input-main" type="text" placeholder="Ditt kallenavn" maxlength="20" autocomplete="off">
+        <div class="settings-navn-actions">
+          <button class="settings-btn-save" id="lagre-navn-btn">Lagre</button>
+          <button class="settings-btn-remove" id="fjern-navn-btn">Fjern</button>
+        </div>
+      </div>
 
       <div class="settings-row">
         <div class="settings-row-label">
@@ -388,9 +455,38 @@
     const resetOneBtn     = document.getElementById('reset-one-btn');
     const quizSelect      = document.getElementById('quiz-select');
 
-    settingsBtn.addEventListener('click', () => settingsOverlay.classList.add('open'));
+    function oppdaterNavnMain() {
+      const navn = localStorage.getItem('quiz_kallenavn');
+      const vis  = document.getElementById('navn-visning-main');
+      const inp  = document.getElementById('navn-input-main');
+      vis.textContent = navn ? 'Nåværende: ' + navn : (navn === '' ? 'Hopp over (tomt)' : 'Ingen navn satt');
+      inp.value = navn || '';
+    }
+
+    document.getElementById('lagre-navn-btn').addEventListener('click', () => {
+      const navn = document.getElementById('navn-input-main').value.trim();
+      localStorage.setItem('quiz_kallenavn', navn);
+      oppdaterNavnMain();
+      const btn = document.getElementById('lagre-navn-btn');
+      btn.textContent = 'Lagret ✓';
+      setTimeout(() => { btn.textContent = 'Lagre'; }, 1500);
+    });
+
+    document.getElementById('fjern-navn-btn').addEventListener('click', () => {
+      localStorage.removeItem('quiz_kallenavn');
+      oppdaterNavnMain();
+    });
+
+    settingsBtn.addEventListener('click', () => {
+      oppdaterNavnMain();
+      settingsOverlay.classList.add('open');
+    });
     settingsOverlay.addEventListener('click', e => {
       if (e.target === settingsOverlay) settingsOverlay.classList.remove('open');
+    });
+
+    document.getElementById('navn-input-main').addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('lagre-navn-btn').click();
     });
 
     resetBtn.addEventListener('click', () => {
