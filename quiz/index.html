@@ -449,11 +449,13 @@
   </div>
 
   <script>
-    // Navn overlay — vises om ingen reelt navn er lagret (null eller tom streng)
+    // Navn overlay — vises kun når man kommer fra hjemskjermen og ingen reelt navn er lagret
     (function () {
       var overlay = document.getElementById('navn-overlay');
       var input   = document.getElementById('navn-input');
-      if (localStorage.getItem('quiz_kallenavn')) {
+      var fraHjem = sessionStorage.getItem('lom_fra_hjem');
+      sessionStorage.removeItem('lom_fra_hjem');
+      if (localStorage.getItem('quiz_kallenavn') || !fraHjem) {
         overlay.style.display = 'none';
       } else {
         input.value = '';
