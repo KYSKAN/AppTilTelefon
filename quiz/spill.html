@@ -1166,6 +1166,15 @@
     let pendingScore  = null;
     let currentNavn   = '';
 
+    function getDeviceId() {
+      let id = localStorage.getItem('quiz_device_id');
+      if (!id) {
+        id = 'dev_' + Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
+        localStorage.setItem('quiz_device_id', id);
+      }
+      return id;
+    }
+
     function sbHeaders(extra = {}) {
       return { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', ...extra };
     }
@@ -1182,12 +1191,12 @@
       await fetch(`${SB_URL}/rest/v1/scores`, {
         method: 'POST',
         headers: sbHeaders({ 'Prefer': 'return=minimal' }),
-        body: JSON.stringify({ navn, score: sc, total: tot, tema: t })
+        body: JSON.stringify({ navn, score: sc, total: tot, tema: t, device_id: getDeviceId() })
       });
     }
 
     function saveAnswer(q, isCorrect) {
-      const payload = { tema: temas[0], sporsmal_idx: QUESTIONS.indexOf(q), cat: q.cat, riktig: isCorrect };
+      const payload = { tema: temas[0], sporsmal_idx: QUESTIONS.indexOf(q), cat: q.cat, riktig: isCorrect, device_id: getDeviceId() };
       if (currentNavn) payload.navn = currentNavn;
       fetch(`${SB_URL}/rest/v1/svar`, {
         method: 'POST',
