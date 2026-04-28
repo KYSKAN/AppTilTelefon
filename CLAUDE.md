@@ -147,6 +147,41 @@ Anon-nøkkel ligger i `spill.html` — brukes for INSERT og SELECT fra nettleser
 4. I `kalkulator/index.html`: legg til `<div class="dropdown-item">` og `<script src="js/calc-ny.js">`
 5. I `service-worker.js`: legg til `'./kalkulator/js/calc-ny.js'` i `FILES` og bump `CACHE`
 
+## Quiz-spørsmålsformat
+Hver quiz-fil eksporterer to konstanter: `QUIZ_META` og `QUESTIONS`.
+
+```javascript
+const QUIZ_META = {
+  id: 'lom-lovavtale',           // unik slug, samme som URL-parameteret
+  title: 'Lover & Avtaler',      // vises i UI
+  subtitle: 'LØM Fagskole',      // vises under tittel
+  description: '28 spørsmål...', // vises på startskjermen
+  cats: {
+    aml:   { label: 'Arbeidsmiljøloven', color: '#8b5cf6' },
+    ferie: { label: 'Ferieloven',        color: '#f59e0b' },
+    // én entry per kategori
+  }
+};
+
+const QUESTIONS = [
+  {
+    cat: 'aml',                          // nøkkel fra cats-objektet
+    catLabel: 'Arbeidsmiljøloven',       // visningsnavn (lik cats[cat].label)
+    q: 'Spørsmålstekst her?',
+    opts: ['Alternativ A', 'Alternativ B', 'Alternativ C', 'Alternativ D'],
+    correct: 2,                          // indeks i opts (0-basert). Array for flervalg: [0, 2]
+    explain: 'Forklaring som vises etter svar. Henvis gjerne til paragraf/standard.'
+  },
+  // ...
+];
+```
+
+**Regler:**
+- `correct` er ett tall (enkeltvalg) eller array av tall (flervalg, bekreftes med knapp)
+- Alltid 4 svaralternativer — quizmotoren shuffler dem tilfeldig
+- `catLabel` må matche `cats[cat].label` eksakt
+- Filen evalueres som vanlig JS via `new Function()` i spill.html — ikke bruk ES-modules (`import`/`export`)
+
 ## kabel-data.js — tabeller og konstanter
 - `izCuPVC` / `izCuPEX`: strømkapasitetstabeller kobber (IEC 60364-5-52), metoder A1–E
 - `izAlPVC` / `izAlPEX`: strømkapasitetstabeller aluminium, min. 16 mm²
