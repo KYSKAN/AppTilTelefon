@@ -465,7 +465,8 @@
 
     document.getElementById('lagre-navn-btn').addEventListener('click', () => {
       const navn = document.getElementById('navn-input-main').value.trim();
-      localStorage.setItem('quiz_kallenavn', navn);
+      if (navn) localStorage.setItem('quiz_kallenavn', navn);
+      else localStorage.removeItem('quiz_kallenavn');
       oppdaterNavnMain();
       const btn = document.getElementById('lagre-navn-btn');
       btn.textContent = 'Lagret ✓';

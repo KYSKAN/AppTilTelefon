@@ -480,7 +480,8 @@
 
     function lagreNavn() {
       var navn = document.getElementById('navn-endre-input').value.trim();
-      localStorage.setItem('quiz_kallenavn', navn);
+      if (navn) localStorage.setItem('quiz_kallenavn', navn);
+      else localStorage.removeItem('quiz_kallenavn');
       oppdaterNavnVisning();
     }
 
