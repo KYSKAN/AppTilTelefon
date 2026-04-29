@@ -354,6 +354,13 @@
         <span>Velg quiz og slett kun den scoreen</span>
         <div class="settings-select-inner">
           <select id="quiz-select">
+            <optgroup label="LØM Fagskole">
+              <option value="lom-ledelse">Ledelse &amp; Organisasjon</option>
+              <option value="lom-marked">Markedsføringsledelse</option>
+              <option value="lom-regnskap">Regnskapsanalyse</option>
+              <option value="lom-okonomi">Økonomistyring</option>
+              <option value="lom-lovavtale">Lover &amp; Avtaler</option>
+            </optgroup>
             <optgroup label="Quiz Elektro">
               <option value="rlc">RLC-kretser</option>
             </optgroup>
@@ -379,6 +386,15 @@
   <p class="subtitle">Verktøy for elektrikere</p>
 
   <div class="nav-grid">
+    <a class="nav-btn" href="quiz/" onclick="sessionStorage.setItem('lom_fra_hjem','1')">
+      <div class="icon">📝</div>
+      <div class="text">
+        <strong>Quiz LØM</strong>
+        <span>Fagskole – Ledelse, Økonomi, Marked og mer</span>
+      </div>
+      <div class="arrow">›</div>
+    </a>
+
     <a class="nav-btn" href="quiz/index-elektro.html" onclick="sessionStorage.setItem('elektro_fra_hjem','1')">
       <div class="icon">⚡</div>
       <div class="text">
