@@ -1,4 +1,4 @@
-const CACHE = 'kalkulator-v175';
+const CACHE = 'kalkulator-v176';
 
 const FILES = [
   './',
@@ -19,11 +19,15 @@ const FILES = [
   './quiz/index-elektro.html',
   './quiz/spill.html',
   './quiz/illustrations.js',
-  './quiz/lom/ledelse.js',
-  './quiz/lom/marked.js',
-  './quiz/lom/regnskap.js',
-  './quiz/lom/okonomi.js',
-  './quiz/lom/lovavtale.js',
+  './quiz/lom/ool-motivasjon.js',
+  './quiz/lom/ool-kultur.js',
+  './quiz/lom/ool-endring.js',
+  './quiz/lom/marked-strategi.js',
+  './quiz/lom/oks-kostnader.js',
+  './quiz/lom/oks-regnskapsanalyse.js',
+  './quiz/lom/oks-kalkyl.js',
+  './quiz/lom/oks-budsjettering.js',
+  './quiz/lom/oks-investering.js',
   './quiz/elektro/rlc.js',
   './quiz/bjrons/boolsk.js',
   './quiz/bjrons/porter.js',

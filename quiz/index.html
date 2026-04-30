@@ -325,11 +325,15 @@
       <div class="sheet-title">Slå sammen quizzer</div>
       <p class="sheet-sub">Velg to eller flere og start som én samlet quiz</p>
       <div class="combine-list">
-        <label class="combine-item"><input type="checkbox" value="lom-ledelse"> Ledelse &amp; Organisasjon</label>
-        <label class="combine-item"><input type="checkbox" value="lom-marked"> Markedsføringsledelse</label>
-        <label class="combine-item"><input type="checkbox" value="lom-regnskap"> Regnskapsanalyse</label>
-        <label class="combine-item"><input type="checkbox" value="lom-okonomi"> Økonomistyring</label>
-        <label class="combine-item"><input type="checkbox" value="lom-lovavtale"> Lover &amp; Avtaler</label>
+        <label class="combine-item"><input type="checkbox" value="lom-ool-motivasjon"> Motivasjon</label>
+        <label class="combine-item"><input type="checkbox" value="lom-ool-kultur"> Organisasjonskultur</label>
+        <label class="combine-item"><input type="checkbox" value="lom-ool-endring"> Endringsledelse og OU</label>
+        <label class="combine-item"><input type="checkbox" value="lom-marked-strategi"> Markedsstrategien</label>
+        <label class="combine-item"><input type="checkbox" value="lom-oks-kostnader"> Grunnlag og kostnader</label>
+        <label class="combine-item"><input type="checkbox" value="lom-oks-regnskapsanalyse"> Regnskapsanalyse</label>
+        <label class="combine-item"><input type="checkbox" value="lom-oks-kalkyl"> Driftsregnskap og kalkyler</label>
+        <label class="combine-item"><input type="checkbox" value="lom-oks-budsjettering"> Budsjettering</label>
+        <label class="combine-item"><input type="checkbox" value="lom-oks-investering"> Investering og kapitalbinding</label>
       </div>
       <button class="start-combine-btn" id="start-combine-btn">Start valgte →</button>
 
@@ -357,92 +361,163 @@
 
   <div class="quiz-list">
 
-    <a class="quiz-card" href="spill.html?tema=lom-ledelse" data-tema="lom-ledelse">
+    <div style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; padding:4px 2px 2px; width:100%; max-width:440px;">Organisasjon og ledelse</div>
+
+    <a class="quiz-card" href="spill.html?tema=lom-ool-motivasjon" data-tema="lom-ool-motivasjon">
       <div class="quiz-card-header">
         <div>
-          <div class="quiz-card-title">Ledelse & Organisasjon</div>
-          <div class="quiz-card-subtitle">LØM Fagskole · 30 spørsmål</div>
+          <div class="quiz-card-title">Motivasjon</div>
+          <div class="quiz-card-subtitle">Org. og ledelse – Kap. 4 · 30 spørsmål</div>
         </div>
         <span class="quiz-card-arrow">›</span>
       </div>
-      <div class="quiz-card-desc">Motivasjonsteori, lederstiler, organisasjonsformer, kommunikasjon, HMS og prosjektledelse.</div>
+      <div class="quiz-card-desc">Maslow, Herzberg, McGregor, Thorsrud, motivasjonstyper, SMART-mål og kompetansemobilisering.</div>
       <div class="quiz-card-cats">
-        <span class="cat-tag" style="background:rgba(245,158,11,0.15); color:#f59e0b">Motivasjonsteori</span>
-        <span class="cat-tag" style="background:rgba(236,72,153,0.15); color:#ec4899">Lederstil</span>
-        <span class="cat-tag" style="background:rgba(0,168,232,0.15);  color:#00a8e8">Organisasjonsformer</span>
-        <span class="cat-tag" style="background:rgba(139,92,246,0.15); color:#8b5cf6">Personal & utvikling</span>
-        <span class="cat-tag" style="background:rgba(16,185,129,0.15); color:#10b981">Regelverk & HMS</span>
+        <span class="cat-tag" style="background:rgba(139,92,246,0.15); color:#8b5cf6">Maslow</span>
+        <span class="cat-tag" style="background:rgba(59,130,246,0.15); color:#3b82f6">Herzberg</span>
+        <span class="cat-tag" style="background:rgba(16,185,129,0.15); color:#10b981">Teori X og Y</span>
+        <span class="cat-tag" style="background:rgba(245,158,11,0.15); color:#f59e0b">Motivasjonstyper</span>
+        <span class="cat-tag" style="background:rgba(239,68,68,0.15); color:#ef4444">Mål og kompetanse</span>
       </div>
     </a>
 
-    <a class="quiz-card" href="spill.html?tema=lom-marked" data-tema="lom-marked">
+    <a class="quiz-card" href="spill.html?tema=lom-ool-kultur" data-tema="lom-ool-kultur">
       <div class="quiz-card-header">
         <div>
-          <div class="quiz-card-title">Markedsføringsledelse</div>
-          <div class="quiz-card-subtitle">LØM Fagskole · 36 spørsmål</div>
+          <div class="quiz-card-title">Organisasjonskultur</div>
+          <div class="quiz-card-subtitle">Org. og ledelse – Kap. 5 · 30 spørsmål</div>
         </div>
         <span class="quiz-card-arrow">›</span>
       </div>
-      <div class="quiz-card-desc">4P, STP, AIDA, kjøpsatferd, anbud, markedsanalyse og konkurransestrategier.</div>
+      <div class="quiz-card-desc">Scheins 3 nivåer, isfjellmodellen, de fire kulturtypene, subkulturer, gruppetenkning og Belbins 9 grupperoller.</div>
       <div class="quiz-card-cats">
-        <span class="cat-tag" style="background:rgba(236,72,153,0.15); color:#ec4899">Markedsgrunnlag</span>
-        <span class="cat-tag" style="background:rgba(139,92,246,0.15); color:#8b5cf6">Markedsmiks & STP</span>
-        <span class="cat-tag" style="background:rgba(245,158,11,0.15); color:#f59e0b">Markedsstrategi</span>
-        <span class="cat-tag" style="background:rgba(16,185,129,0.15); color:#10b981">Analyse & planlegging</span>
-        <span class="cat-tag" style="background:rgba(0,168,232,0.15);  color:#00a8e8">El-bransjen</span>
+        <span class="cat-tag" style="background:rgba(139,92,246,0.15); color:#8b5cf6">Scheins modell</span>
+        <span class="cat-tag" style="background:rgba(59,130,246,0.15); color:#3b82f6">Kulturtyper</span>
+        <span class="cat-tag" style="background:rgba(16,185,129,0.15); color:#10b981">Subkulturer</span>
+        <span class="cat-tag" style="background:rgba(245,158,11,0.15); color:#f59e0b">Belbins roller</span>
       </div>
     </a>
 
-    <a class="quiz-card" href="spill.html?tema=lom-regnskap" data-tema="lom-regnskap">
+    <a class="quiz-card" href="spill.html?tema=lom-ool-endring" data-tema="lom-ool-endring">
+      <div class="quiz-card-header">
+        <div>
+          <div class="quiz-card-title">Endringsledelse og organisasjonsutvikling</div>
+          <div class="quiz-card-subtitle">Org. og ledelse – Kap. 7 · 32 spørsmål</div>
+        </div>
+        <span class="quiz-card-arrow">›</span>
+      </div>
+      <div class="quiz-card-desc">Endringsledelse, Kotter og Lewin, interessentanalyse, motstand, OU, TKL, LEAN, PDCA og Senges lærende organisasjon.</div>
+      <div class="quiz-card-cats">
+        <span class="cat-tag" style="background:rgba(139,92,246,0.15); color:#8b5cf6">Endringsledelse</span>
+        <span class="cat-tag" style="background:rgba(59,130,246,0.15); color:#3b82f6">Kotter og Lewin</span>
+        <span class="cat-tag" style="background:rgba(239,68,68,0.15); color:#ef4444">Interessenter</span>
+        <span class="cat-tag" style="background:rgba(16,185,129,0.15); color:#10b981">OU, TKL og LEAN</span>
+      </div>
+    </a>
+
+    <div style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; padding:12px 2px 2px; width:100%; max-width:440px;">Markedsføringsledelse</div>
+
+    <a class="quiz-card" href="spill.html?tema=lom-marked-strategi" data-tema="lom-marked-strategi">
+      <div class="quiz-card-header">
+        <div>
+          <div class="quiz-card-title">Utforming av markedsstrategien</div>
+          <div class="quiz-card-subtitle">Markedsføringsledelse · 30 spørsmål</div>
+        </div>
+        <span class="quiz-card-arrow">›</span>
+      </div>
+      <div class="quiz-card-desc">Ansoff-matrisen, integrasjonsstrategier, Porters konkurransestrategier, Kotlers markedsposisjoner, markedsplan og markedsmiksen 5P.</div>
+      <div class="quiz-card-cats">
+        <span class="cat-tag" style="background:rgba(139,92,246,0.15); color:#8b5cf6">Vekststrategier</span>
+        <span class="cat-tag" style="background:rgba(59,130,246,0.15); color:#3b82f6">Konkurransestrategier</span>
+        <span class="cat-tag" style="background:rgba(16,185,129,0.15); color:#10b981">Markedsplan</span>
+        <span class="cat-tag" style="background:rgba(245,158,11,0.15); color:#f59e0b">5P</span>
+      </div>
+    </a>
+
+    <div style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; padding:12px 2px 2px; width:100%; max-width:440px;">Økonomistyring</div>
+
+    <a class="quiz-card" href="spill.html?tema=lom-oks-kostnader" data-tema="lom-oks-kostnader">
+      <div class="quiz-card-header">
+        <div>
+          <div class="quiz-card-title">Grunnlag, inntekter og kostnader</div>
+          <div class="quiz-card-subtitle">Økonomistyring – Kap. 1-2 og 5 · 30 spørsmål</div>
+        </div>
+        <span class="quiz-card-arrow">›</span>
+      </div>
+      <div class="quiz-card-desc">Regnskapstyper, interessenter, kostnadsbegreper, faste/variable/direkte/indirekte kostnader, regnskapsprinsipper og avskrivninger.</div>
+      <div class="quiz-card-cats">
+        <span class="cat-tag" style="background:rgba(139,92,246,0.15); color:#8b5cf6">Styringsgrunnlag</span>
+        <span class="cat-tag" style="background:rgba(59,130,246,0.15); color:#3b82f6">Kostnadsbegreper</span>
+        <span class="cat-tag" style="background:rgba(16,185,129,0.15); color:#10b981">Regnskapsprinsipper</span>
+        <span class="cat-tag" style="background:rgba(245,158,11,0.15); color:#f59e0b">Avskrivninger</span>
+      </div>
+    </a>
+
+    <a class="quiz-card" href="spill.html?tema=lom-oks-regnskapsanalyse" data-tema="lom-oks-regnskapsanalyse">
       <div class="quiz-card-header">
         <div>
           <div class="quiz-card-title">Regnskapsanalyse</div>
-          <div class="quiz-card-subtitle">LØM Fagskole · 33 spørsmål</div>
+          <div class="quiz-card-subtitle">Økonomistyring – Kap. 8 · 35 spørsmål</div>
         </div>
         <span class="quiz-card-arrow">›</span>
       </div>
-      <div class="quiz-card-desc">Nøkkeltall, balanse, resultatregnskap, likviditet og soliditet.</div>
+      <div class="quiz-card-desc">Alle nøkkeltall for lønnsomhet (TKR, EKR, BFP, driftsmargin), soliditet (EKP, gjeldsgrad) og likviditet (LG1, LG2) med formler, krav og tiltak.</div>
       <div class="quiz-card-cats">
-        <span class="cat-tag" style="background:rgba(16,185,129,0.15); color:#10b981">Nøkkeltall & lønnsomhet</span>
-        <span class="cat-tag" style="background:rgba(92,124,250,0.15); color:#5c7cfa">Balanse & eiendeler</span>
-        <span class="cat-tag" style="background:rgba(245,158,11,0.15); color:#f59e0b">Likviditet & soliditet</span>
+        <span class="cat-tag" style="background:rgba(139,92,246,0.15); color:#8b5cf6">Lønnsomhet</span>
+        <span class="cat-tag" style="background:rgba(59,130,246,0.15); color:#3b82f6">Soliditet</span>
+        <span class="cat-tag" style="background:rgba(16,185,129,0.15); color:#10b981">Likviditet</span>
+        <span class="cat-tag" style="background:rgba(245,158,11,0.15); color:#f59e0b">Tiltak</span>
       </div>
     </a>
 
-    <a class="quiz-card" href="spill.html?tema=lom-okonomi" data-tema="lom-okonomi">
+    <a class="quiz-card" href="spill.html?tema=lom-oks-kalkyl" data-tema="lom-oks-kalkyl">
       <div class="quiz-card-header">
         <div>
-          <div class="quiz-card-title">Økonomistyring</div>
-          <div class="quiz-card-subtitle">LØM Fagskole · 50 spørsmål</div>
+          <div class="quiz-card-title">Driftsregnskap og kalkyler</div>
+          <div class="quiz-card-subtitle">Økonomistyring – Kap. 9 og 11 · 30 spørsmål</div>
         </div>
         <span class="quiz-card-arrow">›</span>
       </div>
-      <div class="quiz-card-desc">Kalkyler, budsjettering, investeringsanalyse, kapitalbinding, MVA, selskapsformer og relevant lovverk.</div>
+      <div class="quiz-card-desc">Driftsregnskap, selvkostmetoden, bidragsmetoden, dekningsbidrag, kalkylasjon i varehandel og avviksanalyse.</div>
       <div class="quiz-card-cats">
-        <span class="cat-tag" style="background:rgba(16,185,129,0.15); color:#10b981">Kalkyler & kostnader</span>
-        <span class="cat-tag" style="background:rgba(92,124,250,0.15); color:#5c7cfa">Budsjetter</span>
-        <span class="cat-tag" style="background:rgba(167,139,250,0.15); color:#a78bfa">Investeringsanalyse</span>
-        <span class="cat-tag" style="background:rgba(251,146,60,0.15); color:#fb923c">Kapitalbinding</span>
-        <span class="cat-tag" style="background:rgba(245,158,11,0.15); color:#f59e0b">Lovverk & regelverk</span>
-        <span class="cat-tag" style="background:rgba(236,72,153,0.15); color:#ec4899">Selskapsformer & finans</span>
+        <span class="cat-tag" style="background:rgba(139,92,246,0.15); color:#8b5cf6">Driftsregnskap</span>
+        <span class="cat-tag" style="background:rgba(59,130,246,0.15); color:#3b82f6">Selvkost</span>
+        <span class="cat-tag" style="background:rgba(16,185,129,0.15); color:#10b981">Bidragsmetoden</span>
+        <span class="cat-tag" style="background:rgba(245,158,11,0.15); color:#f59e0b">Avviksanalyse</span>
       </div>
     </a>
 
-    <a class="quiz-card" href="spill.html?tema=lom-lovavtale" data-tema="lom-lovavtale">
+    <a class="quiz-card" href="spill.html?tema=lom-oks-budsjettering" data-tema="lom-oks-budsjettering">
       <div class="quiz-card-header">
         <div>
-          <div class="quiz-card-title">Lover & Avtaler</div>
-          <div class="quiz-card-subtitle">LØM Fagskole · 29 spørsmål</div>
+          <div class="quiz-card-title">Budsjettering</div>
+          <div class="quiz-card-subtitle">Økonomistyring – Kap. 10 · 28 spørsmål</div>
         </div>
         <span class="quiz-card-arrow">›</span>
       </div>
-      <div class="quiz-card-desc">Arbeidsmiljøloven, ferieloven, tariffavtaler, ansettelse og HMS — relevant for elektrobransjen.</div>
+      <div class="quiz-card-desc">Budsjetttyper (resultat, likviditet, balanse), budsjettprosessen, likviditetsbudsjettet med kredittid og varekjøp, og budsjettkontroll med avviksanalyse.</div>
       <div class="quiz-card-cats">
-        <span class="cat-tag" style="background:rgba(139,92,246,0.15); color:#8b5cf6">Arbeidsmiljøloven</span>
-        <span class="cat-tag" style="background:rgba(245,158,11,0.15); color:#f59e0b">Ferieloven</span>
-        <span class="cat-tag" style="background:rgba(236,72,153,0.15); color:#ec4899">Tariffavtaler</span>
-        <span class="cat-tag" style="background:rgba(0,168,232,0.15); color:#00a8e8">Ansettelse</span>
-        <span class="cat-tag" style="background:rgba(16,185,129,0.15); color:#10b981">HMS</span>
+        <span class="cat-tag" style="background:rgba(139,92,246,0.15); color:#8b5cf6">Budsjetttyper</span>
+        <span class="cat-tag" style="background:rgba(59,130,246,0.15); color:#3b82f6">Prosess</span>
+        <span class="cat-tag" style="background:rgba(16,185,129,0.15); color:#10b981">Likviditetsbudsjett</span>
+        <span class="cat-tag" style="background:rgba(245,158,11,0.15); color:#f59e0b">Budsjettkontroll</span>
+      </div>
+    </a>
+
+    <a class="quiz-card" href="spill.html?tema=lom-oks-investering" data-tema="lom-oks-investering">
+      <div class="quiz-card-header">
+        <div>
+          <div class="quiz-card-title">Investering og kapitalbinding</div>
+          <div class="quiz-card-subtitle">Økonomistyring – Kap. 13 og 14 · 30 spørsmål</div>
+        </div>
+        <span class="quiz-card-arrow">›</span>
+      </div>
+      <div class="quiz-card-desc">Investeringsmetoder (TBT, nåverdi, internrente), gjensidig utelukkende prosjekter, kapitalbinding i kundefordringer og lager, ABC-analyse og DuPont-modellen.</div>
+      <div class="quiz-card-cats">
+        <span class="cat-tag" style="background:rgba(139,92,246,0.15); color:#8b5cf6">Investeringsmetoder</span>
+        <span class="cat-tag" style="background:rgba(59,130,246,0.15); color:#3b82f6">Gjensidig utelukkende</span>
+        <span class="cat-tag" style="background:rgba(16,185,129,0.15); color:#10b981">Kapitalbinding</span>
+        <span class="cat-tag" style="background:rgba(245,158,11,0.15); color:#f59e0b">ABC og DuPont</span>
       </div>
     </a>
 
